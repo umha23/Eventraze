@@ -1,8 +1,8 @@
 {
   "id": "./",
-  "name": "PWA Template Responsif",
+  "name": "Katalog Event",
   "short_name": "Eventraze",
-  "description": "Aplikasi PWA responsif untuk demonstrasi template dasar Progressive Web App dengan dukungan offline dan installable.",
+  "description": "Eventraze adalah platform lengkap untuk pecinta event! Cari event seru di sekitarmu dan promosikan acara kamu. Semua bisa dilakukan dalam satu aplikasi mudah, cepat, dan profesional.(Eventraze, one stop platform for every event experience!).",
   "start_url": "./index.html",
   "scope": "./",
   "display": "standalone",
