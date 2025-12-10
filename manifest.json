@@ -1,54 +1,13 @@
 {
-  "id": "./",
-  "name": "Katalog Event",
-  "short_name": "Eventraze",
-  "description": "Eventraze adalah platform lengkap untuk pecinta event! Cari event seru di sekitarmu dan promosikan acara kamu. Semua bisa dilakukan dalam satu aplikasi mudah, cepat, dan profesional.(Eventraze, one stop platform for every event experience!).",
-  "start_url": "./index.html",
-  "scope": "./",
+  "background_color": "#0f0f0f",
+  "dir": "ltr",
   "display": "standalone",
-  "background_color": "#222831",
-  "theme_color": "#222831",
-  "orientation": "portrait",
-  "lang": "id",
-  "icons": [
-    {
-      "src": "icons/icon-192x192-A.png",
-      "sizes": "192x192",
-      "type": "image/png"
-    },
-    {
-      "src": "icons/icon-512x512-B.png",
-      "sizes": "512x512",
-      "type": "image/png"
-    }
-  ],
-  "screenshots": [
-    {
-      "src": "icons/screenshot1.png",
-      "sizes": "1080x1920",
-      "type": "image/png"
-    },
-    {
-      "src": "icons/screenshot2.png",
-      "sizes": "1080x1920",
-      "type": "image/png"
-    }
-  ],
-  "shortcuts": [
-    {
-      "name": "Buka Beranda",
-      "short_name": "Home",
-      "url": "./index.html",
-      "icons": [
-        {
-          "src": "icons/icon-192x192-A.png",
-          "sizes": "192x192"
-        }
-      ]
-    }
-  ],
-  "categories": [
-    "productivity",
-    "utilities"
-  ]
+  "name": "eventraze-pied.vercel",
+  "orientation": "any",
+  "scope": "/",
+  "short_name": "eventz",
+  "start_url": "/",
+  "theme_color": "#f7c566",
+  "id": "eventraze.id",
+  "description": "Aplikasi katalog event di daerah solo raya"
 }
