@@ -1,0 +1,3539 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Eventraze - Discover Events</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="manifest" href="#" id="manifest-placeholder">
+    <meta name="theme-color" content="#0F0F0F">
+    <style>
+        :root {
+            --primary: #0F0F0F;
+            --secondary: #F7C566;
+            --bg-light: #FFFFFF;
+            --bg-dark: #1A1A1A;
+            --text-light: #333333;
+            --text-dark: #FFFFFF;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: var(--bg-light);
+            color: var(--text-light);
+            overflow-x: hidden;
+            padding-bottom: 80px;
+        }
+
+        body.dark-mode {
+            background: var(--bg-dark);
+            color: var(--text-dark);
+        }
+
+        h1, h2, h3, h4, h5, h6, .btn {
+            font-family: 'Poppins', sans-serif;
+        }
+
+        .btn-primary {
+            background: var(--secondary);
+            border: none;
+            color: var(--primary);
+            font-weight: 600;
+            border-radius: 25px;
+            padding: 12px 30px;
+            transition: all 0.3s ease;
+        }
+
+        .btn-primary:hover {
+            background: #e6b855;
+            color: var(--primary);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(247, 197, 102, 0.4);
+        }
+
+        /* Navigation Bar */
+        .bottom-nav {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: var(--primary);
+            display: flex;
+            justify-content: space-around;
+            padding: 12px 0;
+            box-shadow: 0 -2px 10px rgba(0,0,0,0.1);
+            z-index: 1000;
+        }
+
+        .dark-mode .bottom-nav {
+            background: #000000;
+        }
+
+        .nav-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            color: #888;
+            text-decoration: none;
+            font-size: 12px;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .nav-item i {
+            font-size: 24px;
+            margin-bottom: 4px;
+            transition: all 0.3s ease;
+        }
+
+        .nav-item.active {
+            color: var(--secondary);
+        }
+
+        .nav-item.active i {
+            transform: scale(1.2) translateY(-3px);
+        }
+
+        /* Page Container */
+        .page {
+            display: none;
+            animation: fadeIn 0.3s ease;
+        }
+
+        .page.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Auth Pages */
+        .auth-container {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(135deg, var(--primary) 0%, #2a2a2a 100%);
+            padding: 20px;
+        }
+
+        .auth-card {
+            background: white;
+            border-radius: 20px;
+            padding: 40px 30px;
+            max-width: 400px;
+            width: 100%;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.2);
+        }
+
+        .dark-mode .auth-card {
+            background: #2a2a2a;
+        }
+
+        .auth-logo {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .auth-logo h1 {
+            color: var(--primary);
+            font-weight: 700;
+            font-size: 32px;
+        }
+
+        .dark-mode .auth-logo h1 {
+            color: var(--secondary);
+        }
+
+        .auth-logo p {
+            color: #666;
+            font-size: 14px;
+        }
+
+        .form-control:focus {
+            border-color: var(--secondary);
+            box-shadow: 0 0 0 0.2rem rgba(247, 197, 102, 0.25);
+        }
+
+        /* Home Page */
+        .header-section {
+            background: linear-gradient(135deg, var(--primary) 0%, #2a2a2a 100%);
+            color: white;
+            padding: 30px 20px 20px;
+            border-radius: 0 0 30px 30px;
+            margin-bottom: 20px;
+        }
+
+        .greeting h2 {
+            font-weight: 600;
+            margin-bottom: 5px;
+        }
+
+        .greeting p {
+            opacity: 0.8;
+            font-size: 14px;
+        }
+
+        /* Megaphone Animation */
+        .megaphone-container {
+            text-align: center;
+            padding: 20px;
+            position: relative;
+            height: 150px;
+        }
+
+        .megaphone {
+            font-size: 80px;
+            display: inline-block;
+            animation: shake 2s ease-in-out infinite;
+        }
+
+        @keyframes shake {
+            0%, 100% { transform: rotate(0deg); }
+            25% { transform: rotate(-15deg); }
+            75% { transform: rotate(15deg); }
+        }
+
+        .sound-waves {
+            position: absolute;
+            right: 20px;
+            top: 50%;
+            transform: translateY(-50%);
+        }
+
+        .wave {
+            width: 4px;
+            height: 20px;
+            background: var(--secondary);
+            display: inline-block;
+            margin: 0 2px;
+            border-radius: 2px;
+            animation: wave 1s ease-in-out infinite;
+        }
+
+        .wave:nth-child(2) { animation-delay: 0.1s; }
+        .wave:nth-child(3) { animation-delay: 0.2s; }
+
+        @keyframes wave {
+            0%, 100% { height: 20px; }
+            50% { height: 40px; }
+        }
+
+        /* Categories */
+        .categories-slider {
+            display: flex;
+            gap: 15px;
+            overflow-x: auto;
+            padding: 20px;
+            scrollbar-width: none;
+        }
+
+        .categories-slider::-webkit-scrollbar {
+            display: none;
+        }
+
+        .category-card {
+            min-width: 120px;
+            padding: 20px;
+            background: linear-gradient(135deg, var(--secondary) 0%, #e6b855 100%);
+            border-radius: 15px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .category-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 5px 15px rgba(247, 197, 102, 0.3);
+        }
+
+        .category-card i {
+            font-size: 32px;
+            color: var(--primary);
+            margin-bottom: 10px;
+        }
+
+        .category-card h6 {
+            color: var(--primary);
+            font-weight: 600;
+            margin: 0;
+        }
+
+        /* Video Slider */
+        .video-slider-container {
+            padding: 0 20px 20px;
+            overflow: hidden;
+        }
+
+        .video-slider {
+            display: flex;
+            gap: 15px;
+            overflow-x: auto;
+            scroll-behavior: smooth;
+            scrollbar-width: none;
+            -webkit-overflow-scrolling: touch;
+            padding-bottom: 10px;
+        }
+
+        .video-slider::-webkit-scrollbar {
+            display: none;
+        }
+
+        .video-card-youtube {
+            min-width: 300px;
+            width: 300px;
+            border-radius: 15px;
+            overflow: hidden;
+            position: relative;
+            background: #000;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+            transition: all 0.3s ease;
+        }
+
+        .video-card-youtube:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 6px 20px rgba(0,0,0,0.3);
+        }
+
+        .video-card-youtube iframe {
+            width: 100%;
+            height: 200px;
+            border: none;
+        }
+
+        .video-card-youtube .video-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(to top, rgba(0,0,0,0.9), transparent);
+            padding: 15px;
+            color: white;
+        }
+
+        .video-card-youtube .video-overlay h6 {
+            font-size: 14px;
+            font-weight: 600;
+            margin-bottom: 4px;
+        }
+
+        .video-card-youtube .video-overlay small {
+            font-size: 12px;
+            opacity: 0.8;
+        }
+
+        /* Event Cards Grid - E-commerce Style */
+        .events-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 15px;
+            padding: 0 20px 20px;
+        }
+
+        @media (min-width: 768px) {
+            .events-grid {
+                grid-template-columns: repeat(3, 1fr);
+                gap: 20px;
+            }
+        }
+
+        @media (min-width: 1024px) {
+            .events-grid {
+                grid-template-columns: repeat(4, 1fr);
+                gap: 20px;
+                max-width: 1400px;
+                margin: 0 auto;
+                padding: 0 40px 20px;
+            }
+        }
+
+        .event-card {
+            background: white;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+            transition: all 0.3s ease;
+            cursor: pointer;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .dark-mode .event-card {
+            background: #2a2a2a;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.3);
+        }
+
+        .event-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+        }
+  /* Image Wrapper - Portrait Style untuk tidak memotong gambar */
+        .event-image-wrapper {
+            position: relative;
+            width: 100%;
+            padding-top: 140%; /* Aspect Ratio Portrait 10:14 */
+            overflow: hidden;
+            background: #f5f5f5;
+        }
+
+        .dark-mode .event-image-wrapper {
+            background: #1a1a1a;
+        }
+
+        .event-image {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center;
+        }
+
+        .event-badge {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            background: var(--secondary);
+            color: var(--primary);
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 10px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            z-index: 2;
+        }
+
+        .wishlist-btn {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background: white;
+            border: none;
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+            z-index: 2;
+        }
+
+        .wishlist-btn:hover {
+            transform: scale(1.1);
+        }
+
+        .wishlist-btn i {
+            color: #666;
+            font-size: 16px;
+            transition: all 0.3s ease;
+        }
+
+        .wishlist-btn.active i {
+            color: #ff4757;
+        }
+
+         /* Event Content */
+        .event-content {
+            padding: 12px;
+            display: flex;
+            flex-direction: column;
+            flex: 1;
+        }
+
+        .event-title {
+            font-weight: 600;
+            font-size: 14px;
+            margin-bottom: 8px;
+            color: var(--primary);
+            line-height: 1.3;
+            height: 36px;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .dark-mode .event-title {
+            color: var(--text-dark);
+        }
+
+        .event-info {
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+            font-size: 11px;
+            color: #666;
+            margin-bottom: 8px;
+        }
+
+        .dark-mode {
+            color: #999;
+        }
+
+        .event-info-item {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .event-info i {
+            color: var(--secondary);
+            font-size: 12px;
+            min-width: 12px;
+        }
+
+        .event-info-item span {
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .event-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding-top: 8px;
+            border-top: 1px solid #eee;
+            margin-top: auto;
+        }
+
+        .dark-mode .event-footer {
+            border-top-color: #444;
+        }
+
+        .rating {
+            display: flex;
+            align-items: center;
+            gap: 3px;
+            font-size: 12px;
+            font-weight: 600;
+            color: var(--primary);
+        }
+
+        .dark-mode .rating {
+            color: var(--text-dark);
+        }
+
+        .rating i {
+            color: #ffd700;
+            font-size: 13px;
+        }
+
+        .rating .review-count {
+            color: #999;
+            font-weight: 400;
+            font-size: 10px;
+        }
+
+        .event-price {
+            font-weight: 700;
+            color: var(--secondary);
+            font-size: 13px;
+        }
+
+        /* Responsive Adjustments */
+        @media (max-width: 576px) {
+            .auth-card {
+                padding: 30px 20px;
+            }
+
+            .event-title {
+                font-size: 13px;
+                height: 34px;
+            }
+
+            .event-info {
+                font-size: 10px;
+            }
+
+            .event-price {
+                font-size: 12px;
+            }
+        }
+        
+        /* Notification Item */
+        .notification-item {
+            background: white;
+            border-radius: 12px;
+            padding: 15px;
+            margin-bottom: 12px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            display: flex;
+            gap: 12px;
+            align-items: flex-start;
+            transition: all 0.3s ease;
+        }
+
+        .dark-mode .notification-item {
+            background: #2a2a2a;
+        }
+
+        .notification-item:hover {
+            transform: translateX(5px);
+            box-shadow: 0 3px 12px rgba(0,0,0,0.15);
+        }
+
+        .notification-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            font-size: 20px;
+        }
+
+        .notification-icon.success {
+            background: rgba(40, 167, 69, 0.1);
+        }
+
+        .notification-icon.info {
+            background: rgba(23, 162, 184, 0.1);
+        }
+
+        .notification-icon.warning {
+            background: rgba(255, 193, 7, 0.1);
+        }
+
+        .notification-icon.reminder {
+            background: rgba(247, 197, 102, 0.2);
+        }
+
+        .notification-icon.event {
+            background: rgba(220, 53, 69, 0.1);
+        }
+
+        .notification-content {
+            flex: 1;
+        }
+
+        .notification-time {
+            font-size: 11px;
+            color: #999;
+            margin-top: 4px;
+        }
+
+        .notification-unread {
+            position: relative;
+        }
+
+        .notification-unread::before {
+            content: '';
+            position: absolute;
+            left: -10px;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 8px;
+            height: 8px;
+            background: var(--secondary);
+            border-radius: 50%;
+            animation: pulse 2s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% {
+                opacity: 1;
+                transform: translateY(-50%) scale(1);
+            }
+            50% {
+                opacity: 0.5;
+                transform: translateY(-50%) scale(1.2);
+            }
+        }
+
+        .notification-badge {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            width: 8px;
+            height: 8px;
+            background: #ff4757;
+            border-radius: 50%;
+        }
+
+        /* Filter and Action Buttons */
+        .filter-buttons {
+            display: flex;
+            gap: 8px;
+            padding: 15px 20px;
+            overflow-x: auto;
+            scrollbar-width: none;
+        }
+
+        .filter-buttons::-webkit-scrollbar {
+            display: none;
+        }
+
+        .filter-btn {
+            padding: 6px 16px;
+            background: #f0f0f0;
+            border: none;
+            border-radius: 20px;
+            font-size: 13px;
+            white-space: nowrap;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .dark-mode .filter-btn {
+            background: #2a2a2a;
+            color: var(--text-dark);
+        }
+
+        .filter-btn:hover {
+            background: var(--secondary);
+            color: var(--primary);
+        }
+
+        .filter-btn.active {
+            background: var(--secondary);
+            color: var(--primary);
+            font-weight: 600;
+        }
+
+        .event-badge {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            background: var(--secondary);
+            color: var(--primary);
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 600;
+        }
+
+        .wishlist-btn {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background: white;
+            border: none;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .wishlist-btn i {
+            color: #999;
+            font-size: 20px;
+            transition: all 0.3s ease;
+        }
+
+        .wishlist-btn.active i {
+            color: #ff4757;
+            transform: scale(1.2);
+        }
+
+        .event-content {
+            padding: 15px;
+        }
+
+        .event-title {
+            font-weight: 600;
+            margin-bottom: 8px;
+            color: var(--primary);
+        }
+
+        .dark-mode .event-title {
+            color: var(--text-dark);
+        }
+
+        .event-info {
+            display: flex;
+            font-size: 13px;
+            color: #666;
+            margin-bottom: 10px;
+        }
+
+        .event-info i {
+            color: var(--secondary);
+        }
+
+        .rating {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .rating i {
+            color: #ffd700;
+        }
+
+        /* Search Bar */
+        .search-bar {
+            padding: 20px;
+        }
+
+        .search-input {
+            border-radius: 25px;
+            border: 2px solid #eee;
+            padding: 12px 20px;
+            padding-left: 45px;
+            width: 100%;
+        }
+
+        .search-container {
+            position: relative;
+        }
+
+        .search-icon {
+            position: absolute;
+            left: 15px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #999;
+        }
+
+        /* Detail Page */
+        .detail-header {
+            position: relative;
+            height: 300px;
+            overflow: hidden;
+        }
+
+        .detail-header img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .back-btn {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            background: rgba(255,255,255,0.9);
+            border: none;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            z-index: 10;
+        }
+
+        .detail-content {
+            padding: 20px;
+            margin-top: -30px;
+            background: white;
+            border-radius: 30px 30px 0 0;
+            position: relative;
+            z-index: 5;
+        }
+
+        .dark-mode .detail-content {
+            background: var(--bg-dark);
+        }
+
+        .detail-title {
+            font-weight: 700;
+            font-size: 24px;
+            margin-bottom: 15px;
+        }
+
+        .info-row {
+            display: flex;
+            align-items: flex-start;
+            gap: 15px;
+            margin-bottom: 15px;
+            padding: 15px;
+            background: #f8f9fa;
+            border-radius: 10px;
+        }
+
+        .dark-mode .info-row {
+            background: #2a2a2a;
+        }
+
+        .info-icon {
+            color: var(--secondary);
+            font-size: 20px;
+            min-width: 24px;
+        }
+
+        .organizer-card {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            padding: 15px;
+            background: #f8f9fa;
+            border-radius: 10px;
+            margin: 20px 0;
+        }
+
+        .dark-mode .organizer-card {
+            background: #2a2a2a;
+        }
+
+        .organizer-avatar {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: var(--secondary);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            color: var(--primary);
+        }
+
+        .action-btn {
+            width: 100%;
+            padding: 15px;
+            margin-top: 20px;
+        }
+
+        /* Profile Page */
+        .profile-header {
+            background: linear-gradient(135deg, var(--primary) 0%, #2a2a2a 100%);
+            padding: 40px 20px;
+            text-align: center;
+            color: white;
+            border-radius: 0 0 30px 30px;
+        }
+
+        .profile-avatar {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            background: var(--secondary);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 15px;
+            font-size: 48px;
+            color: var(--primary);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .profile-avatar img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .edit-avatar-btn {
+            position: absolute;
+            bottom: 0;
+            right: 0;
+            background: var(--secondary);
+            border: none;
+            width: 35px;
+            height: 35px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+        }
+
+        .profile-name {
+            font-weight: 600;
+            font-size: 24px;
+            margin-bottom: 5px;
+        }
+
+        .profile-email {
+            opacity: 0.8;
+            font-size: 14px;
+        }
+
+        .profile-menu {
+            padding: 20px;
+        }
+
+        .menu-item {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 15px;
+            background: white;
+            border-radius: 10px;
+            margin-bottom: 10px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .dark-mode .menu-item {
+            background: #2a2a2a;
+        }
+
+        .menu-item:hover {
+            transform: translateX(5px);
+        }
+
+        .menu-item-left {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .menu-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 10px;
+            background: rgba(247, 197, 102, 0.2);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--secondary);
+        }
+
+        /* Certificate Card */
+        .certificate-card {
+            background: white;
+            border-radius: 15px;
+            padding: 20px;
+            margin-bottom: 15px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        .dark-mode .certificate-card {
+            background: #2a2a2a;
+        }
+
+        /* Toggle Switch */
+        .toggle-switch {
+            position: relative;
+            width: 50px;
+            height: 26px;
+            background: #ccc;
+            border-radius: 13px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .toggle-switch.active {
+            background: var(--secondary);
+        }
+
+        .toggle-slider {
+            position: absolute;
+            top: 3px;
+            left: 3px;
+            width: 20px;
+            height: 20px;
+            background: white;
+            border-radius: 50%;
+            transition: all 0.3s ease;
+        }
+
+        .toggle-switch.active .toggle-slider {
+            transform: translateX(24px);
+        }
+
+        /* Tab Navigation */
+        .tab-nav {
+            display: flex;
+            gap: 10px;
+            padding: 20px;
+            overflow-x: auto;
+            scrollbar-width: none;
+        }
+
+        .tab-nav::-webkit-scrollbar {
+            display: none;
+        }
+
+        .tab-btn {
+            padding: 10px 20px;
+            background: #f8f9fa;
+            border: none;
+            border-radius: 25px;
+            white-space: nowrap;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: 500;
+        }
+
+        .dark-mode .tab-btn {
+            background: #2a2a2a;
+            color: var(--text-dark);
+        }
+
+        .tab-btn.active {
+            background: var(--secondary);
+            color: var(--primary);
+        }
+
+        /* Modal */
+        .modal-content {
+            border-radius: 20px;
+        }
+
+        .modal-header {
+            background: var(--primary);
+            color: white;
+            border-radius: 20px 20px 0 0;
+        }
+
+        /* Empty State */
+        .empty-state {
+            text-align: center;
+            padding: 60px 20px;
+            color: #999;
+        }
+
+        .empty-state i {
+            font-size: 64px;
+            margin-bottom: 20px;
+            opacity: 0.5;
+        }
+
+        /* Loading */
+        .loading {
+            text-align: center;
+            padding: 40px;
+        }
+
+        .spinner {
+            width: 40px;
+            height: 40px;
+            border: 4px solid #f3f3f3;
+            border-top: 4px solid var(--secondary);
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            margin: 0 auto;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        /* Chat */
+        .chat-container {
+            height: calc(100vh - 200px);
+            display: flex;
+            flex-direction: column;
+        }
+
+        .chat-messages {
+            flex: 1;
+            overflow-y: auto;
+            padding: 20px;
+        }
+
+        .message {
+            margin-bottom: 15px;
+            display: flex;
+            gap: 10px;
+        }
+
+        .message.own {
+            flex-direction: row-reverse;
+        }
+
+        .message-avatar {
+            width: 35px;
+            height: 35px;
+            border-radius: 50%;
+            background: var(--secondary);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 16px;
+            color: var(--primary);
+            flex-shrink: 0;
+        }
+
+        .message-content {
+            background: #f0f0f0;
+            padding: 10px 15px;
+            border-radius: 15px;
+            max-width: 70%;
+        }
+
+        .dark-mode .message-content {
+            background: #2a2a2a;
+        }
+
+        .message.own .message-content {
+            background: var(--secondary);
+            color: var(--primary);
+        }
+
+        .message-name {
+            font-size: 12px;
+            font-weight: 600;
+            margin-bottom: 3px;
+        }
+
+        .message-time {
+            font-size: 11px;
+            opacity: 0.6;
+            margin-top: 3px;
+        }
+
+        .chat-input-area {
+            padding: 15px;
+            background: white;
+            border-top: 1px solid #eee;
+            display: flex;
+            gap: 10px;
+        }
+
+        .dark-mode .chat-input-area {
+            background: var(--bg-dark);
+            border-top-color: #333;
+        }
+
+        .chat-input {
+            flex: 1;
+            border: 1px solid #ddd;
+            border-radius: 25px;
+            padding: 10px 20px;
+        }
+
+        @media (max-width: 576px) {
+            .auth-card {
+                padding: 30px 20px;
+            }
+
+            .event-info {
+                flex-direction: column;
+                gap: 5px;
+                align-items: flex-start;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Login Page -->
+    <div id="loginPage" class="page active">
+        <div class="auth-container">
+            <div class="auth-card">
+                <div class="auth-logo">
+                    <h1>🎪 Eventraze</h1>
+                    <p>Temukan Event Terbaik di Solo</p>
+                </div>
+                <form id="loginForm">
+                    <div class="mb-3">
+                        <label class="form-label">Email</label>
+                        <input type="email" class="form-control" id="loginEmail" required>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">Password</label>
+                        <input type="password" class="form-control" id="loginPassword" required>
+                    </div>
+                    <div class="mb-3 form-check">
+                        <input type="checkbox" class="form-check-input" id="rememberMe">
+                        <label class="form-check-label" for="rememberMe">Ingat Saya</label>
+                    </div>
+                    <button type="submit" class="btn btn-primary w-100 mb-3">Masuk</button>
+                    <div class="text-center">
+                        <a href="#" onclick="showPage('forgotPage')" class="text-decoration-none">Lupa Password?</a>
+                    </div>
+                    <hr class="my-3">
+                    <div class="text-center">
+                        <span>Belum punya akun? </span>
+                        <a href="#" onclick="showPage('registerPage')" class="text-decoration-none fw-bold">Daftar</a>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Register Page -->
+    <div id="registerPage" class="page">
+        <div class="auth-container">
+            <div class="auth-card">
+                <div class="auth-logo">
+                    <h1>🎪 Eventraze</h1>
+                    <p>Buat Akun Baru</p>
+                </div>
+                <form id="registerForm">
+                    <div class="mb-3">
+                        <label class="form-label">Nama Lengkap</label>
+                        <input type="text" class="form-control" id="registerName" required>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">Email</label>
+                        <input type="email" class="form-control" id="registerEmail" required>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">Password</label>
+                        <input type="password" class="form-control" id="registerPassword" required minlength="6">
+                        <small class="text-muted">Minimal 6 karakter</small>
+                    </div>
+                    <button type="submit" class="btn btn-primary w-100 mb-3">Daftar</button>
+                    <div class="text-center">
+                        <span>Sudah punya akun? </span>
+                        <a href="#" onclick="showPage('loginPage')" class="text-decoration-none fw-bold">Masuk</a>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Forgot Password Page -->
+    <div id="forgotPage" class="page">
+        <div class="auth-container">
+            <div class="auth-card">
+                <div class="auth-logo">
+                    <h1>🔑</h1>
+                    <h4>Lupa Password</h4>
+                    <p>Masukkan email untuk reset password</p>
+                </div>
+                <form id="forgotForm">
+                    <div class="mb-3">
+                        <label class="form-label">Email</label>
+                        <input type="email" class="form-control" id="forgotEmail" required>
+                    </div>
+                    <button type="submit" class="btn btn-primary w-100 mb-3">Kirim Link Reset</button>
+                    <div class="text-center">
+                        <a href="#" onclick="showPage('loginPage')" class="text-decoration-none">Kembali ke Login</a>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main App: Home Page -->
+    <div id="homePage" class="page">
+        <div class="header-section">
+            <div class="greeting">
+                <h2 id="greetingText">Halo, User!</h2>
+                <p>Temukan event menarik di sekitar Solo</p>
+            </div>
+        </div>
+
+        <div class="megaphone-container">
+            <span class="megaphone">📢</span>
+            <div class="sound-waves">
+                <span class="wave"></span>
+                <span class="wave"></span>
+                <span class="wave"></span>
+            </div>
+        </div>
+
+        <div class="search-bar">
+            <div class="search-container">
+                <i class="bi bi-search search-icon"></i>
+                <input type="text" class="search-input" placeholder="Cari event..." id="searchInput">
+            </div>
+        </div>
+
+        <h5 style="padding: 0 20px; margin-bottom: 10px; font-weight: 600; font-size: 16px;">Kategori</h5>
+        <div class="categories-slider">
+            <div class="category-card" onclick="filterByCategory('pendidikan')">
+                <i class="bi bi-mortarboard"></i>
+                <h6>Pendidikan</h6>
+            </div>
+            <div class="category-card" onclick="filterByCategory('musik')">
+                <i class="bi bi-music-note-beamed"></i>
+                <h6>Musik</h6>
+            </div>
+            <div class="category-card" onclick="filterByCategory('olahraga')">
+                <i class="bi bi-trophy"></i>
+                <h6>Olahraga</h6>
+            </div>
+            <div class="category-card" onclick="filterByCategory('')">
+                <i class="bi bi-grid"></i>
+                <h6>Semua</h6>
+            </div>
+        </div>
+
+        <h5 class="px-3 mb-3 mt-4">Event Highlights Video</h5>
+        <div class="video-slider-container">
+            <div class="video-slider">
+                <div class="video-card-youtube">
+                    <iframe src="https://www.youtube.com/embed/dQw4w9WgXcQ" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                    <div class="video-overlay">
+                        <h6 class="mb-0">Workshop Digital Marketing 2024</h6>
+                        <small>Event Pendidikan • Solo</small>
+                    </div>
+                </div>
+                <div class="video-card-youtube">
+                    <iframe src="https://www.youtube.com/embed/jNQXAC9IVRw" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                    <div class="video-overlay">
+                        <h6 class="mb-0">Jazz Night Festival Solo</h6>
+                        <small>Event Musik • Alun-Alun Kidul</small>
+                    </div>
+                </div>
+                <div class="video-card-youtube">
+                    <iframe src="https://www.youtube.com/embed/9bZkp7q19f0" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                    <div class="video-overlay">
+                        <h6 class="mb-0">Marathon Solo 2025</h6>
+                        <small>Event Olahraga • Stadion Manahan</small>
+                    </div>
+                </div>
+                <div class="video-card-youtube">
+                    <iframe src="https://www.youtube.com/embed/M7lc1UVf-VE" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                    <div class="video-overlay">
+                        <h6 class="mb-0">Seminar Kewirausahaan</h6>
+                        <small>Event Pendidikan • UNS</small>
+                    </div>
+                </div>
+                <div class="video-card-youtube">
+                    <iframe src="https://www.youtube.com/embed/kJQP7kiw5Fk" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                    <div class="video-overlay">
+                        <h6 class="mb-0">Konser Musik Akustik</h6>
+                        <small>Event Musik • Solo Paragon</small>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+       <div class="section-header">
+            <h5>Event Rekomendasi</h5>
+            
+        </div>
+        <div id="eventsList" class="events-grid"></div>
+    </div>
+       
+
+    <!-- Main App: Reminder Page -->
+    <div id="reminderPage" class="page">
+        <div class="header-">
+            <h2>Pengingat</h2>
+            <p>Event yang disimpan dan terdaftar</p>
+        </div>
+
+        <div class="tab-nav">
+            <button class="tab-btn active" onclick="switchReminderTab('notifikasi')">Notifikasi</button>
+            <button class="tab-btn" onclick="switchReminderTab('wishlist')">Wishlist</button>
+            <button class="tab-btn" onclick="switchReminderTab('registered')">Terdaftar</button>
+            <button class="tab-btn" onclick="switchReminderTab('history')">Riwayat</button>
+        </div>
+
+        <div id="notifikasiTab" class="tab-content">
+            <div id="notificationsList" class="px-3"></div>
+        </div>
+
+        <div id="wishlistTab" class="tab-content" style="display:none;">
+            <div id="wishlistList" class="px-3"></div>
+        </div>
+
+        <div id="registeredTab" class="tab-content" style="display:none;">
+            <div id="registeredList" class="px-3"></div>
+        </div>
+
+        <div id="historyTab" class="tab-content" style="display:none;">
+            <div id="historyList" class="px-3"></div>
+        </div>
+    </div>
+
+    <!-- Main App: Profile Page -->
+    <div id="profilePage" class="page">
+        <div class="profile-header">
+            <div class="profile-avatar" id="profileAvatar">
+                <span id="avatarInitial">U</span>
+                <input type="file" id="avatarInput" accept="image/*" style="display:none;">
+            </div>
+            <div class="profile-name" id="profileName">User</div>
+            <div class="profile-email" id="profileEmail">user@email.com</div>
+        </div>
+
+        <div class="profile-menu">
+            <div class="menu-item" onclick="showEditProfile()">
+                <div class="menu-item-left">
+                    <div class="menu-icon"><i class="bi bi-person"></i></div>
+                    <div>
+                        <div class="fw-semibold">Edit Profil</div>
+                        <small class="text-muted">Ubah data pribadi</small>
+                    </div>
+                </div>
+                <i class="bi bi-chevron-right"></i>
+            </div>
+
+            <div class="menu-item" onclick="showCertificates()">
+                <div class="menu-item-left">
+                    <div class="menu-icon"><i class="bi bi-award"></i></div>
+                    <div>
+                        <div class="fw-semibold">Sertifikat</div>
+                        <small class="text-muted">Lihat semua sertifikat</small>
+                    </div>
+                </div>
+                <i class="bi bi-chevron-right"></i>
+            </div>
+
+            <div class="menu-item">
+                <div class="menu-item-left">
+                    <div class="menu-icon"><i class="bi bi-bell"></i></div>
+                    <div>
+                        <div class="fw-semibold">Notifikasi</div>
+                        <small class="text-muted">Atur pengingat event</small>
+                    </div>
+                </div>
+                <div class="toggle-switch" id="notifToggle" onclick="toggleNotifications()">
+                    <div class="toggle-slider"></div>
+                </div>
+            </div>
+
+            <div class="menu-item">
+                <div class="menu-item-left">
+                    <div class="menu-icon"><i class="bi bi-moon"></i></div>
+                    <div>
+                        <div class="fw-semibold">Dark Mode</div>
+                        <small class="text-muted">Tema gelap</small>
+                    </div>
+                </div>
+                <div class="toggle-switch" id="darkModeToggle" onclick="toggleDarkMode()">
+                    <div class="toggle-slider"></div>
+                </div>
+            </div>
+
+            <div class="menu-item" onclick="showHelp()">
+                <div class="menu-item-left">
+                    <div class="menu-icon"><i class="bi bi-question-circle"></i></div>
+                    <div>
+                        <div class="fw-semibold">Bantuan</div>
+                        <small class="text-muted">FAQ dan support</small>
+                    </div>
+                </div>
+                <i class="bi bi-chevron-right"></i>
+            </div>
+
+            <div class="menu-item" onclick="logout()">
+                <div class="menu-item-left">
+                    <div class="menu-icon text-danger"><i class="bi bi-box-arrow-right"></i></div>
+                    <div>
+                        <div class="fw-semibold text-danger">Keluar</div>
+                        <small class="text-muted">Logout dari akun</small>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Event Detail Page -->
+    <div id="detailPage" class="page">
+        <div class="detail-header">
+            <button class="back-btn" onclick="backToHome()"><i class="bi bi-arrow-left"></i></button>
+            <img id="detailImage" src="" alt="Event">
+            <button class="wishlist-btn" id="detailWishlistBtn" onclick="toggleWishlistFromDetail()">
+                <i class="bi bi-heart"></i>
+            </button>
+        </div>
+        <div class="detail-content">
+            <span class="badge" id="detailCategoryBadge" style="background: var(--secondary); color: var(--primary); padding: 5px 15px; border-radius: 20px; font-size: 12px; font-weight: 600;"></span>
+            
+            <div class="detail-title mt-3" id="detailTitle"></div>
+            <div class="rating mb-3">
+                <i class="bi bi-star-fill"></i>
+                <span id="detailRating">4.8</span>
+                <span class="text-muted ms-1">(<span id="detailReviews">120</span> ulasan)</span>
+            </div>
+
+            <div class="info-row">
+                <i class="bi bi-calendar-event info-icon"></i>
+                <div class="flex-grow-1">
+                    <div class="fw-semibold">Tanggal & Waktu</div>
+                    <div id="detailDate"></div>
+                </div>
+            </div>
+
+            <div class="info-row">
+                <i class="bi bi-geo-alt info-icon"></i>
+                <div class="flex-grow-1">
+                    <div class="fw-semibold">Lokasi</div>
+                    <div id="detailLocation"></div>
+                </div>
+            </div>
+
+            <div class="info-row">
+                <i class="bi bi-people info-icon"></i>
+                <div class="flex-grow-1">
+                    <div class="fw-semibold">Kuota Peserta</div>
+                    <div id="detailQuota"></div>
+                    <div class="mt-2">
+                        <div class="progress" style="height: 8px; border-radius: 10px;">
+                            <div id="quotaProgress" class="progress-bar" role="progressbar" style="width: 0%; background: var(--secondary);"></div>
+                        </div>
+                        <small class="text-muted" id="quotaText"></small>
+                    </div>
+                </div>
+            </div>
+
+            <div class="info-row">
+                <i class="bi bi-tag info-icon"></i>
+                <div class="flex-grow-1">
+                    <div class="fw-semibold">Harga Tiket</div>
+                    <div class="fs-5 fw-bold" style="color: var(--secondary);" id="detailPrice"></div>
+                </div>
+            </div>
+
+            <h5 class="mt-4 mb-3">Tentang Event</h5>
+            <p id="detailDescription" style="text-align: justify; line-height: 1.8;"></p>
+
+            <h5 class="mt-4 mb-3">Penyelenggara</h5>
+            <div class="organizer-card">
+                <div class="organizer-avatar">
+                    <i class="bi bi-building"></i>
+                </div>
+                <div class="flex-grow-1">
+                    <div class="fw-semibold" id="detailOrganizer"></div>
+                    <small class="text-muted">Event Organizer</small>
+                </div>
+                <button class="btn btn-sm btn-outline-secondary" onclick="contactOrganizer()">
+                    <i class="bi bi-telephone"></i>
+                </button>
+            </div>
+
+            <div class="d-flex gap-2">
+                <button class="btn btn-outline-primary flex-grow-1" onclick="openChat()">
+                    <i class="bi bi-chat-dots"></i> Forum Diskusi
+                </button>
+                <button class="btn btn-primary flex-grow-1" id="registerEventBtn" onclick="registerEvent()">
+                    <i class="bi bi-ticket"></i> <span id="registerBtnText">Daftar Event</span>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Chat Page -->
+    <div id="chatPage" class="page">
+        <div class="header-section d-flex align-items-center">
+            <button class="btn btn-link text-white me-3" onclick="backToDetail()">
+                <i class="bi bi-arrow-left"></i>
+            </button>
+            <div>
+                <h5 class="mb-0" id="chatEventTitle">Event Chat</h5>
+                <small class="opacity-75">Diskusi dengan peserta lain</small>
+            </div>
+        </div>
+
+        <div class="chat-container">
+            <div class="chat-messages" id="chatMessages"></div>
+            <div class="chat-input-area">
+                <input type="text" class="chat-input" id="chatInput" placeholder="Ketik pesan...">
+                <button class="btn btn-primary" onclick="sendMessage()">
+                    <i class="bi bi-send"></i>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bottom Navigation -->
+    <div class="bottom-nav">
+        <a class="nav-item active" onclick="showMainPage('homePage')">
+            <i class="bi bi-house-fill"></i>
+            <span>Beranda</span>
+        </a>
+        <a class="nav-item" onclick="showMainPage('reminderPage')">
+            <i class="bi bi-bell-fill"></i>
+            <span>Pengingat</span>
+        </a>
+        <a class="nav-item" onclick="showMainPage('profilePage')">
+            <i class="bi bi-person-fill"></i>
+            <span>Profil</span>
+        </a>
+    </div>
+
+  <!-- Event Detail Modal -->
+<div class="modal fade" id="eventDetailModal" tabindex="-1">
+    <div class="modal-dialog modal-dialog-scrollable">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="modalEventTitle"></h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+            <div class="modal-body" id="modalEventBody"></div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Tutup</button>
+                <button type="button" class="btn btn-primary" onclick="registerEventFromModal()">Beli Tiket</button>
+                <button type="button" class="btn btn-primary" onclick="openChatFromModal()">Chat Forum</button>
+            </div>
+        </div>
+    </div>
+</div>
+    
+    <!-- Edit Profile Modal -->
+    <div class="modal fade" id="editProfileModal" tabindex="-1">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Edit Profil</h5>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <form id="editProfileForm">
+                        <div class="mb-3 text-center">
+                            <div class="profile-avatar mx-auto" style="width: 80px; height: 80px;" id="editAvatarPreview">
+                                <span id="editAvatarInitial">U</span>
+                            </div>
+                            <button type="button" class="btn btn-sm btn-primary mt-2" onclick="document.getElementById('avatarInput').click()">
+                                Ubah Foto
+                            </button>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Nama Lengkap</label>
+                            <input type="text" class="form-control" id="editName" required>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Email</label>
+                            <input type="email" class="form-control" id="editEmail" required>
+                        </div>
+                        <button type="submit" class="btn btn-primary w-100">Simpan Perubahan</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Certificates Modal -->
+    <div class="modal fade" id="certificatesModal" tabindex="-1">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Sertifikat Saya</h5>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <div id="certificatesList"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js"></script>
+    <script>
+        // Sample Events Data
+        const eventsData = [
+            // Pendidikan
+            {
+                id: 1,
+                title: "Workshop Digital Marketing",
+                category: "pendidikan",
+                date: "28 Nov 2025, 09:00",
+                location: "Online via Zoom ",
+                quota: "50 peserta",
+                rating: 4.8,
+                reviews: 120,
+                image: "pendidikan/pendidikan1.png",
+                description: "Pelajari strategi digital marketing terkini dari para ahli. Cocok untuk pemula hingga profesional yang ingin meningkatkan skill marketing online.",
+                organizer: "Digital Marketing Indonesia",
+                price: "Gratis"
+            },
+            {
+                id: 2,
+                title: "Seminar Kewirausahaan",
+                category: "pendidikan",
+                date: "28 Des 2024, 13:00",
+                location: "UNS Convention Hall",
+                quota: "200 peserta",
+                rating: 4.9,
+                reviews: 250,
+                image: "pendidikan/pendidikan10.png",
+                description: "Seminar inspiratif tentang membangun bisnis dari nol dengan pembicara pengusaha sukses nasional.",
+                organizer: "Komunitas Entrepreneur Solo",
+                price: "Rp 50.000"
+            },
+            {
+                id: 3,
+                title: "Kursus Programming Python",
+                category: "pendidikan",
+                date: "2 Jan 2025, 10:00",
+                location: "Online via Zoom",
+                quota: "100 peserta",
+                rating: 4.7,
+                reviews: 85,
+                image: "Pendidikan+Musik/pendidikan12.jpeg",
+                description: "Bootcamp intensif Python untuk pemula. Dalam 3 hari Anda akan belajar fundamental programming dengan Python.",
+                organizer: "Code Academy Solo",
+                price: "Rp 150.000"
+            },
+            {
+                id: 4,
+                title: "Public Speaking Masterclass",
+                category: "pendidikan",
+                date: "5 Jan 2025, 14:00",
+                location: "Hotel Lor In Solo",
+                quota: "40 peserta",
+                rating: 4.9,
+                reviews: 165,
+                image: "pendidikan/pendidikan4.png",
+                description: "Tingkatkan kemampuan berbicara di depan umum dengan teknik profesional dari public speaker berpengalaman.",
+                organizer: "Speaking Pro Indonesia",
+                price: "Rp 200.000"
+            },
+            {
+                id: 5,
+                title: "Workshop Fotografi",
+                category: "pendidikan",
+                date: "8 Jan 2025, 09:00",
+                location: "Taman Balekambang",
+                quota: "30 peserta",
+                rating: 4.8,
+                reviews: 95,
+                image: "pendidikan/pendidikan7.png",
+                description: "Belajar teknik fotografi dari basic hingga advanced dengan praktek langsung outdoor.",
+                organizer: "Solo Photography Club",
+                price: "Rp 100.000"
+            },
+            {
+                id: 6,
+                title: "UI/UX Design Bootcamp",
+                category: "pendidikan",
+                date: "12 Jan 2025, 10:00",
+                location: "Co-working Space Solo",
+                quota: "60 peserta",
+                rating: 4.9,
+                reviews: 140,
+                image: "pendidikan/pendidikan9.png",
+                description: "Bootcamp intensif desain UI/UX dengan tools Figma. Dapatkan portfolio project di akhir bootcamp.",
+                organizer: "Design Hub Solo",
+                price: "Rp 300.000"
+            },
+
+            // Musik
+            {
+                id: 7,
+                title: "Jazz Night Festival",
+                category: "musik",
+                date: "30 Des 2024, 19:00",
+                location: "Alun-Alun Kidul Solo",
+                quota: "500 peserta",
+                rating: 4.9,
+                reviews: 320,
+                image: "https://images.unsplash.com/photo-1514320291840-2e0a9bf2a9ae?w=800",
+                description: "Malam yang penuh dengan alunan jazz dari musisi lokal dan nasional terbaik di tengah suasana Alun-Alun Kidul.",
+                organizer: "Solo Jazz Community",
+                price: "Rp 75.000"
+            },
+            {
+                id: 8,
+                title: "Konser Musik Akustik",
+                category: "musik",
+                date: "3 Jan 2025, 18:00",
+                location: "Solo Paragon Mall",
+                quota: "300 peserta",
+                rating: 4.7,
+                reviews: 180,
+                image: "https://images.unsplash.com/photo-1501612780327-45045538702b?w=800",
+                description: "Konser akustik intim dengan penampilan dari penyanyi-penyanyi indie favorit.",
+                organizer: "Indie Music Solo",
+                price: "Gratis"
+            },
+            {
+                id: 9,
+                title: "Rock Music Festival",
+                category: "musik",
+                date: "7 Jan 2025, 17:00",
+                location: "Stadion Manahan",
+                quota: "1000 peserta",
+                rating: 4.8,
+                reviews: 450,
+                image: "https://images.unsplash.com/photo-1470229722913-7c0e2dbbafd3?w=800",
+                description: "Festival musik rock terbesar di Solo dengan lineup band-band rock ternama Indonesia.",
+                organizer: "Rock Nation Indonesia",
+                price: "Rp 150.000"
+            },
+            {
+                id: 10,
+                title: "Karaoke Night Competition",
+                category: "musik",
+                date: "10 Jan 2025, 19:00",
+                location: "Solo Grand Mall",
+                quota: "50 peserta",
+                rating: 4.6,
+                reviews: 75,
+                image: "https://images.unsplash.com/photo-1516450360452-9312f5e86fc7?w=800",
+                description: "Kompetisi karaoke dengan hadiah total 10 juta rupiah. Tunjukkan bakat menyanyimu!",
+                organizer: "Entertainment Solo",
+                price: "Rp 50.000"
+            },
+            {
+                id: 11,
+                title: "Classical Music Concert",
+                category: "musik",
+                date: "15 Jan 2025, 19:30",
+                location: "Taman Budaya Surakarta",
+                quota: "250 peserta",
+                rating: 4.9,
+                reviews: 110,
+                image: "https://images.unsplash.com/photo-1465847899084-d164df4dedc6?w=800",
+                description: "Konser musik klasik dengan orkestra simfoni Solo. Nikmati karya-karya maestro dunia.",
+                organizer: "Solo Symphony Orchestra",
+                price: "Rp 100.000"
+            },
+            {
+                id: 12,
+                title: "DJ Electronic Party",
+                category: "musik",
+                date: "20 Jan 2025, 21:00",
+                location: "Club Platinum Solo",
+                quota: "400 peserta",
+                rating: 4.7,
+                reviews: 290,
+                image: "https://images.unsplash.com/photo-1571266028243-d220c4b1e5fd?w=800",
+                description: "Pesta elektronik dengan DJ internasional. Get ready untuk malam yang tak terlupakan!",
+                organizer: "Electronic Music Asia",
+                price: "Rp 200.000"
+            },
+
+            // Olahraga
+            {
+                id: 13,
+                title: "Marathon Solo 2025",
+                category: "olahraga",
+                date: "1 Jan 2025, 05:00",
+                location: "Start: Gladak, Finish: Manahan",
+                quota: "1000 pelari",
+                rating: 4.9,
+                reviews: 380,
+                image: "https://images.unsplash.com/photo-1513593771513-7b58b6c4af38?w=800",
+                description: "Marathon tahunan Solo dengan rute melewati landmark kota. Tersedia kategori 5K, 10K, Half Marathon, dan Full Marathon.",
+                organizer: "Solo Runners Club",
+                price: "Rp 125.000"
+            },
+            {
+                id: 14,
+                title: "Turnamen Futsal",
+                category: "olahraga",
+                date: "4 Jan 2025, 08:00",
+                location: "GOR Sritex Arena",
+                quota: "16 tim",
+                rating: 4.7,
+                reviews: 145,
+                image: "https://images.unsplash.com/photo-1579952363873-27f3bade9f55?w=800",
+                description: "Turnamen futsal antar klub dengan hadiah total 15 juta rupiah untuk juara.",
+                organizer: "Liga Futsal Solo",
+                price: "Rp 500.000/tim"
+            },
+            {
+                id: 15,
+                title: "Yoga in the Park",
+                category: "olahraga",
+                date: "6 Jan 2025, 06:00",
+                location: "Taman Balekambang",
+                quota: "100 peserta",
+                rating: 4.8,
+                reviews: 125,
+                image: "https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?w=800",
+                description: "Sesi yoga pagi di alam terbuka. Cocok untuk semua level, dari pemula hingga advanced.",
+                organizer: "Yoga Community Solo",
+                price: "Gratis"
+            },
+            {
+                id: 16,
+                title: "Badminton Tournament",
+                category: "olahraga",
+                date: "11 Jan 2025, 09:00",
+                location: "GOR Manahan",
+                quota: "64 peserta",
+                rating: 4.7,
+                reviews: 98,
+                image: "https://images.unsplash.com/photo-1626224583764-f87db24ac4ea?w=800",
+                description: "Turnamen bulutangkis kategori tunggal putra/putri dan ganda campuran.",
+                organizer: "PBSI Solo",
+                price: "Rp 75.000"
+            },
+            {
+                id: 17,
+                title: "Fun Bike Adventure",
+                category: "olahraga",
+                date: "14 Jan 2025, 06:00",
+                location: "Solo - Tawangmangu",
+                quota: "300 peserta",
+                rating: 4.8,
+                reviews: 210,
+                image: "https://images.unsplash.com/photo-1541625602330-2277a4c46182?w=800",
+                description: "Gowes santai menikmati keindahan alam dari Solo ke Tawangmangu. Jarak 30km dengan rest point.",
+                organizer: "Solo Bike Community",
+                price: "Rp 50.000"
+            },
+            {
+                id: 18,
+                title: "Basketball 3x3 Championship",
+                category: "olahraga",
+                date: "18 Jan 2025, 13:00",
+                location: "Lapangan Basket GOR UNS",
+                quota: "20 tim",
+                rating: 4.6,
+                reviews: 87,
+                image: "https://images.unsplash.com/photo-1546519638-68e109498ffc?w=800",
+                description: "Turnamen basket 3x3 dengan format knockout. Hadiah menarik untuk juara.",
+                organizer: "Basketball Association Solo",
+                price: "Rp 300.000/tim"
+            },
+
+            // Workshop
+            {
+                id: 19,
+                title: "Batik Making Workshop",
+                category: "pendidikan",
+                date: "27 Des 2024, 10:00",
+                location: "Kampung Batik Laweyan",
+                quota: "25 peserta",
+                rating: 4.9,
+                reviews: 156,
+                image: "Pendidikan+Musik/pendidikan13.jpeg",
+                description: "Workshop membuat batik tulis langsung dari pengrajin batik Solo. Bawa pulang hasil karya Anda!",
+                organizer: "Komunitas Batik Solo",
+                price: "Rp 150.000"
+            },
+            {
+                id: 20,
+                title: "Cooking Class Indonesian Food",
+                category: "pendidikan",
+                date: "29 Des 2024, 14:00",
+                location: "Dapur Kuliner Solo",
+                quota: "20 peserta",
+                rating: 4.8,
+                reviews: 132,
+                image: "pendidikan/pendidikan3.png",
+                description: "Belajar memasak makanan khas Solo seperti nasi liwet, tengkleng, dan selat solo dari chef profesional.",
+                organizer: "Culinary Arts Solo",
+                price: "Rp 200.000"
+            },
+            {
+                id: 21,
+                title: "Handicraft Workshop",
+                category: "pendidikan",
+                date: "6 Jan 2025, 13:00",
+                location: "Creative Hub Solo",
+                quota: "30 peserta",
+                rating: 4.7,
+                reviews: 94,
+                image: "pendidikan/pendidikan8.png",
+                description: "Workshop membuat kerajinan tangan dari bahan daur ulang. Ide bisnis kreatif untuk Anda!",
+                organizer: "Craft Community",
+                price: "Rp 75.000"
+            },
+            {
+                id: 22,
+                title: "Content Creation Bootcamp",
+                category: "pendidikan",
+                date: "9 Jan 2025, 10:00",
+                location: "Media Center Solo",
+                quota: "40 peserta",
+                rating: 4.9,
+                reviews: 178,
+                image: "Pendidikan+Musik/pendidikan12.jpeg",
+                description: "Belajar membuat konten menarik untuk social media. Dari konsep hingga editing video.",
+                organizer: "Content Creators Indonesia",
+                price: "Rp 250.000"
+            },
+
+        ];
+
+        // Initialize App
+        let currentUser = null;
+        let wishlist = [];
+        let registeredEvents = [];
+        let eventHistory = [];
+        let chatMessages = [];
+        let currentEventDetail = null;
+        let notificationsEnabled = true;
+
+        // Check if user is logged in
+        function checkAuth() {
+            const session = localStorage.getItem('session');
+            if (session) {
+                currentUser = JSON.parse(session);
+                loadUserData();
+                showMainPage('homePage');
+            } else {
+                showPage('loginPage');
+            }
+        }
+
+        // Show Page
+        function showPage(pageId) {
+            document.querySelectorAll('.page').forEach(page => {
+                page.classList.remove('active');
+            });
+            document.getElementById(pageId).classList.add('active');
+        }
+
+        // Show Main Page with Navigation
+        function showMainPage(pageId) {
+            document.querySelectorAll('.page').forEach(page => {
+                page.classList.remove('active');
+            });
+            document.getElementById(pageId).classList.add('active');
+
+            // Update nav active state
+            document.querySelectorAll('.nav-item').forEach(nav => {
+                nav.classList.remove('active');
+            });
+
+            if (pageId === 'homePage') {
+                document.querySelectorAll('.nav-item')[0].classList.add('active');
+                renderEvents();
+            } else if (pageId === 'reminderPage') {
+                document.querySelectorAll('.nav-item')[1].classList.add('active');
+                renderReminder();
+            } else if (pageId === 'profilePage') {
+                document.querySelectorAll('.nav-item')[2].classList.add('active');
+                updateProfileDisplay();
+            }
+
+            // Animate navigation
+            anime({
+                targets: '.nav-item.active i',
+                scale: [1, 1.2, 1],
+                translateY: [0, -5, 0],
+                duration: 600,
+                easing: 'easeInOutQuad'
+            });
+        }
+
+        // Register Form
+        document.getElementById('registerForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+
+            const name = document.getElementById('registerName').value;
+            const email = document.getElementById('registerEmail').value;
+            const password = document.getElementById('registerPassword').value;
+
+            // Simple validation
+            if (!email.includes('@')) {
+                alert('Email tidak valid!');
+                return;
+            }
+
+            if (password.length < 6) {
+                alert('Password minimal 6 karakter!');
+                return;
+            }
+
+            // Get existing users
+            let users = JSON.parse(localStorage.getItem('users') || '[]');
+
+            // Check if email already exists
+            if (users.find(u => u.email === email)) {
+                alert('Email sudah terdaftar!');
+                return;
+            }
+
+            // Simple password hashing (base64)
+            const hashedPassword = btoa(password);
+
+            // Add new user
+            const newUser = {
+                id: Date.now(),
+                name: name,
+                email: email,
+                password: hashedPassword,
+                avatar: null,
+                createdAt: new Date().toISOString()
+            };
+
+            users.push(newUser);
+            localStorage.setItem('users', JSON.stringify(users));
+
+            alert('Registrasi berhasil! Silakan login.');
+            showPage('loginPage');
+        });
+
+        // Login Form
+        document.getElementById('loginForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+
+            const email = document.getElementById('loginEmail').value;
+            const password = document.getElementById('loginPassword').value;
+            const rememberMe = document.getElementById('rememberMe').checked;
+
+            const users = JSON.parse(localStorage.getItem('users') || '[]');
+            const hashedPassword = btoa(password);
+
+            const user = users.find(u => u.email === email && u.password === hashedPassword);
+
+            if (user) {
+                currentUser = user;
+                const session = {
+                    id: user.id,
+                    name: user.name,
+                    email: user.email,
+                    avatar: user.avatar,
+                    rememberMe: rememberMe
+                };
+
+                localStorage.setItem('session', JSON.stringify(session));
+                loadUserData();
+                showMainPage('homePage');
+            } else {
+                alert('Email atau password salah!');
+            }
+        });
+
+        // Forgot Password
+        document.getElementById('forgotForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const email = document.getElementById('forgotEmail').value;
+            
+            const users = JSON.parse(localStorage.getItem('users') || '[]');
+            const user = users.find(u => u.email === email);
+
+            if (user) {
+                alert('Link reset password telah dikirim ke email Anda!\n(Demo: Fitur ini simulasi)');
+                showPage('loginPage');
+            } else {
+                alert('Email tidak ditemukan!');
+            }
+        });
+
+        // Load User Data
+        function loadUserData() {
+            wishlist = JSON.parse(localStorage.getItem(`wishlist_${currentUser.id}`) || '[]');
+            registeredEvents = JSON.parse(localStorage.getItem(`registered_${currentUser.id}`) || '[]');
+            eventHistory = JSON.parse(localStorage.getItem(`history_${currentUser.id}`) || '[]');
+            chatMessages = JSON.parse(localStorage.getItem(`chat_${currentUser.id}`) || '[]');
+            
+            const settings = JSON.parse(localStorage.getItem(`settings_${currentUser.id}`) || '{}');
+            notificationsEnabled = settings.notifications !== false;
+            
+            if (settings.darkMode) {
+                document.body.classList.add('dark-mode');
+                document.getElementById('darkModeToggle').classList.add('active');
+            }
+
+            if (notificationsEnabled) {
+                document.getElementById('notifToggle').classList.add('active');
+            }
+
+            document.getElementById('greetingText').textContent = `Halo, ${currentUser.name}!`;
+            renderEvents();
+            
+            // Initialize notifications
+            initNotifications();
+            sendWelcomeNotification();
+            addDemoHistory();
+        }
+
+        // Render Events - E-commerce Style
+        function renderEvents(filter = '') {
+            const eventsList = document.getElementById('eventsList');
+            let filteredEvents = eventsData;
+
+            if (filter) {
+                filteredEvents = eventsData.filter(e => 
+                    e.category === filter || 
+                    e.title.toLowerCase().includes(filter.toLowerCase())
+                );
+            }
+
+            eventsList.innerHTML = filteredEvents.map(event => `
+                <div class="event-card" onclick="showEventDetailModal(${event.id})">
+                    <div class="event-image-wrapper">
+                        <img src="${event.image}" alt="${event.title}" class="event-image" loading="lazy">
+                        <span class="event-badge">${event.category}</span>
+                        <button class="wishlist-btn ${wishlist.includes(event.id) ? 'active' : ''}" 
+                                onclick="event.stopPropagation(); toggleWishlist(${event.id})">
+                            <i class="bi ${wishlist.includes(event.id) ? 'bi-heart-fill' : 'bi-heart'}"></i>
+                        </button>
+                    </div>
+                    <div class="event-content">
+                        <h6 class="event-title">${event.title}</h6>
+                        <div class="event-info">
+                            <div class="event-info-item">
+                                <i class="bi bi-calendar"></i>
+                                <span>${event.date.split(',')[0]}</span>
+                            </div>
+                            <div class="event-info-item">
+                                <i class="bi bi-geo-alt"></i>
+                                <span>${event.location.substring(0, 20)}${event.location.length > 20 ? '...' : ''}</span>
+                            </div>
+                        </div>
+                        <div class="event-footer">
+                            <div class="rating">
+                                <i class="bi bi-star-fill"></i>
+                                <span>${event.rating}</span>
+                            </div>
+                            <div class="event-price">${event.price}</div>
+                        </div>
+                    </div>
+                </div>
+            `).join('');
+
+            // Animate cards with stagger
+            anime({
+                targets: '.event-card',
+                opacity: [0, 1],
+                translateY: [20, 0],
+                delay: anime.stagger(50),
+                duration: 400,
+                easing: 'easeOutQuad'
+            });
+        }
+
+        // Filter by Category
+        function filterByCategory(category) {
+            renderEvents(category);
+            
+            // Animate category selection
+            anime({
+                targets: '.category-card',
+                scale: [1, 0.95, 1],
+                duration: 300
+            });
+        }
+
+        // Search Events
+        document.getElementById('searchInput').addEventListener('input', function(e) {
+            const query = e.target.value.toLowerCase();
+            renderEvents(query);
+        });
+
+        // Toggle Wishlist
+        function toggleWishlist(eventId) {
+            const index = wishlist.indexOf(eventId);
+            if (index > -1) {
+                wishlist.splice(index, 1);
+            } else {
+                wishlist.push(eventId);
+                
+                if (notificationsEnabled) {
+                    showNotification('Event ditambahkan ke wishlist!');
+                }
+            }
+            
+            localStorage.setItem(`wishlist_${currentUser.id}`, JSON.stringify(wishlist));
+            renderEvents();
+            renderReminder();
+
+            // Animate heart
+            anime({
+                targets: `button[onclick*="toggleWishlist(${eventId})"] i`,
+                scale: [1, 1.5, 1],
+                rotate: [0, 15, 0],
+                duration: 500,
+                easing: 'easeInOutQuad'
+            });
+        }
+// nt Detail in MODAL (bukan page)
+function showEventDetailModal(eventId) {
+    const event = eventsData.find(e => e.id === eventId);
+    if (!event) return;
+
+    currentEventDetail = event;
+    
+    // Set modal title
+    document.getElementById('modalEventTitle').textContent = event.title;
+    
+    // Set modal body content
+    document.getElementById('modalEventBody').innerHTML = `
+        <img src="${event.image}" class="img-fluid rounded mb-3" alt="${event.title}" style="width: 100%; max-height: 300px; object-fit: cover;">
+        
+        <span style="display: inline-block; background: var(--secondary); color: var(--primary); padding: 6px 16px; border-radius: 20px; font-size: 13px; font-weight: 600; margin-bottom: 15px;">
+            ${event.category.toUpperCase()}
+        </span>
+        
+        <h6 class="mt-3 mb-2" style="font-weight: 600;">Deskripsi</h6>
+        <p style="text-align: justify; line-height: 1.6;">${event.description}</p>
+        
+        <h6 class="mt-4 mb-3" style="font-weight: 600;">Detail Event</h6>
+        
+        <div class="mb-2">
+            <i class="bi bi-calendar3 me-2" style="color: var(--secondary);"></i>
+            <strong>Tanggal:</strong> ${event.date}
+        </div>
+        
+        <div class="mb-2">
+            <i class="bi bi-geo-alt-fill me-2" style="color: var(--secondary);"></i>
+            <strong>Lokasi:</strong> ${event.location}
+        </div>
+        
+        <div class="mb-2">
+            <i class="bi bi-tag-fill me-2" style="color: var(--secondary);"></i>
+            <strong>Harga:</strong> ${event.price}
+        </div>
+        
+        <div class="mb-3">
+            <i class="bi bi-people-fill me-2" style="color: var(--secondary);"></i>
+            <strong>Kuota:</strong> ${event.quota}
+        </div>
+        
+        <div class="d-flex align-items-center gap-2">
+            <i class="bi bi-star-fill" style="color: #ffd700;"></i>
+            <span style="font-weight: 600;">${event.rating}</span>
+            <span class="text-muted" style="font-size: 14px;">(${event.reviews} ulasan)</span>
+        </div>
+    `;
+
+    // Show modal
+    const modal = new bootstrap.Modal(document.getElementById('eventDetailModal'));
+    modal.show();
+}
+// Register Event dari Modal
+function registerEventFromModal() {
+    if (!currentEventDetail) return;
+    
+    // Tutup modal dulu
+    const modalElement = document.getElementById('eventDetailModal');
+    const modal = bootstrap.Modal.getInstance(modalElement);
+    if (modal) {
+        modal.hide();
+    }
+    
+    // Panggil fungsi register yang sudah ada
+    setTimeout(() => {
+        registerEvent();
+    }, 300);
+}
+
+// Open Chat dari Modal
+function openChatFromModal() {
+    if (!currentEventDetail) return;
+    
+    // Tutup modal dulu
+    const modalElement = document.getElementById('eventDetailModal');
+    const modal = bootstrap.Modal.getInstance(modalElement);
+    if (modal) {
+        modal.hide();
+    }
+    
+    // Buka chat
+    setTimeout(() => {
+        openChat();
+    }, 300);
+}
+        // Show Event Detail
+        function showEventDetail(eventId) {
+            const event = eventsData.find(e => e.id === eventId);
+            if (!event) return;
+
+            currentEventDetail = event;
+
+            // Set detail information
+            document.getElementById('detailImage').src = event.image;
+            document.getElementById('detailTitle').textContent = event.title;
+            document.getElementById('detailCategoryBadge').textContent = event.category.toUpperCase();
+            document.getElementById('detailRating').textContent = event.rating;
+            document.getElementById('detailReviews').textContent = event.reviews;
+            document.getElementById('detailDate').textContent = event.date;
+            document.getElementById('detailLocation').textContent = event.location;
+            document.getElementById('detailPrice').textContent = event.price;
+            document.getElementById('detailDescription').textContent = event.description;
+            document.getElementById('detailOrganizer').textContent = event.organizer;
+
+            
+             // Calculate quota - MAIN FIX
+            const quotaPercentage = (event.registered / event.quota) * 100;
+            const remaining = event.quota - event.registered;
+            
+            document.getElementById('detailQuotaTotal').textContent = `${event.quota} peserta`;
+            document.getElementById('quotaProgress').style.width = `${quotaPercentage}%`;
+            document.getElementById('quotaText').textContent = `${event.registered} terdaftar`;
+            // Change progress bar color based on availability
+            const progressBar = document.getElementById('quotaProgress');
+            if (quotaPercentage >= 90) {
+                progressBar.style.background = '#ff4757'; // Red - almost full
+            } else if (quotaPercentage >= 70) {
+                progressBar.style.background = '#ffa502'; // Orange - filling up
+            } else {
+                progressBar.style.background = 'var(--secondary)'; // Gold - available
+            }
+
+            // Update wishlist button
+            const wishlistBtn = document.getElementById('detailWishlistBtn');
+            if (wishlist.includes(event.id)) {
+                wishlistBtn.querySelector('i').className = 'bi bi-heart-fill';
+                wishlistBtn.classList.add('active');
+            } else {
+                wishlistBtn.querySelector('i').className = 'bi bi-heart';
+                wishlistBtn.classList.remove('active');
+            }
+
+            // Check if already registered or quota full
+            const isRegistered = registeredEvents.some(e => e.id === eventId);
+            const isQuotaFull = event.registered >= event.quota;
+            const registerBtn = document.getElementById('registerEventBtn');
+            const registerBtnText = document.getElementById('registerBtnText');
+            
+            if (isRegistered) {
+                registerBtnText.textContent = 'Sudah Terdaftar';
+                registerBtn.classList.add('disabled');
+                registerBtn.style.background = '#28a745';
+            } else if (isQuotaFull) {
+                registerBtnText.textContent = 'Kuota Penuh';
+                registerBtn.classList.add('disabled');
+                registerBtn.style.background = '#dc3545';
+            } else {
+                registerBtnText.textContent = 'Daftar Event';
+                registerBtn.classList.remove('disabled');
+                registerBtn.style.background = 'var(--secondary)';
+            }
+
+            showPage('detailPage');
+
+            // Animate detail page
+            anime({
+                targets: '.detail-content',
+                opacity: [0, 1],
+                translateY: [30, 0],
+                duration: 600,
+                easing: 'easeOutQuad'
+            });
+
+            // Send notification that user viewed event
+            setTimeout(() => {
+                if (notificationsEnabled && !isRegistered) {
+                    const randomTip = [
+                        `💡 ${remaining} kuota tersisa untuk ${event.title}!`,
+                        `⏰ Jangan lewatkan ${event.title} pada ${event.date}`,
+                        `🎯 Event populer! Segera daftar sebelum kuota penuh`
+                    ];
+                    showNotification(randomTip[Math.floor(Math.random() * randomTip.length)]);
+                }
+            }, 2000);
+        }
+
+        // Toggle Wishlist from Detail Page
+        function toggleWishlistFromDetail() {
+            if (!currentEventDetail) return;
+            toggleWishlist(currentEventDetail.id);
+            
+            // Update button state
+            const wishlistBtn = document.getElementById('detailWishlistBtn');
+            if (wishlist.includes(currentEventDetail.id)) {
+                wishlistBtn.querySelector('i').className = 'bi bi-heart-fill';
+                wishlistBtn.classList.add('active');
+            } else {
+                wishlistBtn.querySelector('i').className = 'bi bi-heart';
+                wishlistBtn.classList.remove('active');
+            }
+        }
+
+        // Contact Organizer
+        function contactOrganizer() {
+            if (!currentEventDetail) return;
+            alert(`Hubungi ${currentEventDetail.organizer}\n\nEmail: contact@eventraze.com\nTelepon: 0812-3456-7890\nWhatsApp: 0812-3456-7890`);
+        }
+
+        // Register Event with Quota Check
+        function registerEvent() {
+            if (!currentEventDetail) return;
+
+            const event = eventsData.find(e => e.id === currentEventDetail.id);
+            const isRegistered = registeredEvents.some(e => e.id === currentEventDetail.id);
+            
+            if (isRegistered) {
+                alert('Anda sudah terdaftar di event ini!');
+                return;
+            }
+
+            // Check quota availability
+            if (event.registered >= event.quota) {
+                alert('Maaf, kuota event sudah penuh! 😞\n\nSilakan coba event lainnya atau tambahkan ke wishlist untuk mendapat notifikasi jika ada slot tersedia.');
+                return;
+            }
+
+            // Confirm registration
+            const confirmMsg = `Konfirmasi Pendaftaran\n\nEvent: ${event.title}\nTanggal: ${event.date}\nLokasi: ${event.location}\nHarga: ${event.price}\n\nLanjutkan pendaftaran?`;
+            
+            if (!confirm(confirmMsg)) return;
+
+            // Register event
+            const registration = {
+                ...event,
+                registeredAt: new Date().toISOString()
+            };
+
+            // Increment registered count
+            event.registered += 1;
+
+            registeredEvents.push(registration);
+            localStorage.setItem(`registered_${currentUser.id}`, JSON.stringify(registeredEvents));
+
+            // Send notification
+            if (notificationsEnabled) {
+                showNotification(`✅ Berhasil mendaftar ${event.title}!`);
+                
+                // Send reminder notification (simulated)
+                setTimeout(() => {
+                    showNotification(`🔔 Pengingat: ${event.title} akan dimulai pada ${event.date}`);
+                }, 3000);
+            }
+
+            // Show success message
+            alert(`🎉 Pendaftaran Berhasil!\n\nAnda telah terdaftar untuk:\n${event.title}\n\nJangan lupa catat jadwalnya:\n${event.date}\n\nLokasi: ${event.location}\n\nSee you there!`);
+            
+            // Refresh detail page
+            showEventDetail(event.id);
+        }
+
+        // Back to Home
+        function backToHome() {
+            showMainPage('homePage');
+        }
+
+        // Render Reminder with Notifications Tab
+        function renderReminder() {
+            renderNotifications();
+            renderWishlist();
+            renderRegistered();
+            renderHistory();
+        }
+
+        // Render Notifications List
+        function renderNotifications() {
+            const notificationsList = document.getElementById('notificationsList');
+            
+            if (notificationHistory.length === 0) {
+                notificationsList.innerHTML = `
+                    <div class="empty-state">
+                        <i class="bi bi-bell-slash"></i>
+                        <p>Belum ada notifikasi</p>
+                        <small class="text-muted">Notifikasi akan muncul di sini</small>
+                    </div>
+                `;
+                return;
+            }
+
+            // Group notifications by date
+            const grouped = {};
+            const sortedNotifications = [...notificationHistory].reverse();
+            
+            sortedNotifications.forEach(notif => {
+                const date = new Date(notif.timestamp);
+                const today = new Date();
+                const yesterday = new Date(today);
+                yesterday.setDate(yesterday.getDate() - 1);
+                
+                let dateKey;
+                if (date.toDateString() === today.toDateString()) {
+                    dateKey = 'Hari Ini';
+                } else if (date.toDateString() === yesterday.toDateString()) {
+                    dateKey = 'Kemarin';
+                } else {
+                    dateKey = date.toLocaleDateString('id-ID', { day: 'numeric', month: 'long', year: 'numeric' });
+                }
+                
+                if (!grouped[dateKey]) {
+                    grouped[dateKey] = [];
+                }
+                grouped[dateKey].push(notif);
+            });
+
+            // Render grouped notifications
+            let html = '';
+            Object.keys(grouped).forEach((dateKey, groupIndex) => {
+                html += `
+                    <div class="mb-3">
+                        <h6 class="px-2 py-2 text-muted" style="font-size: 13px; font-weight: 600;">${dateKey}</h6>
+                `;
+                
+                grouped[dateKey].forEach((notif, index) => {
+                    const timeAgo = getTimeAgo(new Date(notif.timestamp));
+                    const iconMap = {
+                        success: '✅',
+                        info: 'ℹ️',
+                        warning: '⚠️',
+                        error: '❌',
+                        reminder: '🔔',
+                        event: '🎉'
+                    };
+                    
+                    const isUnread = groupIndex === 0 && index < 3;
+                    
+                    html += `
+                        <div class="notification-item ${isUnread ? 'notification-unread' : ''}" onclick="markAsRead(this)">
+                            <div class="notification-icon ${notif.type}">
+                                ${iconMap[notif.type] || '📢'}
+                            </div>
+                            <div class="notification-content">
+                                <div style="line-height: 1.5;">${notif.message}</div>
+                                <div class="notification-time">${timeAgo}</div>
+                            </div>
+                            ${isUnread ? '<div class="notification-badge"></div>' : ''}
+                        </div>
+                    `;
+                });
+                
+                html += `</div>`;
+            });
+
+            // Add clear all button
+            html += `
+                <div class="text-center mt-4 mb-3">
+                    <button class="btn btn-sm btn-outline-secondary" onclick="clearAllNotifications()">
+                        <i class="bi bi-trash"></i> Hapus Semua Notifikasi
+                    </button>
+                </div>
+            `;
+
+            notificationsList.innerHTML = html;
+        }
+
+        // Mark notification as read
+        function markAsRead(element) {
+            element.classList.remove('notification-unread');
+            const badge = element.querySelector('.notification-badge');
+            if (badge) {
+                anime({
+                    targets: badge,
+                    opacity: [1, 0],
+                    scale: [1, 0],
+                    duration: 300,
+                    easing: 'easeOutQuad',
+                    complete: () => badge.remove()
+                });
+            }
+        }
+
+        // Clear all notifications
+        function clearAllNotifications() {
+            if (confirm('Hapus semua notifikasi?')) {
+                notificationHistory = [];
+                localStorage.setItem(`notifications_${currentUser.id}`, JSON.stringify(notificationHistory));
+                renderNotifications();
+                showNotification('Semua notifikasi telah dihapus', 'success');
+            }
+        }
+
+        // Get time ago text
+        function getTimeAgo(date) {
+            const now = new Date();
+            const diff = now - date;
+            const minutes = Math.floor(diff / 60000);
+            const hours = Math.floor(diff / 3600000);
+            const days = Math.floor(diff / 86400000);
+
+            if (minutes < 1) return 'Baru saja';
+            if (minutes < 60) return `${minutes} menit yang lalu`;
+            if (hours < 24) return `${hours} jam yang lalu`;
+            if (days < 7) return `${days} hari yang lalu`;
+            return date.toLocaleDateString('id-ID');
+        }
+
+        function renderWishlist() {
+            const wishlistList = document.getElementById('wishlistList');
+            const wishlistEvents = eventsData.filter(e => wishlist.includes(e.id));
+
+            if (wishlistEvents.length === 0) {
+                wishlistList.innerHTML = `
+                    <div class="empty-state">
+                        <i class="bi bi-heart"></i>
+                        <p>Belum ada event di wishlist</p>
+                    </div>
+                `;
+                return;
+            }
+
+            wishlistList.innerHTML = `<div class="events-grid">` + wishlistEvents.map(event => `
+                <div class="event-card" onclick="showEventDetail(${event.id})">
+                    <div class="event-image-wrapper">
+                        <img src="${event.image}" alt="${event.title}" class="event-image" loading="lazy">
+                        <span class="event-badge">${event.category}</span>
+                        <button class="wishlist-btn active" onclick="event.stopPropagation(); toggleWishlist(${event.id})">
+                            <i class="bi bi-heart-fill"></i>
+                        </button>
+                    </div>
+                 
+                        <div class="event-footer">
+                            <div class="rating">
+                                <i class="bi bi-star-fill"></i>
+                                <span>${event.rating}</span>
+                            </div>
+                            <div class="event-price">${event.price}</div>
+                        </div>
+                    </div>
+                </div>
+            `).join('') + `</div>`;
+        }
+
+        function renderRegistered() {
+            const registeredList = document.getElementById('registeredList');
+
+            if (registeredEvents.length === 0) {
+                registeredList.innerHTML = `
+                    <div class="empty-state">
+                        <i class="bi bi-ticket"></i>
+                        <p>Belum ada event terdaftar</p>
+                    </div>
+                `;
+                return;
+            }
+
+            registeredList.innerHTML = `<div class="events-grid">` + registeredEvents.map(event => `
+                <div class="event-card" onclick="showEventDetail(${event.id})">
+                    <div class="event-image-wrapper">
+                        <img src="${event.image}" alt="${event.title}" class="event-image" loading="lazy">
+                        <span class="event-badge" style="background: #28a745;">TERDAFTAR</span>
+                    </div>
+                
+                        </div>
+                        <button class="btn btn-sm btn-primary w-100 mt-2" onclick="event.stopPropagation(); openChat()" style="font-size: 11px; padding: 6px;">
+                            <i class="bi bi-chat"></i> Chat Event
+                        </button>
+                    </div>
+                </div>
+            `).join('') + `</div>`;
+        }
+
+        function renderHistory() {
+            const historyList = document.getElementById('historyList');
+
+            if (eventHistory.length === 0) {
+                historyList.innerHTML = `
+                    <div class="empty-state">
+                        <i class="bi bi-clock-history"></i>
+                        <p>Belum ada riwayat event</p>
+                        <small class="text-muted">Event yang sudah selesai akan muncul di sini</small>
+                    </div>
+                `;
+                return;
+            }
+
+            historyList.innerHTML = eventHistory.map(event => `
+                <div class="certificate-card">
+                    <div class="d-flex gap-3">
+                        <img src="${event.image}" alt="${event.title}" style="width: 100px; height: 100px; object-fit: cover; border-radius: 10px;">
+                        <div class="flex-grow-1">
+                            <h6 class="mb-1">${event.title}</h6>
+                            <small class="text-muted d-block mb-2"><i class="bi bi-calendar"></i> ${event.date}</small>
+                            <small class="text-muted d-block mb-3"><i class="bi bi-geo-alt"></i> ${event.location}</small>
+                            <div class="d-flex gap-2 flex-wrap">
+                                <button class="btn btn-sm btn-primary" onclick="viewCertificate(${event.id})">
+                                    <i class="bi bi-award"></i> Lihat Sertifikat
+                                </button>
+                                <button class="btn btn-sm btn-success" onclick="downloadCertificate(${event.id})">
+                                    <i class="bi bi-download"></i> Unduh
+                                </button>
+                                <button class="btn btn-sm btn-outline-secondary" onclick="shareCertificate(${event.id})">
+                                    <i class="bi bi-share"></i> Bagikan
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    ${!event.rated ? `
+                        <div class="mt-3 p-3" style="background: #f8f9fa; border-radius: 10px;">
+                            <div class="d-flex justify-content-between align-items-center">
+                                <small class="text-muted">Bagaimana pengalaman Anda?</small>
+                                <button class="btn btn-sm btn-warning" onclick="rateEvent(${event.id})">
+                                    <i class="bi bi-star"></i> Beri Rating
+                                </button>
+                            </div>
+                        </div>
+                    ` : `
+                        <div class="mt-2">
+                            <small class="text-success"><i class="bi bi-check-circle-fill"></i> Anda memberi rating ${event.userRating} ⭐</small>
+                        </div>
+                    `}
+                </div>
+            `).join('');
+        }
+
+        // View Certificate
+        function viewCertificate(eventId) {
+            const event = eventHistory.find(e => e.id === eventId);
+            if (!event) return;
+
+            // Create certificate preview modal
+            const certificateHTML = `
+                <div style="background: white; padding: 40px; border: 10px solid var(--secondary); border-radius: 20px; text-align: center; max-width: 600px; margin: 20px auto;">
+                    <h2 style="color: var(--primary); font-family: 'Poppins', serif; margin-bottom: 10px;">SERTIFIKAT</h2>
+                    <p style="color: #666; margin-bottom: 30px;">Penghargaan Kehadiran</p>
+                    <div style="margin: 30px 0;">
+                        <p style="font-size: 14px; color: #666;">Diberikan kepada:</p>
+                        <h3 style="color: var(--primary); font-size: 32px; margin: 10px 0;">${currentUser.name}</h3>
+                    </div>
+                    <div style="margin: 30px 0;">
+                        <p style="font-size: 14px; color: #666;">Telah mengikuti:</p>
+                        <h4 style="color: var(--primary); margin: 10px 0;">${event.title}</h4>
+                        <p style="color: #666; font-size: 14px;">${event.date}</p>
+                        <p style="color: #666; font-size: 14px;">${event.location}</p>
+                    </div>
+                    <div style="margin-top: 40px; padding-top: 20px; border-top: 2px solid #eee;">
+                        <p style="font-size: 14px; color: #666;">Diselenggarakan oleh:</p>
+                        <p style="font-weight: 600; color: var(--primary);">${event.organizer}</p>
+                    </div>
+                    <div style="margin-top: 30px;">
+                        <p style="font-size: 12px; color: #999;">Nomor Sertifikat: ${event.id}-${currentUser.id}-${Date.now()}</p>
+                    </div>
+                </div>
+            `;
+
+            // Show in modal
+            const modalDiv = document.createElement('div');
+            modalDiv.innerHTML = `
+                <div class="modal fade show" style="display: block; background: rgba(0,0,0,0.8);" onclick="this.remove()">
+                    <div class="modal-dialog modal-lg modal-dialog-centered">
+                        <div class="modal-content">
+                            <div class="modal-header" style="background: var(--primary); color: white;">
+                                <h5 class="modal-title">Sertifikat ${event.title}</h5>
+                                <button type="button" class="btn-close btn-close-white" onclick="this.closest('.modal').remove()"></button>
+                            </div>
+                            <div class="modal-body">
+                                ${certificateHTML}
+                            </div>
+                            <div class="modal-footer">
+                                <button class="btn btn-secondary" onclick="this.closest('.modal').remove()">Tutup</button>
+                                <button class="btn btn-success" onclick="downloadCertificate(${event.id})">
+                                    <i class="bi bi-download"></i> Unduh Sertifikat
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            `;
+            document.body.appendChild(modalDiv);
+        }
+
+        function downloadCertificate(eventId) {
+            const event = eventHistory.find(e => e.id === eventId) || eventsData.find(e => e.id === eventId);
+            if (!event) return;
+            
+            showNotification(`📥 Sertifikat "${event.title}" sedang diunduh...`);
+            
+            // Simulate download
+            setTimeout(() => {
+                showNotification(`✅ Sertifikat berhasil diunduh!`);
+            }, 1500);
+        }
+
+        function shareCertificate(eventId) {
+            const event = eventHistory.find(e => e.id === eventId);
+            if (!event) return;
+
+            const shareText = `🎉 Saya telah menyelesaikan "${event.title}" di Eventraze!\n\nCek event menarik lainnya di Eventraze.`;
+            
+            if (navigator.share) {
+                navigator.share({
+                    title: `Sertifikat ${event.title}`,
+                    text: shareText,
+                    url: window.location.href
+                }).catch(() => {
+                    copyToClipboard(shareText);
+                });
+            } else {
+                copyToClipboard(shareText);
+            }
+        }
+
+        function copyToClipboard(text) {
+            const textarea = document.createElement('textarea');
+            textarea.value = text;
+            document.body.appendChild(textarea);
+            textarea.select();
+            document.execCommand('copy');
+            document.body.removeChild(textarea);
+            showNotification('📋 Teks berhasil disalin ke clipboard!');
+        }
+
+        function rateEvent(eventId) {
+            const event = eventHistory.find(e => e.id === eventId);
+            if (!event) return;
+
+            // Create rating modal
+            const ratingHTML = `
+                <div class="text-center">
+                    <h5 class="mb-3">Bagaimana pengalaman Anda?</h5>
+                    <p class="text-muted mb-4">${event.title}</p>
+                    <div class="mb-4">
+                        <div class="rating-stars" style="font-size: 48px; cursor: pointer;">
+                            <i class="bi bi-star" data-rating="1" onclick="selectRating(1)"></i>
+                            <i class="bi bi-star" data-rating="2" onclick="selectRating(2)"></i>
+                            <i class="bi bi-star" data-rating="3" onclick="selectRating(3)"></i>
+                            <i class="bi bi-star" data-rating="4" onclick="selectRating(4)"></i>
+                            <i class="bi bi-star" data-rating="5" onclick="selectRating(5)"></i>
+                        </div>
+                        <p id="ratingText" class="mt-2 text-muted">Pilih rating Anda</p>
+                    </div>
+                    <textarea id="ratingComment" class="form-control mb-3" rows="3" placeholder="Tulis komentar Anda (opsional)"></textarea>
+                    <button class="btn btn-primary w-100" onclick="submitRating(${eventId})">Kirim Rating</button>
+                </div>
+            `;
+
+            const modalDiv = document.createElement('div');
+            modalDiv.id = 'ratingModal';
+            modalDiv.innerHTML = `
+                <div class="modal fade show" style="display: block; background: rgba(0,0,0,0.5);">
+                    <div class="modal-dialog modal-dialog-centered">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title">Beri Rating</h5>
+                                <button type="button" class="btn-close" onclick="document.getElementById('ratingModal').remove()"></button>
+                            </div>
+                            <div class="modal-body">
+                                ${ratingHTML}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            `;
+            document.body.appendChild(modalDiv);
+
+            // Add rating selection handler
+            window.selectRating = function(rating) {
+                const stars = document.querySelectorAll('.rating-stars i');
+                const texts = ['Sangat Buruk', 'Buruk', 'Cukup', 'Bagus', 'Sangat Bagus'];
+                
+                stars.forEach((star, index) => {
+                    if (index < rating) {
+                        star.className = 'bi bi-star-fill';
+                        star.style.color = '#ffd700';
+                    } else {
+                        star.className = 'bi bi-star';
+                        star.style.color = '#ddd';
+                    }
+                });
+                
+                document.getElementById('ratingText').textContent = texts[rating - 1];
+                window.selectedRating = rating;
+            };
+
+            // Add submit handler
+            window.submitRating = function(eventId) {
+                if (!window.selectedRating) {
+                    alert('Silakan pilih rating terlebih dahulu!');
+                    return;
+                }
+
+                const comment = document.getElementById('ratingComment').value;
+                const eventIndex = eventHistory.findIndex(e => e.id === eventId);
+                
+                if (eventIndex > -1) {
+                    eventHistory[eventIndex].rated = true;
+                    eventHistory[eventIndex].userRating = window.selectedRating;
+                    eventHistory[eventIndex].userComment = comment;
+                    localStorage.setItem(`history_${currentUser.id}`, JSON.stringify(eventHistory));
+                }
+
+                showNotification(`⭐ Terima kasih atas rating ${window.selectedRating} bintang!`);
+                document.getElementById('ratingModal').remove();
+                renderHistory();
+            };
+        }
+
+        // Add some demo history events (for testing)
+        function addDemoHistory() {
+            if (eventHistory.length === 0 && registeredEvents.length > 0) {
+                // Simulate some events that have finished
+                const demoHistory = [
+                    {
+                        ...eventsData[0],
+                        completedAt: new Date(Date.now() - 7 * 24 * 60 * 60 * 1000).toISOString(),
+                        rated: false
+                    }
+                ];
+                eventHistory.push(...demoHistory);
+                localStorage.setItem(`history_${currentUser.id}`, JSON.stringify(eventHistory));
+            }
+        }
+
+        // Switch Reminder Tab
+        function switchReminderTab(tab) {
+            document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
+            document.querySelectorAll('.tab-content').forEach(content => content.style.display = 'none');
+
+            if (tab === 'notifikasi') {
+                document.querySelectorAll('.tab-btn')[0].classList.add('active');
+                document.getElementById('notifikasiTab').style.display = 'block';
+                renderNotifications();
+            } else if (tab === 'wishlist') {
+                document.querySelectorAll('.tab-btn')[1].classList.add('active');
+                document.getElementById('wishlistTab').style.display = 'block';
+                renderWishlist();
+            } else if (tab === 'registered') {
+                document.querySelectorAll('.tab-btn')[2].classList.add('active');
+                document.getElementById('registeredTab').style.display = 'block';
+                renderRegistered();
+            } else if (tab === 'history') {
+                document.querySelectorAll('.tab-btn')[3].classList.add('active');
+                document.getElementById('historyTab').style.display = 'block';
+                renderHistory();
+            }
+        }
+
+        // Profile Functions
+        function updateProfileDisplay() {
+            document.getElementById('profileName').textContent = currentUser.name;
+            document.getElementById('profileEmail').textContent = currentUser.email;
+            
+            const initial = currentUser.name.charAt(0).toUpperCase();
+            document.getElementById('avatarInitial').textContent = initial;
+
+            if (currentUser.avatar) {
+                document.getElementById('profileAvatar').style.backgroundImage = `url(${currentUser.avatar})`;
+                document.getElementById('profileAvatar').style.backgroundSize = 'cover';
+                document.getElementById('avatarInitial').style.display = 'none';
+            }
+        }
+
+        // Edit Profile
+        function showEditProfile() {
+            document.getElementById('editName').value = currentUser.name;
+            document.getElementById('editEmail').value = currentUser.email;
+            
+            const initial = currentUser.name.charAt(0).toUpperCase();
+            document.getElementById('editAvatarInitial').textContent = initial;
+
+            const modal = new bootstrap.Modal(document.getElementById('editProfileModal'));
+            modal.show();
+        }
+
+        document.getElementById('editProfileForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+
+            const newName = document.getElementById('editName').value;
+            const newEmail = document.getElementById('editEmail').value;
+
+            // Update user data
+            currentUser.name = newName;
+            currentUser.email = newEmail;
+
+            // Update in storage
+            let users = JSON.parse(localStorage.getItem('users') || '[]');
+            const userIndex = users.findIndex(u => u.id === currentUser.id);
+            if (userIndex > -1) {
+                users[userIndex] = currentUser;
+                localStorage.setItem('users', JSON.stringify(users));
+            }
+
+            // Update session
+            const session = JSON.parse(localStorage.getItem('session'));
+            session.name = newName;
+            session.email = newEmail;
+            localStorage.setItem('session', JSON.stringify(session));
+
+            updateProfileDisplay();
+            document.getElementById('greetingText').textContent = `Halo, ${newName}!`;
+
+            bootstrap.Modal.getInstance(document.getElementById('editProfileModal')).hide();
+            alert('Profil berhasil diperbarui!');
+        });
+
+        // Avatar Upload
+        document.getElementById('avatarInput').addEventListener('change', function(e) {
+            const file = e.target.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    currentUser.avatar = e.target.result;
+                    
+                    // Update in storage
+                    let users = JSON.parse(localStorage.getItem('users') || '[]');
+                    const userIndex = users.findIndex(u => u.id === currentUser.id);
+                    if (userIndex > -1) {
+                        users[userIndex].avatar = currentUser.avatar;
+                        localStorage.setItem('users', JSON.stringify(users));
+                    }
+
+                    // Update session
+                    const session = JSON.parse(localStorage.getItem('session'));
+                    session.avatar = currentUser.avatar;
+                    localStorage.setItem('session', JSON.stringify(session));
+
+                    updateProfileDisplay();
+                };
+                reader.readAsDataURL(file);
+            }
+        });
+
+        // Show Certificates
+        function showCertificates() {
+            const certificatesList = document.getElementById('certificatesList');
+            
+            if (eventHistory.length === 0) {
+                certificatesList.innerHTML = `
+                    <div class="empty-state">
+                        <i class="bi bi-award"></i>
+                        <p>Belum ada sertifikat</p>
+                        <small class="text-muted">Ikuti event untuk mendapatkan sertifikat</small>
+                    </div>
+                `;
+            } else {
+                certificatesList.innerHTML = eventHistory.map(event => `
+                    <div class="certificate-card">
+                        <h6>${event.title}</h6>
+                        <p class="text-muted mb-2">${event.date}</p>
+                        <button class="btn btn-sm btn-primary" onclick="downloadCertificate(${event.id})">
+                            <i class="bi bi-download"></i> Unduh Sertifikat
+                        </button>
+                    </div>
+                `).join('');
+            }
+
+            const modal = new bootstrap.Modal(document.getElementById('certificatesModal'));
+            modal.show();
+        }
+
+        function downloadCertificate(eventId) {
+            alert('Sertifikat akan diunduh!\n(Demo: Fitur download sertifikat)');
+        }
+
+        function rateEvent(eventId) {
+            const rating = prompt('Berikan rating (1-5):');
+            if (rating && rating >= 1 && rating <= 5) {
+                alert(`Terima kasih atas rating ${rating} bintang!`);
+            }
+        }
+
+        // Toggle Dark Mode
+        function toggleDarkMode() {
+            document.body.classList.toggle('dark-mode');
+            document.getElementById('darkModeToggle').classList.toggle('active');
+
+            const settings = JSON.parse(localStorage.getItem(`settings_${currentUser.id}`) || '{}');
+            settings.darkMode = document.body.classList.contains('dark-mode');
+            localStorage.setItem(`settings_${currentUser.id}`, JSON.stringify(settings));
+
+            // Animate toggle
+            anime({
+                targets: '#darkModeToggle .toggle-slider',
+                translateX: settings.darkMode ? 24 : 0,
+                duration: 300,
+                easing: 'easeInOutQuad'
+            });
+        }
+
+        // Toggle Notifications
+        function toggleNotifications() {
+            notificationsEnabled = !notificationsEnabled;
+            document.getElementById('notifToggle').classList.toggle('active');
+
+            const settings = JSON.parse(localStorage.getItem(`settings_${currentUser.id}`) || '{}');
+            settings.notifications = notificationsEnabled;
+            localStorage.setItem(`settings_${currentUser.id}`, JSON.stringify(settings));
+
+            if (notificationsEnabled) {
+                showNotification('Notifikasi diaktifkan!');
+            }
+
+            // Animate toggle
+            anime({
+                targets: '#notifToggle .toggle-slider',
+                translateX: notificationsEnabled ? 24 : 0,
+                duration: 300,
+                easing: 'easeInOutQuad'
+            });
+        }
+
+        // Enhanced Notification System
+        let notificationQueue = [];
+        let notificationHistory = [];
+
+        function showNotification(message, type = 'info') {
+            // Save to history first
+            const notifData = {
+                message,
+                type,
+                timestamp: new Date().toISOString()
+            };
+            
+            notificationHistory.push(notifData);
+            localStorage.setItem(`notifications_${currentUser.id}`, JSON.stringify(notificationHistory.slice(-50)));
+            
+            // Update notifications tab if open
+            if (document.getElementById('notifikasiTab').style.display === 'block') {
+                renderNotifications();
+            }
+
+            // Create popup notification element
+            const notification = document.createElement('div');
+            const icons = {
+                success: '✅',
+                info: 'ℹ️',
+                warning: '⚠️',
+                error: '❌',
+                reminder: '🔔',
+                event: '🎉'
+            };
+
+            notification.style.cssText = `
+                position: fixed;
+                top: 20px;
+                right: 20px;
+                background: var(--secondary);
+                color: var(--primary);
+                padding: 15px 20px;
+                border-radius: 10px;
+                z-index: 9999;
+                font-weight: 600;
+                box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+                max-width: 300px;
+                display: flex;
+                align-items: center;
+                gap: 10px;
+            `;
+            
+            notification.innerHTML = `
+                <span style="font-size: 20px;">${icons[type] || icons.info}</span>
+                <span style="flex: 1;">${message}</span>
+                <button onclick="this.parentElement.remove()" style="background: none; border: none; color: var(--primary); font-size: 20px; cursor: pointer; padding: 0; margin-left: 10px;">&times;</button>
+            `;
+            
+            document.body.appendChild(notification);
+
+            // Animate in
+            anime({
+                targets: notification,
+                translateX: [100, 0],
+                opacity: [0, 1],
+                duration: 300,
+                easing: 'easeOutQuad'
+            });
+
+            // Auto remove after 3 seconds
+            setTimeout(() => {
+                anime({
+                    targets: notification,
+                    translateX: [0, 100],
+                    opacity: [1, 0],
+                    duration: 300,
+                    easing: 'easeInQuad',
+                    complete: () => notification.remove()
+                });
+            }, 3000);
+        }
+
+        // Check for event reminders
+        function checkEventReminders() {
+            if (!notificationsEnabled) return;
+
+            const now = new Date();
+            const tomorrow = new Date(now.getTime() + 24 * 60 * 60 * 1000);
+
+            registeredEvents.forEach(event => {
+                const eventDate = new Date(event.date);
+                const timeDiff = eventDate - now;
+                const hoursDiff = timeDiff / (1000 * 60 * 60);
+
+                // Remind 24 hours before
+                if (hoursDiff > 0 && hoursDiff <= 24) {
+                    const hours = Math.floor(hoursDiff);
+                    showNotification(
+                        `Pengingat: ${event.title} akan dimulai dalam ${hours} jam!`,
+                        'reminder'
+                    );
+                }
+            });
+        }
+
+        // Send random event recommendations
+        function sendEventRecommendations() {
+            if (!notificationsEnabled) return;
+
+            const unseenEvents = eventsData.filter(e => 
+                !registeredEvents.some(r => r.id === e.id) &&
+                !wishlist.includes(e.id)
+            );
+
+            if (unseenEvents.length > 0) {
+                const randomEvent = unseenEvents[Math.floor(Math.random() * unseenEvents.length)];
+                showNotification(
+                    `Event baru: ${randomEvent.title} - ${randomEvent.price}`,
+                    'event'
+                );
+            }
+        }
+
+        // Initialize notification system
+        function initNotifications() {
+            if (!currentUser) return;
+
+            // Load notification history
+            notificationHistory = JSON.parse(localStorage.getItem(`notifications_${currentUser.id}`) || '[]');
+
+            // Check reminders every 30 minutes
+            setInterval(checkEventReminders, 30 * 60 * 1000);
+            
+            // Send recommendations every hour
+            setInterval(sendEventRecommendations, 60 * 60 * 1000);
+
+            // Initial check
+            checkEventReminders();
+        }
+
+        // Welcome notification on login
+        function sendWelcomeNotification() {
+            if (!notificationsEnabled) return;
+
+            const hour = new Date().getHours();
+            let greeting = 'Selamat datang';
+            
+            if (hour < 12) greeting = 'Selamat pagi';
+            else if (hour < 18) greeting = 'Selamat siang';
+            else greeting = 'Selamat malam';
+
+            setTimeout(() => {
+                showNotification(`${greeting}, ${currentUser.name}! 👋`, 'success');
+                
+                // Show event count
+                setTimeout(() => {
+                    showNotification(`Ada ${eventsData.length} event menanti Anda!`, 'info');
+                }, 2000);
+            }, 1000);
+        }
+
+        // Show Help
+        function showHelp() {
+            alert('Pusat Bantuan\n\nHubungi kami:\nEmail: support@eventraze.com\nWhatsApp: 0812-3456-7890\n\nFAQ tersedia di menu Bantuan.');
+        }
+
+        // Logout
+        function logout() {
+            if (confirm('Yakin ingin keluar?')) {
+                localStorage.removeItem('session');
+                currentUser = null;
+                wishlist = [];
+                registeredEvents = [];
+                eventHistory = [];
+                showPage('loginPage');
+            }
+        }
+
+        // Chat Functions
+        function openChat() {
+            if (!currentEventDetail && registeredEvents.length > 0) {
+                currentEventDetail = registeredEvents[0];
+            }
+
+            if (!currentEventDetail) {
+                alert('Pilih event terlebih dahulu!');
+                return;
+            }
+
+            document.getElementById('chatEventTitle').textContent = currentEventDetail.title;
+            showPage('chatPage');
+            renderChat();
+        }
+function backToDetail() {
+    showMainPage('homePage');
+}
+
+        function renderChat() {
+            const chatMessagesDiv = document.getElementById('chatMessages');
+            
+            if (chatMessages.length === 0) {
+                chatMessages = [
+                    {
+                        user: 'Event Organizer',
+                        message: 'Selamat datang di chat event! Silakan bertanya jika ada yang ingin ditanyakan.',
+                        time: new Date().toLocaleTimeString('id-ID', { hour: '2-digit', minute: '2-digit' }),
+                        isOwn: false
+                    }
+                ];
+            }
+
+            chatMessagesDiv.innerHTML = chatMessages.map(msg => `
+                <div class="message ${msg.isOwn ? 'own' : ''}">
+                    <div class="message-avatar">${msg.user.charAt(0)}</div>
+                    <div>
+                        <div class="message-content">
+                            ${!msg.isOwn ? `<div class="message-name">${msg.user}</div>` : ''}
+                            <div>${msg.message}</div>
+                            <div class="message-time">${msg.time}</div>
+                        </div>
+                    </div>
+                </div>
+            `).join('');
+
+            chatMessagesDiv.scrollTop = chatMessagesDiv.scrollHeight;
+        }
+
+        function sendMessage() {
+            const input = document.getElementById('chatInput');
+            const message = input.value.trim();
+
+            if (!message) return;
+
+            const newMessage = {
+                user: currentUser.name,
+                message: message,
+                time: new Date().toLocaleTimeString('id-ID', { hour: '2-digit', minute: '2-digit' }),
+                isOwn: true
+            };
+
+            chatMessages.push(newMessage);
+            localStorage.setItem(`chat_${currentUser.id}`, JSON.stringify(chatMessages));
+
+            input.value = '';
+            renderChat();
+
+            // Simulate response
+            setTimeout(() => {
+                const autoReply = {
+                    user: 'Event Organizer',
+                    message: 'Terima kasih atas pertanyaannya! Tim kami akan segera merespons.',
+                    time: new Date().toLocaleTimeString('id-ID', { hour: '2-digit', minute: '2-digit' }),
+                    isOwn: false
+                };
+                chatMessages.push(autoReply);
+                localStorage.setItem(`chat_${currentUser.id}`, JSON.stringify(chatMessages));
+                renderChat();
+            }, 1000);
+        }
+
+        // Allow Enter key to send message
+        document.getElementById('chatInput').addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') {
+                sendMessage();
+            }
+        });
+
+        // Register Service Worker for PWA
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', () => {
+                navigator.serviceWorker.register('/sw.js')
+                    .then(reg => console.log('Service Worker registered'))
+                    .catch(err => console.log('Service Worker registration failed'));
+            });
+        }
+
+        // PWA Manifest
+        const manifest = {
+            name: 'Eventraze - Discover Events',
+            short_name: 'Eventraze',
+            description: 'Temukan event menarik di sekitar Solo',
+            start_url: '/',
+            display: 'standalone',
+            background_color: '#0F0F0F',
+            theme_color: '#0F0F0F',
+            orientation: 'portrait',
+            icons: [
+                {
+                    src: 'https://via.placeholder.com/192x192?text=E',
+                    sizes: '192x192',
+                    type: 'image/png'
+                },
+                {
+                    src: 'https://via.placeholder.com/512x512?text=E',
+                    sizes: '512x512',
+                    type: 'image/png'
+                }
+            ]
+        };
+
+        const manifestBlob = new Blob([JSON.stringify(manifest)], { type: 'application/json' });
+        const manifestURL = URL.createObjectURL(manifestBlob);
+        document.getElementById('manifest-placeholder').setAttribute('href', manifestURL);
+
+        // Initialize App
+        checkAuth();
+
+        // Animate megaphone on load
+        anime({
+            targets: '.megaphone',
+            rotate: [-15, 15],
+            duration: 2000,
+            easing: 'easeInOutQuad',
+            loop: true,
+            direction: 'alternate'
+        });
+    </script>
+</body>
+</html>

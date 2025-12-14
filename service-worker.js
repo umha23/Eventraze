@@ -1,47 +1,74 @@
-// This is the "Offline page" service worker
+const CACHE_NAME = "pwa-template-v2";
+const BASE_URL = self.registration.scope;
 
-importScripts('https://storage.googleapis.com/workbox-cdn/releases/5.1.2/workbox-sw.js');
+const urlsToCache = [
+  `${BASE_URL}`,
+  `${BASE_URL}index.html`,
+  `${BASE_URL}offline.html`,
+  `${BASE_URL}assets/style.css`,
+  `${BASE_URL}manifest.json`,
+  `${BASE_URL}icons/logoeventraze192x192.png`,
+  `${BASE_URL}icons/logoeventraze512x512.png`,
+];
 
-const CACHE = "pwabuilder-page";
-
-// TODO: replace the following with the correct offline fallback page i.e.: const offlineFallbackPage = "offline.html";
-const offlineFallbackPage = "ToDo-replace-this-name.html";
-
-self.addEventListener("message", (event) => {
-  if (event.data && event.data.type === "SKIP_WAITING") {
-    self.skipWaiting();
-  }
-});
-
-self.addEventListener('install', async (event) => {
+// Install Service Worker & simpan file ke cache
+self.addEventListener("install", event => {
+  self.skipWaiting(); // langsung aktif tanpa reload manual
   event.waitUntil(
-    caches.open(CACHE)
-      .then((cache) => cache.add(offlineFallbackPage))
+    caches.open(CACHE_NAME)
+      .then(cache => cache.addAll(urlsToCache))
+      .catch(err => console.error("Cache gagal dimuat:", err))
   );
 });
 
-if (workbox.navigationPreload.isSupported()) {
-  workbox.navigationPreload.enable();
-}
+// Aktivasi dan hapus cache lama
+self.addEventListener("activate", event => {
+  event.waitUntil(
+    (async () => {
+      const keys = await caches.keys();
+      await Promise.all(
+        keys.map(key => {
+          if (key !== CACHE_NAME) {
+            console.log("Menghapus cache lama:", key);
+            return caches.delete(key);
+          }
+        })
+      );
+      await self.clients.claim(); // langsung klaim kontrol ke halaman
+    })()
+  );
+});
 
-self.addEventListener('fetch', (event) => {
-  if (event.request.mode === 'navigate') {
-    event.respondWith((async () => {
-      try {
-        const preloadResp = await event.preloadResponse;
+// Fetch event: cache-first untuk file lokal, network-first untuk API
+self.addEventListener("fetch", event => {
+  const request = event.request;
+  const url = new URL(request.url);
 
-        if (preloadResp) {
-          return preloadResp;
-        }
+  // Abaikan permintaan Chrome Extension, analytics, dll.
+  if (url.protocol.startsWith("chrome-extension")) return;
+  if (request.method !== "GET") return;
 
-        const networkResp = await fetch(event.request);
-        return networkResp;
-      } catch (error) {
-
-        const cache = await caches.open(CACHE);
-        const cachedResp = await cache.match(offlineFallbackPage);
-        return cachedResp;
-      }
-    })());
+  // File lokal (statis)
+  if (url.origin === self.location.origin) {
+    event.respondWith(
+      caches.match(request).then(response => {
+        return (
+          response ||
+          fetch(request).catch(() => caches.match(`${BASE_URL}offline.html`))
+        );
+      })
+    );
+  } 
+  // Resource eksternal (API, CDN, dsb.)
+  else {
+    event.respondWith(
+      fetch(request)
+        .then(networkResponse => {
+          const clone = networkResponse.clone();
+          caches.open(CACHE_NAME).then(cache => cache.put(request, clone));
+          return networkResponse;
+        })
+        .catch(() => caches.match(request))
+    );
   }
 });
