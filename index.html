@@ -1503,10 +1503,7 @@
                 </button>
             </div>
 
-            <div class="d-flex gap-2">
-                <button class="btn btn-outline-primary flex-grow-1" onclick="openChat()">
-                    <i class="bi bi-chat-dots"></i> Forum Diskusi
-                </button>
+            <div class="d-flex gap-1">
                 <button class="btn btn-primary flex-grow-1" id="registerEventBtn" onclick="registerEvent()">
                     <i class="bi bi-ticket"></i> <span id="registerBtnText">Daftar Event</span>
                 </button>
@@ -1559,7 +1556,6 @@
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title" id="modalEventTitle"></h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
             </div>
             <div class="modal-body" id="modalEventBody"></div>
             <div class="modal-footer">
@@ -2673,20 +2669,28 @@ function openChatFromModal() {
                 return;
             }
 
-            registeredList.innerHTML = `<div class="events-grid">` + registeredEvents.map(event => `
-                <div class="event-card" onclick="showEventDetail(${event.id})">
-                    <div class="event-image-wrapper">
-                        <img src="${event.image}" alt="${event.title}" class="event-image" loading="lazy">
-                        <span class="event-badge" style="background: #28a745;">TERDAFTAR</span>
-                    </div>
-                
-                        </div>
-                        <button class="btn btn-sm btn-primary w-100 mt-2" onclick="event.stopPropagation(); openChat()" style="font-size: 11px; padding: 6px;">
-                            <i class="bi bi-chat"></i> Chat Event
-                        </button>
-                    </div>
+          registeredList.innerHTML = `
+    <div class="events-grid">
+        ${registeredEvents.map(event => `
+            <div class="event-card registered-card" onclick="showEventDetail(${event.id})">
+
+                <div class="event-image-wrapper">
+                    <img src="${event.image}" 
+                         alt="${event.title}" 
+                         class="event-image" 
+                         loading="lazy">
+                    <span class="event-badge registered">TERDAFTAR</span>
                 </div>
-            `).join('') + `</div>`;
+
+                <div class="event-content">
+                    <h6 class="event-title">${event.title}</h6>
+
+                </div>
+
+            </div>
+        `).join('')}
+    </div>
+`;
         }
 
         function renderHistory() {
@@ -2966,7 +2970,8 @@ function openChatFromModal() {
 
         // Profile Functions
         function updateProfileDisplay() {
-            document.getElementById('profileName').textContent = currentUser.name;
+  document.getElementById('profileName').textContent =
+    currentUser?.name || 'User';
             document.getElementById('profileEmail').textContent = currentUser.email;
             
             const initial = currentUser.name.charAt(0).toUpperCase();
