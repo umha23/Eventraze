@@ -587,7 +587,16 @@
         .filter-buttons::-webkit-scrollbar {
             display: none;
         }
-
+button {
+  background: var(--primary);
+  border: none;
+  color: #999;
+  padding: 0.75rem 1.25rem;
+  border-radius: 0.5rem;
+  cursor: pointer;
+  font-size: 1rem;
+  margin-top: 1rem;
+}
         .filter-btn {
             padding: 6px 16px;
             background: #f0f0f0;
@@ -996,6 +1005,37 @@
             color: white;
             border-radius: 20px 20px 0 0;
         }
+        /* DARK MODE - MODAL */
+body.dark-mode .modal-content {
+    background-color: #1e1e1e;
+    color: #ffffff;
+}
+
+body.dark-mode .modal-header,
+body.dark-mode .modal-footer {
+    border-color: #333;
+}
+
+body.dark-mode .modal-title {
+    color: #ffffff;
+}
+
+body.dark-mode .modal-body {
+    color: #dddddd;
+}
+
+/* Button secondary */
+body.dark-mode .btn-secondary {
+    background-color: #2a2a2a;
+    color: #ffffff;
+    border-color: #444;
+}
+
+/* Close / dismiss button */
+body.dark-mode .btn-close {
+    filter: invert(1);
+}
+
 
         /* Empty State */
         .empty-state {
@@ -1125,6 +1165,52 @@
                 gap: 5px;
                 align-items: flex-start;
             }
+        }
+         .faq-item {
+            background: white;
+            border-radius: 12px;
+            padding: 15px;
+            margin-bottom: 12px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .dark-mode .faq-item {
+            background: #2a2a2a;
+        }
+
+        .faq-question {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-weight: 600;
+        }
+
+        .faq-answer {
+            display: none;
+            margin-top: 12px;
+            padding-top: 12px;
+            border-top: 1px solid #eee;
+            color: #666;
+            line-height: 1.6;
+        }
+
+        .dark-mode .faq-answer {
+            border-top-color: #444;
+            color: #999;
+        }
+
+        .faq-item.active .faq-answer {
+            display: block;
+        }
+
+        .faq-icon {
+            transition: transform 0.3s ease;
+        }
+
+        .faq-item.active .faq-icon {
+            transform: rotate(180deg);
         }
     </style>
 </head>
@@ -1410,7 +1496,7 @@
                 <div class="menu-item-left">
                     <div class="menu-icon"><i class="bi bi-question-circle"></i></div>
                     <div>
-                        <div class="fw-semibold">Bantuan</div>
+                        <div class="fw-semibold">Bantuan & FAQ</div>
                         <small class="text-muted">FAQ dan support</small>
                     </div>
                 </div>
@@ -1600,6 +1686,18 @@
         </div>
     </div>
 
+     <!-- Help/FAQ Modal -->
+    <div class="modal fade" id="helpModal" tabindex="-1">
+        <div class="modal-dialog modal-lg modal-dialog-scrollable">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">❓ Bantuan & FAQ</h5>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body" id="faqContent"></div>
+            </div>
+        </div>
+    </div>
     <!-- Certificates Modal -->
     <div class="modal fade" id="certificatesModal" tabindex="-1">
         <div class="modal-dialog modal-lg">
@@ -2634,26 +2732,42 @@ function openChatFromModal() {
                 return;
             }
 
-            wishlistList.innerHTML = `<div class="events-grid">` + wishlistEvents.map(event => `
-                <div class="event-card" onclick="showEventDetail(${event.id})">
-                    <div class="event-image-wrapper">
-                        <img src="${event.image}" alt="${event.title}" class="event-image" loading="lazy">
-                        <span class="event-badge">${event.category}</span>
-                        <button class="wishlist-btn active" onclick="event.stopPropagation(); toggleWishlist(${event.id})">
-                            <i class="bi bi-heart-fill"></i>
-                        </button>
-                    </div>
-                 
-                        <div class="event-footer">
-                            <div class="rating">
-                                <i class="bi bi-star-fill"></i>
-                                <span>${event.rating}</span>
-                            </div>
-                            <div class="event-price">${event.price}</div>
+            wishlistList.innerHTML = `
+    <div class="events-grid">
+        ${wishlistEvents.map(event => `
+            <div class="event-card wishlist-card"
+                 onclick="showEventDetail(${event.id})">
+
+                <div class="event-image-wrapper">
+                    <img src="${event.image}"
+                         alt="${event.title}"
+                         class="event-image"
+                         loading="lazy">
+
+                    <span class="event-badge">${event.category}</span>
+
+                    <button class="wishlist-btn active"
+                            onclick="event.stopPropagation(); toggleWishlist(${event.id})">
+                        <i class="bi bi-heart-fill"></i>
+                    </button>
+                </div>
+
+                <div class="event-content">
+                    <h6 class="event-title">${event.title}</h6>
+
+                    <div class="event-footer">
+                        <div class="rating">
+                            <i class="bi bi-star-fill"></i>
+                            <span>${event.rating}</span>
                         </div>
+                        <div class="event-price">${event.price}</div>
                     </div>
                 </div>
-            `).join('') + `</div>`;
+
+            </div>
+        `).join('')}
+    </div>
+`;
         }
 
         function renderRegistered() {
@@ -3292,8 +3406,49 @@ function openChatFromModal() {
 
         // Show Help
         function showHelp() {
-            alert('Pusat Bantuan\n\nHubungi kami:\nEmail: support@eventraze.com\nWhatsApp: 0812-3456-7890');
+            document.getElementById('faqContent').innerHTML = `
+                <h6>📞 Hubungi Kami</h6>
+                <div class="p-3 rounded mb-4">
+                    <p class="mb-2"><i class="bi bi-envelope"></i> Email: support@eventraze.com</p>
+                    <p class="mb-0"><i class="bi bi-telephone"></i> Telepon: 0812-3456-7890</p>
+                </div>
+                <h6>❓ FAQ</h6>
+                <div class="faq-item" onclick="toggleFAQ(this)">
+                    <div class="faq-question">
+                        <span>Bagaimana cara mendaftar event?</span>
+                        <i class="bi bi-chevron-down faq-icon"></i>
+                    </div>
+                    <div class="faq-answer">Pilih event yang ingin Anda ikuti, klik untuk melihat detail, lalu klik tombol "Daftar" atau "Beli Tiket".</div>
+                </div>
+                <div class="faq-item" onclick="toggleFAQ(this)">
+                    <div class="faq-question">
+                        <span>Apakah bisa batalkan pendaftaran?</span>
+                        <i class="bi bi-chevron-down faq-icon"></i>
+                    </div>
+                    <div class="faq-answer">Ya, Anda bisa membatalkan pendaftaran. Buka menu "Pengingat", pilih tab "Terdaftar", klik event yang ingin dibatalkan, lalu klik tombol "Batalkan Pendaftaran".</div>
+                </div>
+                <div class="faq-item" onclick="toggleFAQ(this)">
+                    <div class="faq-question">
+                        <span>Apa itu Wishlist?</span>
+                        <i class="bi bi-chevron-down faq-icon"></i>
+                    </div>
+                    <div class="faq-answer">Wishlist adalah fitur untuk menyimpan event yang Anda minati tanpa harus mendaftar. Klik ikon hati pada card event untuk menambahkan ke wishlist.</div>
+                </div>
+                <div class="faq-item" onclick="toggleFAQ(this)">
+                    <div class="faq-question">
+                        <span>Apakah Eventraze gratis?</span>
+                        <i class="bi bi-chevron-down faq-icon"></i>
+                    </div>
+                    <div class="faq-answer">Platform Eventraze gratis untuk digunakan. Tidak ada biaya untuk mendaftar akun atau berlangganan. Harga tiket event tergantung dari penyelenggara masing-masing.</div>
+                </div>
+            `;
+            new bootstrap.Modal(document.getElementById('helpModal')).show();
         }
+
+        function toggleFAQ(element) {
+            element.classList.toggle('active');
+        }
+
 
         // Logout
         function logout() {
