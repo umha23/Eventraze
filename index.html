@@ -2477,6 +2477,12 @@
             renderNotifications();
             renderWishlist();
             renderRegistered();
+             function renderRegistered() {
+            const list = document.getElementById('registeredList');
+            if (registeredEvents.length === 0) {
+                list.innerHTML = '<div class="empty-state"><i class="bi bi-ticket"></i><p>Belum ada event terdaftar</p></div>';
+                return;
+            }
             renderHistory();
         }
 
