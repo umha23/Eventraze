@@ -66,7 +66,6 @@
             background: #e6b855;
             color: var(--primary);
             transform: translateY(-2px);
-            box-shadow: 0 4px 12px rgba(247, 197, 102, 0.4);
         }
 
         /* Navigation Bar */
@@ -101,41 +100,41 @@
         .nav-item i {
             font-size: 24px;
             margin-bottom: 4px;
-            transition: all 0.3s ease;
         }
 
         .nav-item.active {
             color: var(--secondary);
         }
 
-        .nav-item.active i {
-            transform: scale(1.2) translateY(-3px);
-        }
-
         /* Page Container */
         .page {
             display: none;
-            animation: fadeIn 0.3s ease;
         }
 
         .page.active {
             display: block;
         }
 
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(10px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
         /* Auth Pages */
         .auth-container {
-            min-height: 100vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            background: linear-gradient(135deg, var(--primary) 0%, #2a2a2a 100%);
-            padding: 20px;
-        }
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    background:
+        linear-gradient(
+            rgba(0, 0, 0, 0.5),
+            rgba(0, 0, 0, 0.5)
+        ),
+        url("assets/5.png");
+
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+
+    padding: 20px;
+}
 
         .auth-card {
             background: white;
@@ -144,21 +143,17 @@
             max-width: 400px;
             width: 100%;
             box-shadow: 0 10px 40px rgba(0,0,0,0.2);
+            position: relative;
+            z-index: 1;
         }
 
         .dark-mode .auth-card {
-            background: #2a2a2a;
-        }
-
-        .auth-logo {
-            text-align: center;
-            margin-bottom: 30px;
+            background:rgba(42, 42, 42, 0.95);
         }
 
         .auth-logo h1 {
             color: var(--primary);
-            font-weight: 700;
-            font-size: 32px;
+             text-align: center;
         }
 
         .dark-mode .auth-logo h1 {
@@ -167,12 +162,10 @@
 
         .auth-logo p {
             color: #666;
-            font-size: 14px;
+             text-align: center;
         }
-
-        .form-control:focus {
-            border-color: var(--secondary);
-            box-shadow: 0 0 0 0.2rem rgba(247, 197, 102, 0.25);
+        .dark-mode .auth-logo p {
+            color: #999;
         }
 
         /* Home Page */
@@ -198,7 +191,6 @@
         .megaphone-container {
             text-align: center;
             padding: 20px;
-            position: relative;
             height: 150px;
         }
 
@@ -212,31 +204,6 @@
             0%, 100% { transform: rotate(0deg); }
             25% { transform: rotate(-15deg); }
             75% { transform: rotate(15deg); }
-        }
-
-        .sound-waves {
-            position: absolute;
-            right: 20px;
-            top: 50%;
-            transform: translateY(-50%);
-        }
-
-        .wave {
-            width: 4px;
-            height: 20px;
-            background: var(--secondary);
-            display: inline-block;
-            margin: 0 2px;
-            border-radius: 2px;
-            animation: wave 1s ease-in-out infinite;
-        }
-
-        .wave:nth-child(2) { animation-delay: 0.1s; }
-        .wave:nth-child(3) { animation-delay: 0.2s; }
-
-        @keyframes wave {
-            0%, 100% { height: 20px; }
-            50% { height: 40px; }
         }
 
         /* Categories */
@@ -262,23 +229,12 @@
             transition: all 0.3s ease;
         }
 
-        .category-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 5px 15px rgba(247, 197, 102, 0.3);
-        }
-
         .category-card i {
             font-size: 32px;
             color: var(--primary);
             margin-bottom: 10px;
         }
-
-        .category-card h6 {
-            color: var(--primary);
-            font-weight: 600;
-            margin: 0;
-        }
-
+        
         /* Video Slider */
         .video-slider-container {
             padding: 0 20px 20px;
@@ -310,10 +266,6 @@
             transition: all 0.3s ease;
         }
 
-        .video-card-youtube:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 6px 20px rgba(0,0,0,0.3);
-        }
 
         .video-card-youtube iframe {
             width: 100%;
@@ -372,32 +324,20 @@
             border-radius: 12px;
             overflow: hidden;
             box-shadow: 0 2px 8px rgba(0,0,0,0.08);
-            transition: all 0.3s ease;
             cursor: pointer;
-            display: flex;
-            flex-direction: column;
         }
 
         .dark-mode .event-card {
             background: #2a2a2a;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.3);
         }
 
-        .event-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 8px 20px rgba(0,0,0,0.15);
-        }
   /* Image Wrapper - Portrait Style untuk tidak memotong gambar */
         .event-image-wrapper {
             position: relative;
             width: 100%;
-            padding-top: 140%; /* Aspect Ratio Portrait 10:14 */
+            padding-top: 140%; 
             overflow: hidden;
             background: #f5f5f5;
-        }
-
-        .dark-mode .event-image-wrapper {
-            background: #1a1a1a;
         }
 
         .event-image {
@@ -407,74 +347,30 @@
             width: 100%;
             height: 100%;
             object-fit: cover;
-            object-position: center;
         }
-
-        .event-badge {
-            position: absolute;
-            top: 10px;
-            left: 10px;
-            background: var(--secondary);
-            color: var(--primary);
-            padding: 4px 12px;
-            border-radius: 20px;
-            font-size: 10px;
-            font-weight: 700;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-            z-index: 2;
+.event-content {
+            padding: 12px;
         }
-
-        .wishlist-btn {
-            position: absolute;
-            top: 10px;
-            right: 10px;
-            background: white;
-            border: none;
-            width: 32px;
-            height: 32px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.15);
-            z-index: 2;
+        .event-title {
+            font-weight: 600;
+            font-size: 14px;
+            margin-bottom: 8px;
+            color: var(--text-light);
         }
-
-        .wishlist-btn:hover {
-            transform: scale(1.1);
-        }
-
-        .wishlist-btn i {
-            color: #666;
-            font-size: 16px;
-            transition: all 0.3s ease;
-        }
-
-        .wishlist-btn.active i {
-            color: #ff4757;
+        .dark-mode .event-title {
+            color: var(--text-dark);
         }
 
          /* Event Content */
         .event-content {
             padding: 12px;
-            display: flex;
-            flex-direction: column;
-            flex: 1;
         }
 
         .event-title {
             font-weight: 600;
             font-size: 14px;
             margin-bottom: 8px;
-            color: var(--primary);
-            line-height: 1.3;
-            height: 36px;
-            display: -webkit-box;
-            overflow: hidden;
-            text-overflow: ellipsis;
+            color: var(--text-light);
         }
 
         .dark-mode .event-title {
@@ -576,20 +472,19 @@
         }
         
         /* Notification Item */
-        .notification-item {
-            background: white;
-            border-radius: 12px;
-            padding: 15px;
-            margin-bottom: 12px;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+          .notification-item {
+            background: linear-gradient(135deg, #fff 0%, #f8f9fa 100%);
+            border-radius: 15px;
+            padding: 18px;
+            margin-bottom: 15px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.08);
             display: flex;
-            gap: 12px;
-            align-items: flex-start;
-            transition: all 0.3s ease;
+            gap: 15px;
+            border-left: 4px solid var(--secondary);
         }
 
         .dark-mode .notification-item {
-            background: #2a2a2a;
+           background: linear-gradient(135deg, #2a2a2a 0%, #1f1f1f 100%);
         }
 
         .notification-item:hover {
@@ -598,14 +493,14 @@
         }
 
         .notification-icon {
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            border-radius: 15px;
             display: flex;
             align-items: center;
             justify-content: center;
             flex-shrink: 0;
-            font-size: 20px;
+            font-size: 24px;
         }
 
         .notification-icon.success {
@@ -630,8 +525,12 @@
 
         .notification-content {
             flex: 1;
+            color: var(--text-light);
         }
-
+.dark-mode .notification-content {
+            color: var(--text-dark);
+        }
+        
         .notification-time {
             font-size: 11px;
             color: #999;
@@ -688,7 +587,16 @@
         .filter-buttons::-webkit-scrollbar {
             display: none;
         }
-
+button {
+  background: var(--primary);
+  border: none;
+  color: #999;
+  padding: 0.75rem 1.25rem;
+  border-radius: 0.5rem;
+  cursor: pointer;
+  font-size: 1rem;
+  margin-top: 1rem;
+}
         .filter-btn {
             padding: 6px 16px;
             background: #f0f0f0;
@@ -1073,10 +981,8 @@
             background: #f8f9fa;
             border: none;
             border-radius: 25px;
-            white-space: nowrap;
             cursor: pointer;
-            transition: all 0.3s ease;
-            font-weight: 500;
+            color: var(--text-light)
         }
 
         .dark-mode .tab-btn {
@@ -1099,6 +1005,37 @@
             color: white;
             border-radius: 20px 20px 0 0;
         }
+        /* DARK MODE - MODAL */
+body.dark-mode .modal-content {
+    background-color: #1e1e1e;
+    color: #ffffff;
+}
+
+body.dark-mode .modal-header,
+body.dark-mode .modal-footer {
+    border-color: #333;
+}
+
+body.dark-mode .modal-title {
+    color: #ffffff;
+}
+
+body.dark-mode .modal-body {
+    color: #dddddd;
+}
+
+/* Button secondary */
+body.dark-mode .btn-secondary {
+    background-color: #2a2a2a;
+    color: #ffffff;
+    border-color: #444;
+}
+
+/* Close / dismiss button */
+body.dark-mode .btn-close {
+    filter: invert(1);
+}
+
 
         /* Empty State */
         .empty-state {
@@ -1229,6 +1166,52 @@
                 align-items: flex-start;
             }
         }
+         .faq-item {
+            background: white;
+            border-radius: 12px;
+            padding: 15px;
+            margin-bottom: 12px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .dark-mode .faq-item {
+            background: #2a2a2a;
+        }
+
+        .faq-question {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-weight: 600;
+        }
+
+        .faq-answer {
+            display: none;
+            margin-top: 12px;
+            padding-top: 12px;
+            border-top: 1px solid #eee;
+            color: #666;
+            line-height: 1.6;
+        }
+
+        .dark-mode .faq-answer {
+            border-top-color: #444;
+            color: #999;
+        }
+
+        .faq-item.active .faq-answer {
+            display: block;
+        }
+
+        .faq-icon {
+            transition: transform 0.3s ease;
+        }
+
+        .faq-item.active .faq-icon {
+            transform: rotate(180deg);
+        }
     </style>
 </head>
 <body>
@@ -1334,9 +1317,6 @@
         <div class="megaphone-container">
             <span class="megaphone">📢</span>
             <div class="sound-waves">
-                <span class="wave"></span>
-                <span class="wave"></span>
-                <span class="wave"></span>
             </div>
         </div>
 
@@ -1423,7 +1403,7 @@
 
     <!-- Main App: Reminder Page -->
     <div id="reminderPage" class="page">
-        <div class="header-">
+        <div class="header-section">
             <h2>Pengingat</h2>
             <p>Event yang disimpan dan terdaftar</p>
         </div>
@@ -1516,7 +1496,7 @@
                 <div class="menu-item-left">
                     <div class="menu-icon"><i class="bi bi-question-circle"></i></div>
                     <div>
-                        <div class="fw-semibold">Bantuan</div>
+                        <div class="fw-semibold">Bantuan & FAQ</div>
                         <small class="text-muted">FAQ dan support</small>
                     </div>
                 </div>
@@ -1609,10 +1589,7 @@
                 </button>
             </div>
 
-            <div class="d-flex gap-2">
-                <button class="btn btn-outline-primary flex-grow-1" onclick="openChat()">
-                    <i class="bi bi-chat-dots"></i> Forum Diskusi
-                </button>
+            <div class="d-flex gap-1">
                 <button class="btn btn-primary flex-grow-1" id="registerEventBtn" onclick="registerEvent()">
                     <i class="bi bi-ticket"></i> <span id="registerBtnText">Daftar Event</span>
                 </button>
@@ -1665,7 +1642,6 @@
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title" id="modalEventTitle"></h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
             </div>
             <div class="modal-body" id="modalEventBody"></div>
             <div class="modal-footer">
@@ -1710,6 +1686,18 @@
         </div>
     </div>
 
+     <!-- Help/FAQ Modal -->
+    <div class="modal fade" id="helpModal" tabindex="-1">
+        <div class="modal-dialog modal-lg modal-dialog-scrollable">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">❓ Bantuan & FAQ</h5>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body" id="faqContent"></div>
+            </div>
+        </div>
+    </div>
     <!-- Certificates Modal -->
     <div class="modal fade" id="certificatesModal" tabindex="-1">
         <div class="modal-dialog modal-lg">
@@ -2750,26 +2738,42 @@ function openChatFromModal() {
                 return;
             }
 
-            wishlistList.innerHTML = `<div class="events-grid">` + wishlistEvents.map(event => `
-                <div class="event-card" onclick="showEventDetail(${event.id})">
-                    <div class="event-image-wrapper">
-                        <img src="${event.image}" alt="${event.title}" class="event-image" loading="lazy">
-                        <span class="event-badge">${event.category}</span>
-                        <button class="wishlist-btn active" onclick="event.stopPropagation(); toggleWishlist(${event.id})">
-                            <i class="bi bi-heart-fill"></i>
-                        </button>
-                    </div>
-                 
-                        <div class="event-footer">
-                            <div class="rating">
-                                <i class="bi bi-star-fill"></i>
-                                <span>${event.rating}</span>
-                            </div>
-                            <div class="event-price">${event.price}</div>
+            wishlistList.innerHTML = `
+    <div class="events-grid">
+        ${wishlistEvents.map(event => `
+            <div class="event-card wishlist-card"
+                 onclick="showEventDetail(${event.id})">
+
+                <div class="event-image-wrapper">
+                    <img src="${event.image}"
+                         alt="${event.title}"
+                         class="event-image"
+                         loading="lazy">
+
+                    <span class="event-badge">${event.category}</span>
+
+                    <button class="wishlist-btn active"
+                            onclick="event.stopPropagation(); toggleWishlist(${event.id})">
+                        <i class="bi bi-heart-fill"></i>
+                    </button>
+                </div>
+
+                <div class="event-content">
+                    <h6 class="event-title">${event.title}</h6>
+
+                    <div class="event-footer">
+                        <div class="rating">
+                            <i class="bi bi-star-fill"></i>
+                            <span>${event.rating}</span>
                         </div>
+                        <div class="event-price">${event.price}</div>
                     </div>
                 </div>
-            `).join('') + `</div>`;
+
+            </div>
+        `).join('')}
+    </div>
+`;
         }
 
         function renderRegistered() {
@@ -2785,20 +2789,28 @@ function openChatFromModal() {
                 return;
             }
 
-            registeredList.innerHTML = `<div class="events-grid">` + registeredEvents.map(event => `
-                <div class="event-card" onclick="showEventDetail(${event.id})">
-                    <div class="event-image-wrapper">
-                        <img src="${event.image}" alt="${event.title}" class="event-image" loading="lazy">
-                        <span class="event-badge" style="background: #28a745;">TERDAFTAR</span>
-                    </div>
-                
-                        </div>
-                        <button class="btn btn-sm btn-primary w-100 mt-2" onclick="event.stopPropagation(); openChat()" style="font-size: 11px; padding: 6px;">
-                            <i class="bi bi-chat"></i> Chat Event
-                        </button>
-                    </div>
+          registeredList.innerHTML = `
+    <div class="events-grid">
+        ${registeredEvents.map(event => `
+            <div class="event-card registered-card" onclick="showEventDetail(${event.id})">
+
+                <div class="event-image-wrapper">
+                    <img src="${event.image}" 
+                         alt="${event.title}" 
+                         class="event-image" 
+                         loading="lazy">
+                    <span class="event-badge registered">TERDAFTAR</span>
                 </div>
-            `).join('') + `</div>`;
+
+                <div class="event-content">
+                    <h6 class="event-title">${event.title}</h6>
+
+                </div>
+
+            </div>
+        `).join('')}
+    </div>
+`;
         }
 
         function renderHistory() {
@@ -3078,7 +3090,8 @@ function openChatFromModal() {
 
         // Profile Functions
         function updateProfileDisplay() {
-            document.getElementById('profileName').textContent = currentUser.name;
+  document.getElementById('profileName').textContent =
+    currentUser?.name || 'User';
             document.getElementById('profileEmail').textContent = currentUser.email;
             
             const initial = currentUser.name.charAt(0).toUpperCase();
@@ -3399,8 +3412,49 @@ function openChatFromModal() {
 
         // Show Help
         function showHelp() {
-            alert('Pusat Bantuan\n\nHubungi kami:\nEmail: support@eventraze.com\nWhatsApp: 0812-3456-7890\n\nFAQ tersedia di menu Bantuan.');
+            document.getElementById('faqContent').innerHTML = `
+                <h6>📞 Hubungi Kami</h6>
+                <div class="p-3 rounded mb-4">
+                    <p class="mb-2"><i class="bi bi-envelope"></i> Email: support@eventraze.com</p>
+                    <p class="mb-0"><i class="bi bi-telephone"></i> Telepon: 0812-3456-7890</p>
+                </div>
+                <h6>❓ FAQ</h6>
+                <div class="faq-item" onclick="toggleFAQ(this)">
+                    <div class="faq-question">
+                        <span>Bagaimana cara mendaftar event?</span>
+                        <i class="bi bi-chevron-down faq-icon"></i>
+                    </div>
+                    <div class="faq-answer">Pilih event yang ingin Anda ikuti, klik untuk melihat detail, lalu klik tombol "Daftar" atau "Beli Tiket".</div>
+                </div>
+                <div class="faq-item" onclick="toggleFAQ(this)">
+                    <div class="faq-question">
+                        <span>Apakah bisa batalkan pendaftaran?</span>
+                        <i class="bi bi-chevron-down faq-icon"></i>
+                    </div>
+                    <div class="faq-answer">Ya, Anda bisa membatalkan pendaftaran. Buka menu "Pengingat", pilih tab "Terdaftar", klik event yang ingin dibatalkan, lalu klik tombol "Batalkan Pendaftaran".</div>
+                </div>
+                <div class="faq-item" onclick="toggleFAQ(this)">
+                    <div class="faq-question">
+                        <span>Apa itu Wishlist?</span>
+                        <i class="bi bi-chevron-down faq-icon"></i>
+                    </div>
+                    <div class="faq-answer">Wishlist adalah fitur untuk menyimpan event yang Anda minati tanpa harus mendaftar. Klik ikon hati pada card event untuk menambahkan ke wishlist.</div>
+                </div>
+                <div class="faq-item" onclick="toggleFAQ(this)">
+                    <div class="faq-question">
+                        <span>Apakah Eventraze gratis?</span>
+                        <i class="bi bi-chevron-down faq-icon"></i>
+                    </div>
+                    <div class="faq-answer">Platform Eventraze gratis untuk digunakan. Tidak ada biaya untuk mendaftar akun atau berlangganan. Harga tiket event tergantung dari penyelenggara masing-masing.</div>
+                </div>
+            `;
+            new bootstrap.Modal(document.getElementById('helpModal')).show();
         }
+
+        function toggleFAQ(element) {
+            element.classList.toggle('active');
+        }
+
 
         // Logout
         function logout() {
