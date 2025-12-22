@@ -10,7 +10,6 @@
     <link rel="icon" href="icons/logoeventraze192x192.png" type="image/png" />
     <title>Eventraze</title>
     <link rel="stylesheet" href="assets/style.css" />
-</head>
     <title>Eventraze - Discover Events</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css">
@@ -117,24 +116,21 @@
 
         /* Auth Pages */
         .auth-container {
-    min-height: 100vh;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-
-    background:
-        linear-gradient(
-            rgba(0, 0, 0, 0.5),
-            rgba(0, 0, 0, 0.5)
-        ),
-        url("assets/5.png");
-
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
-
-    padding: 20px;
-}
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background:
+                linear-gradient(
+                    rgba(0, 0, 0, 0.5),
+                    rgba(0, 0, 0, 0.5)
+                ),
+                url("assets/5.png");
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            padding: 20px;
+        }
 
         .auth-card {
             background: white;
@@ -153,7 +149,7 @@
 
         .auth-logo h1 {
             color: var(--primary);
-             text-align: center;
+            text-align: center;
         }
 
         .dark-mode .auth-logo h1 {
@@ -162,7 +158,7 @@
 
         .auth-logo p {
             color: #666;
-             text-align: center;
+            text-align: center;
         }
         .dark-mode .auth-logo p {
             color: #999;
@@ -266,7 +262,6 @@
             transition: all 0.3s ease;
         }
 
-
         .video-card-youtube iframe {
             width: 100%;
             height: 200px;
@@ -331,7 +326,7 @@
             background: #2a2a2a;
         }
 
-  /* Image Wrapper - Portrait Style untuk tidak memotong gambar */
+        /* Image Wrapper - Portrait Style untuk tidak memotong gambar */
         .event-image-wrapper {
             position: relative;
             width: 100%;
@@ -348,20 +343,7 @@
             height: 100%;
             object-fit: cover;
         }
-.event-content {
-            padding: 12px;
-        }
-        .event-title {
-            font-weight: 600;
-            font-size: 14px;
-            margin-bottom: 8px;
-            color: var(--text-light);
-        }
-        .dark-mode .event-title {
-            color: var(--text-dark);
-        }
 
-         /* Event Content */
         .event-content {
             padding: 12px;
         }
@@ -386,7 +368,7 @@
             margin-bottom: 8px;
         }
 
-        .dark-mode {
+        .dark-mode .event-info {
             color: #999;
         }
 
@@ -472,7 +454,7 @@
         }
         
         /* Notification Item */
-          .notification-item {
+        .notification-item {
             background: linear-gradient(135deg, #fff 0%, #f8f9fa 100%);
             border-radius: 15px;
             padding: 18px;
@@ -484,7 +466,7 @@
         }
 
         .dark-mode .notification-item {
-           background: linear-gradient(135deg, #2a2a2a 0%, #1f1f1f 100%);
+            background: linear-gradient(135deg, #2a2a2a 0%, #1f1f1f 100%);
         }
 
         .notification-item:hover {
@@ -527,7 +509,8 @@
             flex: 1;
             color: var(--text-light);
         }
-.dark-mode .notification-content {
+
+        .dark-mode .notification-content {
             color: var(--text-dark);
         }
         
@@ -587,16 +570,18 @@
         .filter-buttons::-webkit-scrollbar {
             display: none;
         }
-button {
-  background: var(--primary);
-  border: none;
-  color: #999;
-  padding: 0.75rem 1.25rem;
-  border-radius: 0.5rem;
-  cursor: pointer;
-  font-size: 1rem;
-  margin-top: 1rem;
-}
+
+        button {
+            background: var(--primary);
+            border: none;
+            color: #999;
+            padding: 0.75rem 1.25rem;
+            border-radius: 0.5rem;
+            cursor: pointer;
+            font-size: 1rem;
+            margin-top: 1rem;
+        }
+
         .filter-btn {
             padding: 6px 16px;
             background: #f0f0f0;
@@ -663,41 +648,6 @@ button {
             transform: scale(1.2);
         }
 
-        .event-content {
-            padding: 15px;
-        }
-
-        .event-title {
-            font-weight: 600;
-            margin-bottom: 8px;
-            color: var(--primary);
-        }
-
-        .dark-mode .event-title {
-            color: var(--text-dark);
-        }
-
-        .event-info {
-            display: flex;
-            font-size: 13px;
-            color: #666;
-            margin-bottom: 10px;
-        }
-
-        .event-info i {
-            color: var(--secondary);
-        }
-
-        .rating {
-            display: flex;
-            align-items: center;
-            gap: 5px;
-        }
-
-        .rating i {
-            color: #ffd700;
-        }
-
         /* Search Bar */
         .search-bar {
             padding: 20px;
@@ -721,106 +671,6 @@ button {
             top: 50%;
             transform: translateY(-50%);
             color: #999;
-        }
-
-        /* Detail Page */
-        .detail-header {
-            position: relative;
-            height: 300px;
-            overflow: hidden;
-        }
-
-        .detail-header img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
-
-        .back-btn {
-            position: absolute;
-            top: 20px;
-            left: 20px;
-            background: rgba(255,255,255,0.9);
-            border: none;
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            cursor: pointer;
-            z-index: 10;
-        }
-
-        .detail-content {
-            padding: 20px;
-            margin-top: -30px;
-            background: white;
-            border-radius: 30px 30px 0 0;
-            position: relative;
-            z-index: 5;
-        }
-
-        .dark-mode .detail-content {
-            background: var(--bg-dark);
-        }
-
-        .detail-title {
-            font-weight: 700;
-            font-size: 24px;
-            margin-bottom: 15px;
-        }
-
-        .info-row {
-            display: flex;
-            align-items: flex-start;
-            gap: 15px;
-            margin-bottom: 15px;
-            padding: 15px;
-            background: #f8f9fa;
-            border-radius: 10px;
-        }
-
-        .dark-mode .info-row {
-            background: #2a2a2a;
-        }
-
-        .info-icon {
-            color: var(--secondary);
-            font-size: 20px;
-            min-width: 24px;
-        }
-
-        .organizer-card {
-            display: flex;
-            align-items: center;
-            gap: 15px;
-            padding: 15px;
-            background: #f8f9fa;
-            border-radius: 10px;
-            margin: 20px 0;
-        }
-
-        .dark-mode .organizer-card {
-            background: #2a2a2a;
-        }
-
-        .organizer-avatar {
-            width: 50px;
-            height: 50px;
-            border-radius: 50%;
-            background: var(--secondary);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 24px;
-            color: var(--primary);
-        }
-
-        .action-btn {
-            width: 100%;
-            padding: 15px;
-            margin-top: 20px;
         }
 
         /* Profile Page */
@@ -982,7 +832,7 @@ button {
             border: none;
             border-radius: 25px;
             cursor: pointer;
-            color: var(--text-light)
+            color: var(--text-light);
         }
 
         .dark-mode .tab-btn {
@@ -1005,37 +855,37 @@ button {
             color: white;
             border-radius: 20px 20px 0 0;
         }
+
         /* DARK MODE - MODAL */
-body.dark-mode .modal-content {
-    background-color: #1e1e1e;
-    color: #ffffff;
-}
+        body.dark-mode .modal-content {
+            background-color: #1e1e1e;
+            color: #ffffff;
+        }
 
-body.dark-mode .modal-header,
-body.dark-mode .modal-footer {
-    border-color: #333;
-}
+        body.dark-mode .modal-header,
+        body.dark-mode .modal-footer {
+            border-color: #333;
+        }
 
-body.dark-mode .modal-title {
-    color: #ffffff;
-}
+        body.dark-mode .modal-title {
+            color: #ffffff;
+        }
 
-body.dark-mode .modal-body {
-    color: #dddddd;
-}
+        body.dark-mode .modal-body {
+            color: #dddddd;
+        }
 
-/* Button secondary */
-body.dark-mode .btn-secondary {
-    background-color: #2a2a2a;
-    color: #ffffff;
-    border-color: #444;
-}
+        /* Button secondary */
+        body.dark-mode .btn-secondary {
+            background-color: #2a2a2a;
+            color: #ffffff;
+            border-color: #444;
+        }
 
-/* Close / dismiss button */
-body.dark-mode .btn-close {
-    filter: invert(1);
-}
-
+        /* Close / dismiss button */
+        body.dark-mode .btn-close {
+            filter: invert(1);
+        }
 
         /* Empty State */
         .empty-state {
@@ -1155,18 +1005,8 @@ body.dark-mode .btn-close {
             padding: 10px 20px;
         }
 
-        @media (max-width: 576px) {
-            .auth-card {
-                padding: 30px 20px;
-            }
-
-            .event-info {
-                flex-direction: column;
-                gap: 5px;
-                align-items: flex-start;
-            }
-        }
-         .faq-item {
+        /* FAQ Styles */
+        .faq-item {
             background: white;
             border-radius: 12px;
             padding: 15px;
@@ -1180,11 +1020,21 @@ body.dark-mode .btn-close {
             background: #2a2a2a;
         }
 
+        .faq-item:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.12);
+        }
+
         .faq-question {
             display: flex;
             justify-content: space-between;
             align-items: center;
             font-weight: 600;
+            color: var(--text-light);
+        }
+
+        .dark-mode .faq-question {
+            color: var(--text-dark);
         }
 
         .faq-answer {
@@ -1211,6 +1061,18 @@ body.dark-mode .btn-close {
 
         .faq-item.active .faq-icon {
             transform: rotate(180deg);
+        }
+
+        @media (max-width: 576px) {
+            .auth-card {
+                padding: 30px 20px;
+            }
+
+            .event-info {
+                flex-direction: column;
+                gap: 5px;
+                align-items: flex-start;
+            }
         }
     </style>
 </head>
@@ -1314,10 +1176,8 @@ body.dark-mode .btn-close {
             </div>
         </div>
 
-        <div class="megaphone-container">
+        <div class="megaphone-container" id="megaphoneContainer">
             <span class="megaphone">📢</span>
-            <div class="sound-waves">
-            </div>
         </div>
 
         <div class="search-bar">
@@ -1327,8 +1187,8 @@ body.dark-mode .btn-close {
             </div>
         </div>
 
-        <h5 style="padding: 0 20px; margin-bottom: 10px; font-weight: 600; font-size: 16px;">Kategori</h5>
-        <div class="categories-slider">
+        <h5 id="categoryTitle" style="padding: 0 20px; margin-bottom: 10px; font-weight: 600; font-size: 16px;">Kategori</h5>
+        <div class="categories-slider" id="categoriesSlider">
             <div class="category-card" onclick="filterByCategory('pendidikan')">
                 <i class="bi bi-mortarboard"></i>
                 <h6>Pendidikan</h6>
@@ -1347,32 +1207,32 @@ body.dark-mode .btn-close {
             </div>
         </div>
 
-        <h5 class="px-3 mb-3 mt-4">Event Highlights Video</h5>
-        <div class="video-slider-container">
+        <h5 id="videoTitle" class="px-3 mb-3 mt-4">Event Highlights Video</h5>
+        <div class="video-slider-container" id="videoSliderContainer">
             <div class="video-slider">
                 <div class="video-card-youtube">
-                   <iframe 
-                src="https://www.youtube.com/embed/PGNJNYuL41A"
-                frameborder="0"
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                allowfullscreen>
-            </iframe>
+                    <iframe 
+                        src="https://www.youtube.com/embed/PGNJNYuL41A"
+                        frameborder="0"
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                        allowfullscreen>
+                    </iframe>
                     <div class="video-overlay">
                         <h6 class="mb-0">Mediaclash Basket Ball</h6>
                         <small>Event Olahraga</small>
                     </div>
                 </div>
                 <div class="video-card-youtube">
-                    <iframe  src="https://www.youtube.com/embed/AhLOne3sABU"frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                    <iframe src="https://www.youtube.com/embed/AhLOne3sABU" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
                     <div class="video-overlay">
                         <h6 class="mb-0">Batfest 2022 After Movie</h6>
-                        <small>Event Musik </small>
+                        <small>Event Musik</small>
                     </div>
                 </div>
                 <div class="video-card-youtube">
                     <iframe src="https://www.youtube.com/embed/HUR_dKkr9_o" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
                     <div class="video-overlay">
-                        <h6 class="mb-0">Webinar Pembelajaran Mendalam dan Implementasinya di Satuan Pendidikan</h6>
+                        <h6 class="mb-0">Webinar Pembelajaran Mendalam</h6>
                         <small>Event Pendidikan</small>
                     </div>
                 </div>
@@ -1386,20 +1246,18 @@ body.dark-mode .btn-close {
                 <div class="video-card-youtube">
                     <iframe src="https://www.youtube.com/embed/INlCe2EpBRk" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
                     <div class="video-overlay">
-                        <h6 class="mb-0"> Webinar Peluang dan Tantangan Penguatan Pendidikan Karakter pada Era Digital dan AI</h6>
+                        <h6 class="mb-0">Webinar Penguatan Pendidikan Karakter</h6>
                         <small>Event Pendidikan</small>
                     </div>
                 </div>
             </div>
         </div>
 
-       <div class="section-header">
+        <div class="section-header">
             <h5>Event Rekomendasi</h5>
-            
         </div>
         <div id="eventsList" class="events-grid"></div>
     </div>
-       
 
     <!-- Main App: Reminder Page -->
     <div id="reminderPage" class="page">
@@ -1515,111 +1373,6 @@ body.dark-mode .btn-close {
         </div>
     </div>
 
-    <!-- Event Detail Page -->
-    <div id="detailPage" class="page">
-        <div class="detail-header">
-            <button class="back-btn" onclick="backToHome()"><i class="bi bi-arrow-left"></i></button>
-            <img id="detailImage" src="" alt="Event">
-            <button class="wishlist-btn" id="detailWishlistBtn" onclick="toggleWishlistFromDetail()">
-                <i class="bi bi-heart"></i>
-            </button>
-        </div>
-        <div class="detail-content">
-            <span class="badge" id="detailCategoryBadge" style="background: var(--secondary); color: var(--primary); padding: 5px 15px; border-radius: 20px; font-size: 12px; font-weight: 600;"></span>
-            
-            <div class="detail-title mt-3" id="detailTitle"></div>
-            <div class="rating mb-3">
-                <i class="bi bi-star-fill"></i>
-                <span id="detailRating">4.8</span>
-                <span class="text-muted ms-1">(<span id="detailReviews">120</span> ulasan)</span>
-            </div>
-
-            <div class="info-row">
-                <i class="bi bi-calendar-event info-icon"></i>
-                <div class="flex-grow-1">
-                    <div class="fw-semibold">Tanggal & Waktu</div>
-                    <div id="detailDate"></div>
-                </div>
-            </div>
-
-            <div class="info-row">
-                <i class="bi bi-geo-alt info-icon"></i>
-                <div class="flex-grow-1">
-                    <div class="fw-semibold">Lokasi</div>
-                    <div id="detailLocation"></div>
-                </div>
-            </div>
-
-            <div class="info-row">
-                <i class="bi bi-people info-icon"></i>
-                <div class="flex-grow-1">
-                    <div class="fw-semibold">Kuota Peserta</div>
-                    <div id="detailQuota"></div>
-                    <div class="mt-2">
-                        <div class="progress" style="height: 8px; border-radius: 10px;">
-                            <div id="quotaProgress" class="progress-bar" role="progressbar" style="width: 0%; background: var(--secondary);"></div>
-                        </div>
-                        <small class="text-muted" id="quotaText"></small>
-                    </div>
-                </div>
-            </div>
-
-            <div class="info-row">
-                <i class="bi bi-tag info-icon"></i>
-                <div class="flex-grow-1">
-                    <div class="fw-semibold">Harga Tiket</div>
-                    <div class="fs-5 fw-bold" style="color: var(--secondary);" id="detailPrice"></div>
-                </div>
-            </div>
-
-            <h5 class="mt-4 mb-3">Tentang Event</h5>
-            <p id="detailDescription" style="text-align: justify; line-height: 1.8;"></p>
-
-            <h5 class="mt-4 mb-3">Penyelenggara</h5>
-            <div class="organizer-card">
-                <div class="organizer-avatar">
-                    <i class="bi bi-building"></i>
-                </div>
-                <div class="flex-grow-1">
-                    <div class="fw-semibold" id="detailOrganizer"></div>
-                    <small class="text-muted">Event Organizer</small>
-                </div>
-                <button class="btn btn-sm btn-outline-secondary" onclick="contactOrganizer()">
-                    <i class="bi bi-telephone"></i>
-                </button>
-            </div>
-
-            <div class="d-flex gap-1">
-                <button class="btn btn-primary flex-grow-1" id="registerEventBtn" onclick="registerEvent()">
-                    <i class="bi bi-ticket"></i> <span id="registerBtnText">Daftar Event</span>
-                </button>
-            </div>
-        </div>
-    </div>
-
-    <!-- Chat Page -->
-    <div id="chatPage" class="page">
-        <div class="header-section d-flex align-items-center">
-            <button class="btn btn-link text-white me-3" onclick="backToDetail()">
-                <i class="bi bi-arrow-left"></i>
-            </button>
-            <div>
-                <h5 class="mb-0" id="chatEventTitle">Event Chat</h5>
-                <small class="opacity-75">Diskusi dengan peserta lain</small>
-            </div>
-        </div>
-
-        <div class="chat-container">
-            <div class="chat-messages" id="chatMessages"></div>
-            <div class="chat-input-area">
-                <input type="text" class="chat-input" id="chatInput" placeholder="Ketik pesan...">
-                <button class="btn btn-primary" onclick="sendMessage()">
-                    <i class="bi bi-send"></i>
-                </button>
-            </div>
-        </div>
-    </div>
-
     <!-- Bottom Navigation -->
     <div class="bottom-nav">
         <a class="nav-item active" onclick="showMainPage('homePage')">
@@ -1636,22 +1389,19 @@ body.dark-mode .btn-close {
         </a>
     </div>
 
-  <!-- Event Detail Modal -->
-<div class="modal fade" id="eventDetailModal" tabindex="-1">
-    <div class="modal-dialog modal-dialog-scrollable">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="modalEventTitle"></h5>
-            </div>
-            <div class="modal-body" id="modalEventBody"></div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Tutup</button>
-                <button type="button" class="btn btn-primary" onclick="registerEventFromModal()">Beli Tiket</button>
-                <button type="button" class="btn btn-primary" onclick="openChatFromModal()">Chat Forum</button>
+    <!-- Event Detail Modal -->
+    <div class="modal fade" id="eventDetailModal" tabindex="-1">
+        <div class="modal-dialog modal-dialog-scrollable">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="modalEventTitle"></h5>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body" id="modalEventBody"></div>
+                <div class="modal-footer" id="modalEventFooter"></div>
             </div>
         </div>
     </div>
-</div>
     
     <!-- Edit Profile Modal -->
     <div class="modal fade" id="editProfileModal" tabindex="-1">
@@ -1686,18 +1436,6 @@ body.dark-mode .btn-close {
         </div>
     </div>
 
-     <!-- Help/FAQ Modal -->
-    <div class="modal fade" id="helpModal" tabindex="-1">
-        <div class="modal-dialog modal-lg modal-dialog-scrollable">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title">❓ Bantuan & FAQ</h5>
-                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
-                </div>
-                <div class="modal-body" id="faqContent"></div>
-            </div>
-        </div>
-    </div>
     <!-- Certificates Modal -->
     <div class="modal fade" id="certificatesModal" tabindex="-1">
         <div class="modal-dialog modal-lg">
@@ -1708,6 +1446,172 @@ body.dark-mode .btn-close {
                 </div>
                 <div class="modal-body">
                     <div id="certificatesList"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Help/FAQ Modal -->
+    <div class="modal fade" id="helpModal" tabindex="-1">
+        <div class="modal-dialog modal-lg modal-dialog-scrollable">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">❓ Bantuan & FAQ</h5>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="mb-4">
+                        <h6 class="mb-3">📞 Hubungi Kami</h6>
+                        <div class="p-3 rounded">
+                            <p class="mb-2"><i class="bi bi-envelope me-2"></i> Email: support@eventraze.com</p>
+                            <p class="mb-2"><i class="bi bi-telephone me-2"></i> Telepon: 0812-3456-7890</p>
+                            <p class="mb-0"><i class="bi bi-whatsapp me-2"></i> WhatsApp: 0812-3456-7890</p>
+                        </div>
+                    </div>
+
+                    <h6 class="mb-3">❓ Pertanyaan yang Sering Diajukan</h6>
+                    
+                    <div class="faq-item" onclick="toggleFAQ(this)">
+                        <div class="faq-question">
+                            <span>Bagaimana cara mendaftar event?</span>
+                            <i class="bi bi-chevron-down faq-icon"></i>
+                        </div>
+                        <div class="faq-answer">
+                            1. Pilih event yang ingin Anda ikuti dari halaman beranda<br>
+                            2. Klik event tersebut untuk melihat detail<br>
+                            3. Klik tombol "Beli Tiket" atau "Daftar Event"<br>
+                            4. Konfirmasi pendaftaran Anda<br>
+                            5. Event akan masuk ke tab "Terdaftar" di menu Pengingat
+                        </div>
+                    </div>
+
+                    <div class="faq-item" onclick="toggleFAQ(this)">
+                        <div class="faq-question">
+                            <span>Bagaimana cara membatalkan pendaftaran event?</span>
+                            <i class="bi bi-chevron-down faq-icon"></i>
+                        </div>
+                        <div class="faq-answer">
+                            1. Buka menu "Pengingat" di navigasi bawah<br>
+                            2. Pilih tab "Terdaftar"<br>
+                            3. Klik event yang ingin dibatalkan<br>
+                            4. Klik tombol "Batalkan Pendaftaran"<br>
+                            5. Konfirmasi pembatalan<br>
+                            <strong>Catatan:</strong> Pembatalan mungkin dikenakan syarat dan ketentuan tertentu tergantung kebijakan penyelenggara.
+                        </div>
+                    </div>
+
+                    <div class="faq-item" onclick="toggleFAQ(this)">
+                        <div class="faq-question">
+                            <span>Apa itu Wishlist dan bagaimana cara menggunakannya?</span>
+                            <i class="bi bi-chevron-down faq-icon"></i>
+                        </div>
+                        <div class="faq-answer">
+                            Wishlist adalah fitur untuk menyimpan event yang Anda minati tanpa harus mendaftar.<br><br>
+                            Cara menggunakan:<br>
+                            1. Klik ikon hati (❤️) pada card event<br>
+                            2. Event akan tersimpan di tab "Wishlist" menu Pengingat<br>
+                            3. Anda akan mendapat notifikasi jika ada perubahan pada event tersebut<br>
+                            4. Klik lagi ikon hati untuk menghapus dari wishlist
+                        </div>
+                    </div>
+
+                    <div class="faq-item" onclick="toggleFAQ(this)">
+                        <div class="faq-question">
+                            <span>Bagaimana cara mendapatkan sertifikat?</span>
+                            <i class="bi bi-chevron-down faq-icon"></i>
+                        </div>
+                        <div class="faq-answer">
+                            Sertifikat akan otomatis tersedia setelah Anda menyelesaikan event:<br><br>
+                            1. Ikuti event hingga selesai<br>
+                            2. Event akan berpindah ke tab "Riwayat"<br>
+                            3. Klik tombol "Lihat Sertifikat"<br>
+                            4. Anda bisa mengunduh atau membagikan sertifikat<br><br>
+                            <strong>Catatan:</strong> Tidak semua event menyediakan sertifikat.
+                        </div>
+                    </div>
+
+                    <div class="faq-item" onclick="toggleFAQ(this)">
+                        <div class="faq-question">
+                            <span>Apakah saya bisa mencari event tertentu?</span>
+                            <i class="bi bi-chevron-down faq-icon"></i>
+                        </div>
+                        <div class="faq-answer">
+                            Ya! Gunakan fitur pencarian di halaman beranda:<br><br>
+                            1. Klik kotak pencarian di bagian atas halaman<br>
+                            2. Ketik nama event atau kata kunci<br>
+                            3. Hasil pencarian akan muncul secara otomatis<br>
+                            4. Anda juga bisa filter berdasarkan kategori (Pendidikan, Musik, Olahraga)
+                        </div>
+                    </div>
+
+                    <div class="faq-item" onclick="toggleFAQ(this)">
+                        <div class="faq-question">
+                            <span>Bagaimana cara mengatur notifikasi?</span>
+                            <i class="bi bi-chevron-down faq-icon"></i>
+                        </div>
+                        <div class="faq-answer">
+                            1. Buka menu "Profil" di navigasi bawah<br>
+                            2. Cari menu "Notifikasi"<br>
+                            3. Toggle on/off untuk mengaktifkan atau menonaktifkan<br>
+                            4. Anda akan menerima notifikasi tentang:<br>
+                            &nbsp;&nbsp;&nbsp;• Event yang akan dimulai<br>
+                            &nbsp;&nbsp;&nbsp;• Perubahan pada event di wishlist<br>
+                            &nbsp;&nbsp;&nbsp;• Rekomendasi event baru<br>
+                            &nbsp;&nbsp;&nbsp;• Pengingat pendaftaran
+                        </div>
+                    </div>
+
+                    <div class="faq-item" onclick="toggleFAQ(this)">
+                        <div class="faq-question">
+                            <span>Apakah ada batasan kuota pendaftaran?</span>
+                            <i class="bi bi-chevron-down faq-icon"></i>
+                        </div>
+                        <div class="faq-answer">
+                            Ya, setiap event memiliki kuota peserta yang berbeda:<br><br>
+                            • Kuota ditampilkan di detail event<br>
+                            • Progress bar menunjukkan sisa kuota<br>
+                            • Warna berubah sesuai ketersediaan:<br>
+                            &nbsp;&nbsp;&nbsp;- Hijau: Masih banyak tersedia<br>
+                            &nbsp;&nbsp;&nbsp;- Oranye: Kuota terbatas<br>
+                            &nbsp;&nbsp;&nbsp;- Merah: Hampir penuh<br>
+                            • Jika kuota penuh, tombol daftar akan dinonaktifkan
+                        </div>
+                    </div>
+
+                    <div class="faq-item" onclick="toggleFAQ(this)">
+                        <div class="faq-question">
+                            <span>Bagaimana cara mengubah profil saya?</span>
+                            <i class="bi bi-chevron-down faq-icon"></i>
+                        </div>
+                        <div class="faq-answer">
+                            1. Buka menu "Profil"<br>
+                            2. Klik "Edit Profil"<br>
+                            3. Ubah nama, email, atau foto profil<br>
+                            4. Klik "Simpan Perubahan"<br><br>
+                            Foto profil harus berformat JPG, PNG dengan ukuran maksimal 5MB.
+                        </div>
+                    </div>
+
+                    <div class="faq-item" onclick="toggleFAQ(this)">
+                        <div class="faq-question">
+                            <span>Apakah Eventraze gratis?</span>
+                            <i class="bi bi-chevron-down faq-icon"></i>
+                        </div>
+                        <div class="faq-answer">
+                            Platform Eventraze gratis untuk digunakan!<br><br>
+                            • Tidak ada biaya untuk mendaftar akun<br>
+                            • Tidak ada biaya berlangganan<br>
+                            • Harga tiket event tergantung penyelenggara<br>
+                            • Ada banyak event gratis yang bisa Anda ikuti<br>
+                            • Filter event berdasarkan harga untuk menemukan event gratis
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Tutup</button>
+                    <button type="button" class="btn btn-primary" onclick="window.open('mailto:support@eventraze.com')">
+                        <i class="bi bi-envelope"></i> Hubungi Support
+                    </button>
                 </div>
             </div>
         </div>
@@ -1724,8 +1628,9 @@ body.dark-mode .btn-close {
                 title: "The Creator Play Ground",
                 category: "pendidikan",
                 date: "28 Nov 2025, 18:00-21:00",
-                location: "Online via Zoom ",
-                quota: "50 peserta",
+                location: "Online via Zoom",
+                quota: 50,
+                registered: 35,
                 rating: 4.8,
                 reviews: 120,
                 image: "pendidikan/pendidikan1.png",
@@ -1739,7 +1644,8 @@ body.dark-mode .btn-close {
                 category: "pendidikan",
                 date: "29 Nov 2025, 08:00-Selesai",
                 location: "Gedung Prof.Soedarto S.H., Universitas Diponegoro",
-                quota: "150 peserta",
+                quota: 150,
+                registered: 120,
                 rating: 4.9,
                 reviews: 250,
                 image: "pendidikan/pendidikan10.png",
@@ -1753,7 +1659,8 @@ body.dark-mode .btn-close {
                 category: "pendidikan",
                 date: "28 Nov 2025, 10:00-Selesai",
                 location: "Online via Zoom",
-                quota: "100 peserta",
+                quota: 100,
+                registered: 75,
                 rating: 4.7,
                 reviews: 85,
                 image: "pendidikan/pendidikan6.png",
@@ -1767,7 +1674,8 @@ body.dark-mode .btn-close {
                 category: "pendidikan",
                 date: "30 Nov 2025, 08:00-10:00",
                 location: "Online via Zoom",
-                quota: "70 peserta",
+                quota: 70,
+                registered: 50,
                 rating: 4.9,
                 reviews: 165,
                 image: "pendidikan/pendidikan4.png",
@@ -1781,11 +1689,12 @@ body.dark-mode .btn-close {
                 category: "pendidikan",
                 date: "28 Nov 2025, 13:00",
                 location: "Ballroom UNS Tower",
-                quota: "60 peserta",
+                quota: 60,
+                registered: 45,
                 rating: 4.8,
                 reviews: 95,
                 image: "pendidikan/pendidikan7.png",
-                description: "Belajar dan mengenal profesi hukum. Dapatkan banyak benefit dari mengikuti seminar ini!.",
+                description: "Belajar dan mengenal profesi hukum. Dapatkan banyak benefit dari mengikuti seminar ini!",
                 organizer: "Universitas Sebelas Maret",
                 price: "Gratis"
             },
@@ -1793,9 +1702,10 @@ body.dark-mode .btn-close {
                 id: 6,
                 title: "E-Seminar Nasional Inkubasi Bisnis & Investasi",
                 category: "pendidikan",
-                date: "27 Nov2025, 13:30-15:30",
+                date: "27 Nov 2025, 13:30-15:30",
                 location: "Online via Zoom",
-                quota: "100 peserta",
+                quota: 100,
+                registered: 80,
                 rating: 4.9,
                 reviews: 140,
                 image: "pendidikan/pendidikan9.png",
@@ -1811,12 +1721,13 @@ body.dark-mode .btn-close {
                 category: "musik",
                 date: "29-30 Nov 2024",
                 location: "Plaza Parkir Timur GBK, Jakarta",
-                quota: "500 peserta",
+                quota: 500,
+                registered: 450,
                 rating: 4.9,
                 reviews: 320,
                 image: "music/dontplay.jpg",
                 description: "Malam yang penuh dengan alunan musisi lokal dan nasional terbaik di Plaza Timur GBK, Jakarta.",
-                organizer: " Don't Play Play",
+                organizer: "Don't Play Play",
                 price: "Rp 65.000"
             },
             {
@@ -1825,7 +1736,8 @@ body.dark-mode .btn-close {
                 category: "musik",
                 date: "6-7 Des 2025",
                 location: "Kridosono Stadium Yogyakarta Indonesia",
-                quota: "300 peserta",
+                quota: 300,
+                registered: 200,
                 rating: 4.7,
                 reviews: 180,
                 image: "music/jogjarock.jpg",
@@ -1839,7 +1751,8 @@ body.dark-mode .btn-close {
                 category: "musik",
                 date: "7 Des 2025",
                 location: "Lapangan Parkir Stadion Mandala Krida",
-                quota: "700 peserta",
+                quota: 700,
+                registered: 650,
                 rating: 4.8,
                 reviews: 450,
                 image: "music/jomlo.jpg",
@@ -1853,7 +1766,8 @@ body.dark-mode .btn-close {
                 category: "musik",
                 date: "7 Des 2025",
                 location: "Taman rekreasi Alam mayang",
-                quota: "300 peserta",
+                quota: 300,
+                registered: 180,
                 rating: 4.6,
                 reviews: 75,
                 image: "music/rayudoa.jpg",
@@ -1867,7 +1781,8 @@ body.dark-mode .btn-close {
                 category: "musik",
                 date: "14 des 2025",
                 location: "Vivo mall sentul Bogor",
-                quota: "250 peserta",
+                quota: 250,
+                registered: 200,
                 rating: 4.9,
                 reviews: 110,
                 image: "music/rockland.jpg",
@@ -1881,7 +1796,8 @@ body.dark-mode .btn-close {
                 category: "musik",
                 date: "14 Des 2025, 21:00",
                 location: "Lapangan Parkir Stadion Mandala Krida",
-                quota: "400 peserta",
+                quota: 400,
+                registered: 350,
                 rating: 4.7,
                 reviews: 290,
                 image: "music/saemen.jpg",
@@ -1897,7 +1813,8 @@ body.dark-mode .btn-close {
                 category: "olahraga",
                 date: "11-12 Jan 2025, 09:00",
                 location: "SMAN Howgumi Boarding School",
-                quota: "25",
+                quota: 25,
+                registered: 20,
                 rating: 4.9,
                 reviews: 380,
                 image: "olahraga/olahraga1.png",
@@ -1911,7 +1828,8 @@ body.dark-mode .btn-close {
                 category: "olahraga",
                 date: "20 Okt 2021, 07:00",
                 location: "lapangan Utara kampung Gelgel",
-                quota: "75",
+                quota: 75,
+                registered: 60,
                 rating: 4.7,
                 reviews: 145,
                 image: "olahraga/olahraga3.png",
@@ -1925,7 +1843,8 @@ body.dark-mode .btn-close {
                 category: "olahraga",
                 date: "15-18 Juli 2025",
                 location: "Gedung Olahraga AKN Manado",
-                quota: "50 peserta",
+                quota: 50,
+                registered: 35,
                 rating: 4.8,
                 reviews: 125,
                 image: "olahraga/olahraga4.png",
@@ -1939,7 +1858,8 @@ body.dark-mode .btn-close {
                 category: "olahraga",
                 date: "14 Sep 2025",
                 location: "Trans Studio Bandung",
-                quota: "150 peserta",
+                quota: 150,
+                registered: 100,
                 rating: 4.7,
                 reviews: 98,
                 image: "olahraga/olahraga5.png",
@@ -1953,11 +1873,12 @@ body.dark-mode .btn-close {
                 category: "olahraga",
                 date: "04 Feb 2024, 06:00",
                 location: "Mondae Coffee",
-                quota: "70 peserta",
+                quota: 70,
+                registered: 55,
                 rating: 4.8,
                 reviews: 210,
                 image: "olahraga/olahraga6.png",
-                description: "5k Fun Run. Fun Games. Doorprize. Photobox. Ayo segera daftarkan dirimu bersama teman atau keluargamu! .",
+                description: "5k Fun Run. Fun Games. Doorprize. Photobox. Ayo segera daftarkan dirimu bersama teman atau keluargamu!",
                 organizer: "Sini Sana Running Club",
                 price: "Rp 35.000"
             },
@@ -1967,7 +1888,8 @@ body.dark-mode .btn-close {
                 category: "olahraga",
                 date: "9-11 April 2021",
                 location: "Gedung Grha UKM UNS Lt.2",
-                quota: "20 tim",
+                quota: 20,
+                registered: 15,
                 rating: 4.6,
                 reviews: 87,
                 image: "olahraga/olahraga9.png",
@@ -1983,7 +1905,8 @@ body.dark-mode .btn-close {
                 category: "pendidikan",
                 date: "10 Des 2025, 13:00-selesai",
                 location: "Online via Zoom",
-                quota: "25 peserta",
+                quota: 25,
+                registered: 20,
                 rating: 4.9,
                 reviews: 156,
                 image: "Pendidikan+Musik/pendidikan13.jpeg",
@@ -1997,7 +1920,8 @@ body.dark-mode .btn-close {
                 category: "pendidikan",
                 date: "29-30 Nov 2025, 08:00-12:00",
                 location: "Online via Zoom",
-                quota: "20 peserta",
+                quota: 20,
+                registered: 18,
                 rating: 4.8,
                 reviews: 132,
                 image: "pendidikan/pendidikan3.png",
@@ -2011,7 +1935,8 @@ body.dark-mode .btn-close {
                 category: "pendidikan",
                 date: "6 Des 2025, 08:00-13:00",
                 location: "Online via Zoom",
-                quota: "30 peserta",
+                quota: 30,
+                registered: 25,
                 rating: 4.7,
                 reviews: 94,
                 image: "pendidikan/pendidikan8.png",
@@ -2025,7 +1950,8 @@ body.dark-mode .btn-close {
                 category: "pendidikan",
                 date: "6 Des 2025, 09:00-11:30",
                 location: "Online via Zoom",
-                quota: "40 peserta",
+                quota: 40,
+                registered: 30,
                 rating: 4.9,
                 reviews: 178,
                 image: "Pendidikan+Musik/pendidikan12.jpeg",
@@ -2033,7 +1959,6 @@ body.dark-mode .btn-close {
                 organizer: "Pendididkan Bahasa Inggris",
                 price: "Gratis"
             },
-
         ];
 
         // Initialize App
@@ -2044,6 +1969,8 @@ body.dark-mode .btn-close {
         let chatMessages = [];
         let currentEventDetail = null;
         let notificationsEnabled = true;
+        let notificationHistory = [];
+        let currentFilter = '';
 
         // Check if user is logged in
         function checkAuth() {
@@ -2079,6 +2006,13 @@ body.dark-mode .btn-close {
 
             if (pageId === 'homePage') {
                 document.querySelectorAll('.nav-item')[0].classList.add('active');
+                // Reset filter dan tampilkan semua elemen
+                currentFilter = '';
+                document.getElementById('megaphoneContainer').style.display = 'block';
+                document.getElementById('categoryTitle').style.display = 'block';
+                document.getElementById('categoriesSlider').style.display = 'flex';
+                document.getElementById('videoTitle').style.display = 'block';
+                document.getElementById('videoSliderContainer').style.display = 'block';
                 renderEvents();
             } else if (pageId === 'reminderPage') {
                 document.querySelectorAll('.nav-item')[1].classList.add('active');
@@ -2199,6 +2133,7 @@ body.dark-mode .btn-close {
             registeredEvents = JSON.parse(localStorage.getItem(`registered_${currentUser.id}`) || '[]');
             eventHistory = JSON.parse(localStorage.getItem(`history_${currentUser.id}`) || '[]');
             chatMessages = JSON.parse(localStorage.getItem(`chat_${currentUser.id}`) || '[]');
+            notificationHistory = JSON.parse(localStorage.getItem(`notifications_${currentUser.id}`) || '[]');
             
             const settings = JSON.parse(localStorage.getItem(`settings_${currentUser.id}`) || '{}');
             notificationsEnabled = settings.notifications !== false;
@@ -2277,8 +2212,26 @@ body.dark-mode .btn-close {
             });
         }
 
-        // Filter by Category
+        // Filter by Category - IMPROVED VERSION
         function filterByCategory(category) {
+            currentFilter = category;
+            
+            if (category) {
+                // Sembunyikan megaphone, kategori, dan video saat filter aktif
+                document.getElementById('megaphoneContainer').style.display = 'none';
+                document.getElementById('categoryTitle').style.display = 'none';
+                document.getElementById('categoriesSlider').style.display = 'none';
+                document.getElementById('videoTitle').style.display = 'none';
+                document.getElementById('videoSliderContainer').style.display = 'none';
+            } else {
+                // Tampilkan kembali semua elemen saat kembali ke "Semua"
+                document.getElementById('megaphoneContainer').style.display = 'block';
+                document.getElementById('categoryTitle').style.display = 'block';
+                document.getElementById('categoriesSlider').style.display = 'flex';
+                document.getElementById('videoTitle').style.display = 'block';
+                document.getElementById('videoSliderContainer').style.display = 'block';
+            }
+            
             renderEvents(category);
             
             // Animate category selection
@@ -2309,7 +2262,7 @@ body.dark-mode .btn-close {
             }
             
             localStorage.setItem(`wishlist_${currentUser.id}`, JSON.stringify(wishlist));
-            renderEvents();
+            renderEvents(currentFilter);
             renderReminder();
 
             // Animate heart
@@ -2321,211 +2274,158 @@ body.dark-mode .btn-close {
                 easing: 'easeInOutQuad'
             });
         }
-// nt Detail in MODAL (bukan page)
-function showEventDetailModal(eventId) {
-    const event = eventsData.find(e => e.id === eventId);
-    if (!event) return;
 
-    currentEventDetail = event;
-    
-    // Set modal title
-    document.getElementById('modalEventTitle').textContent = event.title;
-    
-    // Set modal body content
-    document.getElementById('modalEventBody').innerHTML = `
-        <img src="${event.image}" class="img-fluid rounded mb-3" alt="${event.title}" style="width: 100%; max-height: 300px; object-fit: cover;">
-        
-        <span style="display: inline-block; background: var(--secondary); color: var(--primary); padding: 6px 16px; border-radius: 20px; font-size: 13px; font-weight: 600; margin-bottom: 15px;">
-            ${event.category.toUpperCase()}
-        </span>
-        
-        <h6 class="mt-3 mb-2" style="font-weight: 600;">Deskripsi</h6>
-        <p style="text-align: justify; line-height: 1.6;">${event.description}</p>
-        
-        <h6 class="mt-4 mb-3" style="font-weight: 600;">Detail Event</h6>
-        
-        <div class="mb-2">
-            <i class="bi bi-calendar3 me-2" style="color: var(--secondary);"></i>
-            <strong>Tanggal:</strong> ${event.date}
-        </div>
-        
-        <div class="mb-2">
-            <i class="bi bi-geo-alt-fill me-2" style="color: var(--secondary);"></i>
-            <strong>Lokasi:</strong> ${event.location}
-        </div>
-        
-        <div class="mb-2">
-            <i class="bi bi-tag-fill me-2" style="color: var(--secondary);"></i>
-            <strong>Harga:</strong> ${event.price}
-        </div>
-        
-        <div class="mb-3">
-            <i class="bi bi-people-fill me-2" style="color: var(--secondary);"></i>
-            <strong>Kuota:</strong> ${event.quota}
-        </div>
-        
-        <div class="d-flex align-items-center gap-2">
-            <i class="bi bi-star-fill" style="color: #ffd700;"></i>
-            <span style="font-weight: 600;">${event.rating}</span>
-            <span class="text-muted" style="font-size: 14px;">(${event.reviews} ulasan)</span>
-        </div>
-    `;
-
-    // Show modal
-    const modal = new bootstrap.Modal(document.getElementById('eventDetailModal'));
-    modal.show();
-}
-// Register Event dari Modal
-function registerEventFromModal() {
-    if (!currentEventDetail) return;
-    
-    // Tutup modal dulu
-    const modalElement = document.getElementById('eventDetailModal');
-    const modal = bootstrap.Modal.getInstance(modalElement);
-    if (modal) {
-        modal.hide();
-    }
-    
-    // Panggil fungsi register yang sudah ada
-    setTimeout(() => {
-        registerEvent();
-    }, 300);
-}
-
-// Open Chat dari Modal
-function openChatFromModal() {
-    if (!currentEventDetail) return;
-    
-    // Tutup modal dulu
-    const modalElement = document.getElementById('eventDetailModal');
-    const modal = bootstrap.Modal.getInstance(modalElement);
-    if (modal) {
-        modal.hide();
-    }
-    
-    // Buka chat
-    setTimeout(() => {
-        openChat();
-    }, 300);
-}
-        // Show Event Detail
-        function showEventDetail(eventId) {
+        // Event Detail in MODAL - IMPROVED WITH FULL IMAGE
+        function showEventDetailModal(eventId) {
             const event = eventsData.find(e => e.id === eventId);
             if (!event) return;
 
             currentEventDetail = event;
-
-            // Set detail information
-            document.getElementById('detailImage').src = event.image;
-            document.getElementById('detailTitle').textContent = event.title;
-            document.getElementById('detailCategoryBadge').textContent = event.category.toUpperCase();
-            document.getElementById('detailRating').textContent = event.rating;
-            document.getElementById('detailReviews').textContent = event.reviews;
-            document.getElementById('detailDate').textContent = event.date;
-            document.getElementById('detailLocation').textContent = event.location;
-            document.getElementById('detailPrice').textContent = event.price;
-            document.getElementById('detailDescription').textContent = event.description;
-            document.getElementById('detailOrganizer').textContent = event.organizer;
-
             
-            // Calculate and display quota progress
+            // Set modal title
+            document.getElementById('modalEventTitle').textContent = event.title;
+            
+            // Calculate quota
             const quotaPercentage = (event.registered / event.quota) * 100;
             const remaining = event.quota - event.registered;
             
-            document.getElementById('detailQuota').textContent = `${event.quota} peserta`;
-            document.getElementById('quotaProgress').style.width = `${quotaPercentage}%`;
-            document.getElementById('quotaText').textContent = `${event.registered} terdaftar • ${remaining} kuota tersisa`;
-
-            // Change progress bar color based on availability
-            const progressBar = document.getElementById('quotaProgress');
-            if (quotaPercentage >= 90) {
-                progressBar.style.background = '#ff4757'; // Red - almost full
-            } else if (quotaPercentage >= 70) {
-                progressBar.style.background = '#ffa502'; // Orange - filling up
-            } else {
-                progressBar.style.background = 'var(--secondary)'; // Gold - available
-            }
-
-            // Update wishlist button
-            const wishlistBtn = document.getElementById('detailWishlistBtn');
-            if (wishlist.includes(event.id)) {
-                wishlistBtn.querySelector('i').className = 'bi bi-heart-fill';
-                wishlistBtn.classList.add('active');
-            } else {
-                wishlistBtn.querySelector('i').className = 'bi bi-heart';
-                wishlistBtn.classList.remove('active');
-            }
+            // Set modal body content with FULL IMAGE (not cropped)
+            document.getElementById('modalEventBody').innerHTML = `
+                <img src="${event.image}" class="img-fluid rounded mb-3" alt="${event.title}" 
+                     style="width: 100%; height: auto; object-fit: contain; max-height: 400px; background: #f5f5f5;">
+                
+                <span style="display: inline-block; background: var(--secondary); color: var(--primary); padding: 6px 16px; border-radius: 20px; font-size: 13px; font-weight: 600; margin-bottom: 15px;">
+                    ${event.category.toUpperCase()}
+                </span>
+                
+                <h6 class="mt-3 mb-2" style="font-weight: 600;">Deskripsi</h6>
+                <p style="text-align: justify; line-height: 1.6;">${event.description}</p>
+                
+                <h6 class="mt-4 mb-3" style="font-weight: 600;">Detail Event</h6>
+                
+                <div class="mb-2">
+                    <i class="bi bi-calendar3 me-2" style="color: var(--secondary);"></i>
+                    <strong>Tanggal:</strong> ${event.date}
+                </div>
+                
+                <div class="mb-2">
+                    <i class="bi bi-geo-alt-fill me-2" style="color: var(--secondary);"></i>
+                    <strong>Lokasi:</strong> ${event.location}
+                </div>
+                
+                <div class="mb-2">
+                    <i class="bi bi-tag-fill me-2" style="color: var(--secondary);"></i>
+                    <strong>Harga:</strong> ${event.price}
+                </div>
+                
+                <div class="mb-3">
+                    <i class="bi bi-people-fill me-2" style="color: var(--secondary);"></i>
+                    <strong>Kuota:</strong> ${event.quota} peserta
+                    <div class="progress mt-2" style="height: 8px; border-radius: 10px;">
+                        <div class="progress-bar" role="progressbar" style="width: ${quotaPercentage}%; background: ${quotaPercentage >= 90 ? '#ff4757' : quotaPercentage >= 70 ? '#ffa502' : 'var(--secondary)'};"></div>
+                    </div>
+                    <small class="text-muted">${event.registered} terdaftar • ${remaining} kuota tersisa</small>
+                </div>
+                
+                <div class="d-flex align-items-center gap-2">
+                    <i class="bi bi-star-fill" style="color: #ffd700;"></i>
+                    <span style="font-weight: 600;">${event.rating}</span>
+                    <span class="text-muted" style="font-size: 14px;">(${event.reviews} ulasan)</span>
+                </div>
+            `;
 
             // Check if already registered or quota full
             const isRegistered = registeredEvents.some(e => e.id === eventId);
             const isQuotaFull = event.registered >= event.quota;
-            const registerBtn = document.getElementById('registerEventBtn');
-            const registerBtnText = document.getElementById('registerBtnText');
+            const isInWishlist = wishlist.includes(event.id);
+
+            // Set modal footer dengan tombol yang sesuai
+            let footerHTML = '<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Tutup</button>';
             
             if (isRegistered) {
-                registerBtnText.textContent = 'Sudah Terdaftar';
-                registerBtn.classList.add('disabled');
-                registerBtn.style.background = '#28a745';
+                footerHTML += '<button type="button" class="btn btn-success" disabled><i class="bi bi-check-circle"></i> Sudah Terdaftar</button>';
+                footerHTML += '<button type="button" class="btn btn-danger" onclick="cancelRegistration()"><i class="bi bi-x-circle"></i> Batalkan Pendaftaran</button>';
             } else if (isQuotaFull) {
-                registerBtnText.textContent = 'Kuota Penuh';
-                registerBtn.classList.add('disabled');
-                registerBtn.style.background = '#dc3545';
+                footerHTML += '<button type="button" class="btn btn-danger" disabled><i class="bi bi-x-circle"></i> Kuota Penuh</button>';
             } else {
-                registerBtnText.textContent = 'Daftar Event';
-                registerBtn.classList.remove('disabled');
-                registerBtn.style.background = 'var(--secondary)';
+                footerHTML += '<button type="button" class="btn btn-primary" onclick="registerEventFromModal()"><i class="bi bi-ticket"></i> Beli Tiket</button>';
+            }
+            
+            // Tombol wishlist
+            if (isInWishlist) {
+                footerHTML += `<button type="button" class="btn btn-outline-danger" onclick="toggleWishlistFromModal()"><i class="bi bi-heart-fill"></i> Hapus dari Wishlist</button>`;
+            } else {
+                footerHTML += `<button type="button" class="btn btn-outline-primary" onclick="toggleWishlistFromModal()"><i class="bi bi-heart"></i> Tambah ke Wishlist</button>`;
             }
 
-            showPage('detailPage');
+            document.getElementById('modalEventFooter').innerHTML = footerHTML;
 
-            // Animate detail page
-            anime({
-                targets: '.detail-content',
-                opacity: [0, 1],
-                translateY: [30, 0],
-                duration: 600,
-                easing: 'easeOutQuad'
-            });
-
-            // Send notification that user viewed event
-            setTimeout(() => {
-                if (notificationsEnabled && !isRegistered) {
-                    const randomTip = [
-                        `💡 ${remaining} kuota tersisa untuk ${event.title}!`,
-                        `⏰ Jangan lewatkan ${event.title} pada ${event.date}`,
-                        `🎯 Event populer! Segera daftar sebelum kuota penuh`
-                    ];
-                    showNotification(randomTip[Math.floor(Math.random() * randomTip.length)]);
-                }
-            }, 2000);
+            // Show modal
+            const modal = new bootstrap.Modal(document.getElementById('eventDetailModal'));
+            modal.show();
         }
 
-        // Toggle Wishlist from Detail Page
-        function toggleWishlistFromDetail() {
+        // Batalkan Pendaftaran - NEW FEATURE
+        function cancelRegistration() {
             if (!currentEventDetail) return;
+
+            const confirmCancel = confirm(`Apakah Anda yakin ingin membatalkan pendaftaran untuk "${currentEventDetail.title}"?\n\nCatatan: Pembatalan mungkin dikenakan syarat dan ketentuan tertentu.`);
+            
+            if (!confirmCancel) return;
+
+            // Hapus dari registered events
+            const index = registeredEvents.findIndex(e => e.id === currentEventDetail.id);
+            if (index > -1) {
+                registeredEvents.splice(index, 1);
+                localStorage.setItem(`registered_${currentUser.id}`, JSON.stringify(registeredEvents));
+
+                // Kurangi jumlah registered
+                const event = eventsData.find(e => e.id === currentEventDetail.id);
+                if (event) {
+                    event.registered = Math.max(0, event.registered - 1);
+                }
+
+                // Tutup modal
+                const modalElement = document.getElementById('eventDetailModal');
+                const modal = bootstrap.Modal.getInstance(modalElement);
+                if (modal) {
+                    modal.hide();
+                }
+
+                // Show notification
+                if (notificationsEnabled) {
+                    showNotification(`Pendaftaran untuk "${currentEventDetail.title}" telah dibatalkan`, 'warning');
+                }
+
+                alert('✅ Pendaftaran berhasil dibatalkan!\n\nAnda dapat mendaftar kembali kapan saja selama kuota masih tersedia.');
+                
+                // Refresh lists
+                renderReminder();
+            }
+        }
+
+        // Toggle Wishlist dari Modal
+        function toggleWishlistFromModal() {
+            if (!currentEventDetail) return;
+            
             toggleWishlist(currentEventDetail.id);
             
-            // Update button state
-            const wishlistBtn = document.getElementById('detailWishlistBtn');
-            if (wishlist.includes(currentEventDetail.id)) {
-                wishlistBtn.querySelector('i').className = 'bi bi-heart-fill';
-                wishlistBtn.classList.add('active');
-            } else {
-                wishlistBtn.querySelector('i').className = 'bi bi-heart';
-                wishlistBtn.classList.remove('active');
+            // Close and reopen modal to refresh buttons
+            const modalElement = document.getElementById('eventDetailModal');
+            const modal = bootstrap.Modal.getInstance(modalElement);
+            if (modal) {
+                modal.hide();
             }
+            
+            setTimeout(() => {
+                showEventDetailModal(currentEventDetail.id);
+            }, 300);
         }
 
-        // Contact Organizer
-        function contactOrganizer() {
+        // Register Event dari Modal
+        function registerEventFromModal() {
             if (!currentEventDetail) return;
-            alert(`Hubungi ${currentEventDetail.organizer}\n\nEmail: contact@eventraze.com\nTelepon: 0812-3456-7890\nWhatsApp: 0812-3456-7890`);
-        }
-
-        // Register Event with Quota Check
-        function registerEvent() {
-            if (!currentEventDetail) return;
-
+            
             const event = eventsData.find(e => e.id === currentEventDetail.id);
             const isRegistered = registeredEvents.some(e => e.id === currentEventDetail.id);
             
@@ -2534,49 +2434,42 @@ function openChatFromModal() {
                 return;
             }
 
-            // Check quota availability
             if (event.registered >= event.quota) {
                 alert('Maaf, kuota event sudah penuh! 😞\n\nSilakan coba event lainnya atau tambahkan ke wishlist untuk mendapat notifikasi jika ada slot tersedia.');
                 return;
             }
 
-            // Confirm registration
             const confirmMsg = `Konfirmasi Pendaftaran\n\nEvent: ${event.title}\nTanggal: ${event.date}\nLokasi: ${event.location}\nHarga: ${event.price}\n\nLanjutkan pendaftaran?`;
             
             if (!confirm(confirmMsg)) return;
 
-            // Register event
             const registration = {
                 ...event,
                 registeredAt: new Date().toISOString()
             };
 
-            // Increment registered count
             event.registered += 1;
-
             registeredEvents.push(registration);
             localStorage.setItem(`registered_${currentUser.id}`, JSON.stringify(registeredEvents));
 
-            // Send notification
+            // Tutup modal
+            const modalElement = document.getElementById('eventDetailModal');
+            const modal = bootstrap.Modal.getInstance(modalElement);
+            if (modal) {
+                modal.hide();
+            }
+
             if (notificationsEnabled) {
                 showNotification(`✅ Berhasil mendaftar ${event.title}!`);
                 
-                // Send reminder notification (simulated)
                 setTimeout(() => {
                     showNotification(`🔔 Pengingat: ${event.title} akan dimulai pada ${event.date}`);
                 }, 3000);
             }
 
-            // Show success message
             alert(`🎉 Pendaftaran Berhasil!\n\nAnda telah terdaftar untuk:\n${event.title}\n\nJangan lupa catat jadwalnya:\n${event.date}\n\nLokasi: ${event.location}\n\nSee you there!`);
             
-            // Refresh detail page
-            showEventDetail(event.id);
-        }
-
-        // Back to Home
-        function backToHome() {
-            showMainPage('homePage');
+            renderReminder();
         }
 
         // Render Reminder with Notifications Tab
@@ -2602,7 +2495,6 @@ function openChatFromModal() {
                 return;
             }
 
-            // Group notifications by date
             const grouped = {};
             const sortedNotifications = [...notificationHistory].reverse();
             
@@ -2627,7 +2519,6 @@ function openChatFromModal() {
                 grouped[dateKey].push(notif);
             });
 
-            // Render grouped notifications
             let html = '';
             Object.keys(grouped).forEach((dateKey, groupIndex) => {
                 html += `
@@ -2665,7 +2556,6 @@ function openChatFromModal() {
                 html += `</div>`;
             });
 
-            // Add clear all button
             html += `
                 <div class="text-center mt-4 mb-3">
                     <button class="btn btn-sm btn-outline-secondary" onclick="clearAllNotifications()">
@@ -2677,7 +2567,6 @@ function openChatFromModal() {
             notificationsList.innerHTML = html;
         }
 
-        // Mark notification as read
         function markAsRead(element) {
             element.classList.remove('notification-unread');
             const badge = element.querySelector('.notification-badge');
@@ -2693,7 +2582,6 @@ function openChatFromModal() {
             }
         }
 
-        // Clear all notifications
         function clearAllNotifications() {
             if (confirm('Hapus semua notifikasi?')) {
                 notificationHistory = [];
@@ -2703,7 +2591,6 @@ function openChatFromModal() {
             }
         }
 
-        // Get time ago text
         function getTimeAgo(date) {
             const now = new Date();
             const diff = now - date;
@@ -2733,41 +2620,30 @@ function openChatFromModal() {
             }
 
             wishlistList.innerHTML = `
-    <div class="events-grid">
-        ${wishlistEvents.map(event => `
-            <div class="event-card wishlist-card"
-                 onclick="showEventDetail(${event.id})">
-
-                <div class="event-image-wrapper">
-                    <img src="${event.image}"
-                         alt="${event.title}"
-                         class="event-image"
-                         loading="lazy">
-
-                    <span class="event-badge">${event.category}</span>
-
-                    <button class="wishlist-btn active"
-                            onclick="event.stopPropagation(); toggleWishlist(${event.id})">
-                        <i class="bi bi-heart-fill"></i>
-                    </button>
-                </div>
-
-                <div class="event-content">
-                    <h6 class="event-title">${event.title}</h6>
-
-                    <div class="event-footer">
-                        <div class="rating">
-                            <i class="bi bi-star-fill"></i>
-                            <span>${event.rating}</span>
+                <div class="events-grid">
+                    ${wishlistEvents.map(event => `
+                        <div class="event-card wishlist-card" onclick="showEventDetailModal(${event.id})">
+                            <div class="event-image-wrapper">
+                                <img src="${event.image}" alt="${event.title}" class="event-image" loading="lazy">
+                                <span class="event-badge">${event.category}</span>
+                                <button class="wishlist-btn active" onclick="event.stopPropagation(); toggleWishlist(${event.id})">
+                                    <i class="bi bi-heart-fill"></i>
+                                </button>
+                            </div>
+                            <div class="event-content">
+                                <h6 class="event-title">${event.title}</h6>
+                                <div class="event-footer">
+                                    <div class="rating">
+                                        <i class="bi bi-star-fill"></i>
+                                        <span>${event.rating}</span>
+                                    </div>
+                                    <div class="event-price">${event.price}</div>
+                                </div>
+                            </div>
                         </div>
-                        <div class="event-price">${event.price}</div>
-                    </div>
+                    `).join('')}
                 </div>
-
-            </div>
-        `).join('')}
-    </div>
-`;
+            `;
         }
 
         function renderRegistered() {
@@ -2783,28 +2659,21 @@ function openChatFromModal() {
                 return;
             }
 
-          registeredList.innerHTML = `
-    <div class="events-grid">
-        ${registeredEvents.map(event => `
-            <div class="event-card registered-card" onclick="showEventDetail(${event.id})">
-
-                <div class="event-image-wrapper">
-                    <img src="${event.image}" 
-                         alt="${event.title}" 
-                         class="event-image" 
-                         loading="lazy">
-                    <span class="event-badge registered">TERDAFTAR</span>
+            registeredList.innerHTML = `
+                <div class="events-grid">
+                    ${registeredEvents.map(event => `
+                        <div class="event-card registered-card" onclick="showEventDetailModal(${event.id})">
+                            <div class="event-image-wrapper">
+                                <img src="${event.image}" alt="${event.title}" class="event-image" loading="lazy">
+                                <span class="event-badge registered">TERDAFTAR</span>
+                            </div>
+                            <div class="event-content">
+                                <h6 class="event-title">${event.title}</h6>
+                            </div>
+                        </div>
+                    `).join('')}
                 </div>
-
-                <div class="event-content">
-                    <h6 class="event-title">${event.title}</h6>
-
-                </div>
-
-            </div>
-        `).join('')}
-    </div>
-`;
+            `;
         }
 
         function renderHistory() {
@@ -2860,12 +2729,10 @@ function openChatFromModal() {
             `).join('');
         }
 
-        // View Certificate
         function viewCertificate(eventId) {
             const event = eventHistory.find(e => e.id === eventId);
             if (!event) return;
 
-            // Create certificate preview modal
             const certificateHTML = `
                 <div style="background: white; padding: 40px; border: 10px solid var(--secondary); border-radius: 20px; text-align: center; max-width: 600px; margin: 20px auto;">
                     <h2 style="color: var(--primary); font-family: 'Poppins', serif; margin-bottom: 10px;">SERTIFIKAT</h2>
@@ -2890,7 +2757,6 @@ function openChatFromModal() {
                 </div>
             `;
 
-            // Show in modal
             const modalDiv = document.createElement('div');
             modalDiv.innerHTML = `
                 <div class="modal fade show" style="display: block; background: rgba(0,0,0,0.8);" onclick="this.remove()">
@@ -2922,7 +2788,6 @@ function openChatFromModal() {
             
             showNotification(`📥 Sertifikat "${event.title}" sedang diunduh...`);
             
-            // Simulate download
             setTimeout(() => {
                 showNotification(`✅ Sertifikat berhasil diunduh!`);
             }, 1500);
@@ -2961,7 +2826,6 @@ function openChatFromModal() {
             const event = eventHistory.find(e => e.id === eventId);
             if (!event) return;
 
-            // Create rating modal
             const ratingHTML = `
                 <div class="text-center">
                     <h5 class="mb-3">Bagaimana pengalaman Anda?</h5>
@@ -3000,7 +2864,6 @@ function openChatFromModal() {
             `;
             document.body.appendChild(modalDiv);
 
-            // Add rating selection handler
             window.selectRating = function(rating) {
                 const stars = document.querySelectorAll('.rating-stars i');
                 const texts = ['Sangat Buruk', 'Buruk', 'Cukup', 'Bagus', 'Sangat Bagus'];
@@ -3019,7 +2882,6 @@ function openChatFromModal() {
                 window.selectedRating = rating;
             };
 
-            // Add submit handler
             window.submitRating = function(eventId) {
                 if (!window.selectedRating) {
                     alert('Silakan pilih rating terlebih dahulu!');
@@ -3042,10 +2904,8 @@ function openChatFromModal() {
             };
         }
 
-        // Add some demo history events (for testing)
         function addDemoHistory() {
             if (eventHistory.length === 0 && registeredEvents.length > 0) {
-                // Simulate some events that have finished
                 const demoHistory = [
                     {
                         ...eventsData[0],
@@ -3058,7 +2918,6 @@ function openChatFromModal() {
             }
         }
 
-        // Switch Reminder Tab
         function switchReminderTab(tab) {
             document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
             document.querySelectorAll('.tab-content').forEach(content => content.style.display = 'none');
@@ -3082,10 +2941,8 @@ function openChatFromModal() {
             }
         }
 
-        // Profile Functions
         function updateProfileDisplay() {
-  document.getElementById('profileName').textContent =
-    currentUser?.name || 'User';
+            document.getElementById('profileName').textContent = currentUser?.name || 'User';
             document.getElementById('profileEmail').textContent = currentUser.email;
             
             const initial = currentUser.name.charAt(0).toUpperCase();
@@ -3098,7 +2955,6 @@ function openChatFromModal() {
             }
         }
 
-        // Edit Profile
         function showEditProfile() {
             document.getElementById('editName').value = currentUser.name;
             document.getElementById('editEmail').value = currentUser.email;
@@ -3116,11 +2972,9 @@ function openChatFromModal() {
             const newName = document.getElementById('editName').value;
             const newEmail = document.getElementById('editEmail').value;
 
-            // Update user data
             currentUser.name = newName;
             currentUser.email = newEmail;
 
-            // Update in storage
             let users = JSON.parse(localStorage.getItem('users') || '[]');
             const userIndex = users.findIndex(u => u.id === currentUser.id);
             if (userIndex > -1) {
@@ -3128,7 +2982,6 @@ function openChatFromModal() {
                 localStorage.setItem('users', JSON.stringify(users));
             }
 
-            // Update session
             const session = JSON.parse(localStorage.getItem('session'));
             session.name = newName;
             session.email = newEmail;
@@ -3141,7 +2994,6 @@ function openChatFromModal() {
             alert('Profil berhasil diperbarui!');
         });
 
-        // Avatar Upload
         document.getElementById('avatarInput').addEventListener('change', function(e) {
             const file = e.target.files[0];
             if (file) {
@@ -3149,7 +3001,6 @@ function openChatFromModal() {
                 reader.onload = function(e) {
                     currentUser.avatar = e.target.result;
                     
-                    // Update in storage
                     let users = JSON.parse(localStorage.getItem('users') || '[]');
                     const userIndex = users.findIndex(u => u.id === currentUser.id);
                     if (userIndex > -1) {
@@ -3157,7 +3008,6 @@ function openChatFromModal() {
                         localStorage.setItem('users', JSON.stringify(users));
                     }
 
-                    // Update session
                     const session = JSON.parse(localStorage.getItem('session'));
                     session.avatar = currentUser.avatar;
                     localStorage.setItem('session', JSON.stringify(session));
@@ -3168,7 +3018,6 @@ function openChatFromModal() {
             }
         });
 
-        // Show Certificates
         function showCertificates() {
             const certificatesList = document.getElementById('certificatesList');
             
@@ -3196,18 +3045,6 @@ function openChatFromModal() {
             modal.show();
         }
 
-        function downloadCertificate(eventId) {
-            alert('Sertifikat akan diunduh!\n(Demo: Fitur download sertifikat)');
-        }
-
-        function rateEvent(eventId) {
-            const rating = prompt('Berikan rating (1-5):');
-            if (rating && rating >= 1 && rating <= 5) {
-                alert(`Terima kasih atas rating ${rating} bintang!`);
-            }
-        }
-
-        // Toggle Dark Mode
         function toggleDarkMode() {
             document.body.classList.toggle('dark-mode');
             document.getElementById('darkModeToggle').classList.toggle('active');
@@ -3216,7 +3053,6 @@ function openChatFromModal() {
             settings.darkMode = document.body.classList.contains('dark-mode');
             localStorage.setItem(`settings_${currentUser.id}`, JSON.stringify(settings));
 
-            // Animate toggle
             anime({
                 targets: '#darkModeToggle .toggle-slider',
                 translateX: settings.darkMode ? 24 : 0,
@@ -3225,7 +3061,6 @@ function openChatFromModal() {
             });
         }
 
-        // Toggle Notifications
         function toggleNotifications() {
             notificationsEnabled = !notificationsEnabled;
             document.getElementById('notifToggle').classList.toggle('active');
@@ -3238,7 +3073,6 @@ function openChatFromModal() {
                 showNotification('Notifikasi diaktifkan!');
             }
 
-            // Animate toggle
             anime({
                 targets: '#notifToggle .toggle-slider',
                 translateX: notificationsEnabled ? 24 : 0,
@@ -3247,12 +3081,7 @@ function openChatFromModal() {
             });
         }
 
-        // Enhanced Notification System
-        let notificationQueue = [];
-        let notificationHistory = [];
-
         function showNotification(message, type = 'info') {
-            // Save to history first
             const notifData = {
                 message,
                 type,
@@ -3262,12 +3091,10 @@ function openChatFromModal() {
             notificationHistory.push(notifData);
             localStorage.setItem(`notifications_${currentUser.id}`, JSON.stringify(notificationHistory.slice(-50)));
             
-            // Update notifications tab if open
             if (document.getElementById('notifikasiTab').style.display === 'block') {
                 renderNotifications();
             }
 
-            // Create popup notification element
             const notification = document.createElement('div');
             const icons = {
                 success: '✅',
@@ -3303,7 +3130,6 @@ function openChatFromModal() {
             
             document.body.appendChild(notification);
 
-            // Animate in
             anime({
                 targets: notification,
                 translateX: [100, 0],
@@ -3312,7 +3138,6 @@ function openChatFromModal() {
                 easing: 'easeOutQuad'
             });
 
-            // Auto remove after 3 seconds
             setTimeout(() => {
                 anime({
                     targets: notification,
@@ -3325,19 +3150,16 @@ function openChatFromModal() {
             }, 3000);
         }
 
-        // Check for event reminders
         function checkEventReminders() {
             if (!notificationsEnabled) return;
 
             const now = new Date();
-            const tomorrow = new Date(now.getTime() + 24 * 60 * 60 * 1000);
-
+            
             registeredEvents.forEach(event => {
                 const eventDate = new Date(event.date);
                 const timeDiff = eventDate - now;
                 const hoursDiff = timeDiff / (1000 * 60 * 60);
 
-                // Remind 24 hours before
                 if (hoursDiff > 0 && hoursDiff <= 24) {
                     const hours = Math.floor(hoursDiff);
                     showNotification(
@@ -3348,7 +3170,6 @@ function openChatFromModal() {
             });
         }
 
-        // Send random event recommendations
         function sendEventRecommendations() {
             if (!notificationsEnabled) return;
 
@@ -3366,24 +3187,17 @@ function openChatFromModal() {
             }
         }
 
-        // Initialize notification system
         function initNotifications() {
             if (!currentUser) return;
 
-            // Load notification history
             notificationHistory = JSON.parse(localStorage.getItem(`notifications_${currentUser.id}`) || '[]');
 
-            // Check reminders every 30 minutes
             setInterval(checkEventReminders, 30 * 60 * 1000);
-            
-            // Send recommendations every hour
             setInterval(sendEventRecommendations, 60 * 60 * 1000);
 
-            // Initial check
             checkEventReminders();
         }
 
-        // Welcome notification on login
         function sendWelcomeNotification() {
             if (!notificationsEnabled) return;
 
@@ -3397,60 +3211,30 @@ function openChatFromModal() {
             setTimeout(() => {
                 showNotification(`${greeting}, ${currentUser.name}! 👋`, 'success');
                 
-                // Show event count
                 setTimeout(() => {
                     showNotification(`Ada ${eventsData.length} event menanti Anda!`, 'info');
                 }, 2000);
             }, 1000);
         }
 
-        // Show Help
-        function showHelp() {
-            document.getElementById('faqContent').innerHTML = `
-                <h6>📞 Hubungi Kami</h6>
-                <div class="p-3 rounded mb-4">
-                    <p class="mb-2"><i class="bi bi-envelope"></i> Email: support@eventraze.com</p>
-                    <p class="mb-0"><i class="bi bi-telephone"></i> Telepon: 0812-3456-7890</p>
-                </div>
-                <h6>❓ FAQ</h6>
-                <div class="faq-item" onclick="toggleFAQ(this)">
-                    <div class="faq-question">
-                        <span>Bagaimana cara mendaftar event?</span>
-                        <i class="bi bi-chevron-down faq-icon"></i>
-                    </div>
-                    <div class="faq-answer">Pilih event yang ingin Anda ikuti, klik untuk melihat detail, lalu klik tombol "Daftar" atau "Beli Tiket".</div>
-                </div>
-                <div class="faq-item" onclick="toggleFAQ(this)">
-                    <div class="faq-question">
-                        <span>Apakah bisa batalkan pendaftaran?</span>
-                        <i class="bi bi-chevron-down faq-icon"></i>
-                    </div>
-                    <div class="faq-answer">Ya, Anda bisa membatalkan pendaftaran. Buka menu "Pengingat", pilih tab "Terdaftar", klik event yang ingin dibatalkan, lalu klik tombol "Batalkan Pendaftaran".</div>
-                </div>
-                <div class="faq-item" onclick="toggleFAQ(this)">
-                    <div class="faq-question">
-                        <span>Apa itu Wishlist?</span>
-                        <i class="bi bi-chevron-down faq-icon"></i>
-                    </div>
-                    <div class="faq-answer">Wishlist adalah fitur untuk menyimpan event yang Anda minati tanpa harus mendaftar. Klik ikon hati pada card event untuk menambahkan ke wishlist.</div>
-                </div>
-                <div class="faq-item" onclick="toggleFAQ(this)">
-                    <div class="faq-question">
-                        <span>Apakah Eventraze gratis?</span>
-                        <i class="bi bi-chevron-down faq-icon"></i>
-                    </div>
-                    <div class="faq-answer">Platform Eventraze gratis untuk digunakan. Tidak ada biaya untuk mendaftar akun atau berlangganan. Harga tiket event tergantung dari penyelenggara masing-masing.</div>
-                </div>
-            `;
-            new bootstrap.Modal(document.getElementById('helpModal')).show();
-        }
-
+        // Toggle FAQ Item
         function toggleFAQ(element) {
             element.classList.toggle('active');
+            
+            anime({
+                targets: element.querySelector('.faq-icon'),
+                rotate: element.classList.contains('active') ? 180 : 0,
+                duration: 300,
+                easing: 'easeInOutQuad'
+            });
         }
 
+        // Show Help Modal with FAQ
+        function showHelp() {
+            const modal = new bootstrap.Modal(document.getElementById('helpModal'));
+            modal.show();
+        }
 
-        // Logout
         function logout() {
             if (confirm('Yakin ingin keluar?')) {
                 localStorage.removeItem('session');
@@ -3462,101 +3246,12 @@ function openChatFromModal() {
             }
         }
 
-        // Chat Functions
-        function openChat() {
-            if (!currentEventDetail && registeredEvents.length > 0) {
-                currentEventDetail = registeredEvents[0];
-            }
-
-            if (!currentEventDetail) {
-                alert('Pilih event terlebih dahulu!');
-                return;
-            }
-
-            document.getElementById('chatEventTitle').textContent = currentEventDetail.title;
-            showPage('chatPage');
-            renderChat();
-        }
-function backToDetail() {
-    showMainPage('homePage');
-}
-
-        function renderChat() {
-            const chatMessagesDiv = document.getElementById('chatMessages');
-            
-            if (chatMessages.length === 0) {
-                chatMessages = [
-                    {
-                        user: 'Event Organizer',
-                        message: 'Selamat datang di chat event! Silakan bertanya jika ada yang ingin ditanyakan.',
-                        time: new Date().toLocaleTimeString('id-ID', { hour: '2-digit', minute: '2-digit' }),
-                        isOwn: false
-                    }
-                ];
-            }
-
-            chatMessagesDiv.innerHTML = chatMessages.map(msg => `
-                <div class="message ${msg.isOwn ? 'own' : ''}">
-                    <div class="message-avatar">${msg.user.charAt(0)}</div>
-                    <div>
-                        <div class="message-content">
-                            ${!msg.isOwn ? `<div class="message-name">${msg.user}</div>` : ''}
-                            <div>${msg.message}</div>
-                            <div class="message-time">${msg.time}</div>
-                        </div>
-                    </div>
-                </div>
-            `).join('');
-
-            chatMessagesDiv.scrollTop = chatMessagesDiv.scrollHeight;
-        }
-
-        function sendMessage() {
-            const input = document.getElementById('chatInput');
-            const message = input.value.trim();
-
-            if (!message) return;
-
-            const newMessage = {
-                user: currentUser.name,
-                message: message,
-                time: new Date().toLocaleTimeString('id-ID', { hour: '2-digit', minute: '2-digit' }),
-                isOwn: true
-            };
-
-            chatMessages.push(newMessage);
-            localStorage.setItem(`chat_${currentUser.id}`, JSON.stringify(chatMessages));
-
-            input.value = '';
-            renderChat();
-
-            // Simulate response
-            setTimeout(() => {
-                const autoReply = {
-                    user: 'Event Organizer',
-                    message: 'Terima kasih atas pertanyaannya! Tim kami akan segera merespons.',
-                    time: new Date().toLocaleTimeString('id-ID', { hour: '2-digit', minute: '2-digit' }),
-                    isOwn: false
-                };
-                chatMessages.push(autoReply);
-                localStorage.setItem(`chat_${currentUser.id}`, JSON.stringify(chatMessages));
-                renderChat();
-            }, 1000);
-        }
-
-        // Allow Enter key to send message
-        document.getElementById('chatInput').addEventListener('keypress', function(e) {
-            if (e.key === 'Enter') {
-                sendMessage();
-            }
-        });
-
         // Register Service Worker for PWA
         if ('serviceWorker' in navigator) {
-                navigator.serviceWorker.register('/service-worker.js')
-                    .then(() => console.log('SW registered!'))
-                    .catch(err => console.log('SW gagal:',err));
-            }
+            navigator.serviceWorker.register('/service-worker.js')
+                .then(() => console.log('SW registered!'))
+                .catch(err => console.log('SW gagal:', err));
+        }
 
         // PWA Manifest
         const manifest = {
