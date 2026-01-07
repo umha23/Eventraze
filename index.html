@@ -2448,9 +2448,9 @@
                 registeredAt: new Date().toISOString()
             };
 
-            event.registered += 1;
+           event.registered += 1;
             registeredEvents.push(registration);
-            localStorage.setItem(`registered_${currentUser.id}`, JSON.stringify(registeredEvents));
+            localStorage.setItem(registered_${currentUser.id}, JSON.stringify(registeredEvents));
             
             // Tutup modal
             const modalElement = document.getElementById('eventDetailModal');
@@ -3349,6 +3349,7 @@ function backToDetail() {
 });
 
         
+
 
         // Register Service Worker for PWA
         if ('serviceWorker' in navigator) {
