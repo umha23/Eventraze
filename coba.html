@@ -10,6 +10,7 @@
     <link rel="icon" href="icons/logoeventraze192x192.png" type="image/png" />
     <title>Eventraze</title>
     <link rel="stylesheet" href="assets/style.css" />
+    <title>Eventraze - Discover Events</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -320,18 +321,20 @@
             box-shadow: 0 2px 8px rgba(0,0,0,0.08);
             cursor: pointer;
             transition: all 0.3s ease;
-            position: relative;
         }
 
         .dark-mode .event-card {
             background: #2a2a2a;
         }
         
-        .event-card:hover {
+         .event-card:hover {
             transform: translateY(-5px);
             box-shadow: 0 8px 25px rgba(0,0,0,0.15);
         }
 
+        .dark-mode .event-card {
+            background: #2a2a2a;
+        }
         /* Image Wrapper - Portrait Style untuk tidak memotong gambar */
         .event-image-wrapper {
             position: relative;
@@ -473,7 +476,6 @@
             gap: 15px;
             border-left: 4px solid var(--secondary);
             transition: all 0.3s ease;
-            cursor: pointer;
         }
 
         .dark-mode .notification-item {
@@ -619,7 +621,6 @@
             border-radius: 20px;
             font-size: 12px;
             font-weight: 600;
-            z-index: 2;
         }
 
         .wishlist-btn {
@@ -636,8 +637,7 @@
             justify-content: center;
             cursor: pointer;
             transition: all 0.3s ease;
-            z-index: 3;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            z-index: 2;
         }
 
         .wishlist-btn:hover {
@@ -656,7 +656,7 @@
             transform: scale(1.2);
         }
 
-        .wishlist-btn.animating i {
+         .wishlist-btn.animating i {
             animation: heartBeat 0.6s ease-in-out;
         }
         
@@ -755,7 +755,13 @@
             color: var(--primary);
         }
 
-        .edit-avatar-btn:hover {
+        .profile-name {
+            font-weight: 600;
+            font-size: 24px;
+            margin-bottom: 5px;
+        }
+
+         .edit-avatar-btn:hover {
             background: #e6b855;
         }
 
@@ -976,149 +982,149 @@
         }
 
        /* Payment Styles */
-        .payment-methods {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 10px;
-            margin: 20px 0;
-        }
+.payment-methods {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
+    margin: 20px 0;
+}
 
-        .payment-method {
-            border: 2px solid #eee;
-            border-radius: 10px;
-            padding: 15px;
-            text-align: center;
-            cursor: pointer;
-            transition: all 0.3s ease;
-        }
+.payment-method {
+    border: 2px solid #eee;
+    border-radius: 10px;
+    padding: 15px;
+    text-align: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
 
-        .dark-mode .payment-method {
-            border-color: #444;
-        }
+.dark-mode .payment-method {
+    border-color: #444;
+}
 
-        .payment-method:hover {
-            border-color: var(--secondary);
-            transform: translateY(-2px);
-        }
+.payment-method:hover {
+    border-color: var(--secondary);
+    transform: translateY(-2px);
+}
 
-        .payment-method.selected {
-            border-color: var(--secondary);
-            background: rgba(247, 197, 102, 0.1);
-        }
+.payment-method.selected {
+    border-color: var(--secondary);
+    background: rgba(247, 197, 102, 0.1);
+}
 
-        .payment-method i {
-            font-size: 32px;
-            margin-bottom: 10px;
-            display: block;
-        }
+.payment-method i {
+    font-size: 32px;
+    margin-bottom: 10px;
+    display: block;
+}
 
-        .payment-method .bank-logo {
-            width: 80px;
-            height: 40px;
-            margin: 0 auto 10px;
-            background-size: contain;
-            background-repeat: no-repeat;
-            background-position: center;
-        }
+.payment-method .bank-logo {
+    width: 80px;
+    height: 40px;
+    margin: 0 auto 10px;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+}
 
-        .payment-steps {
-            display: flex;
-            justify-content: space-between;
-            margin: 20px 0;
-            position: relative;
-        }
+.payment-steps {
+    display: flex;
+    justify-content: space-between;
+    margin: 20px 0;
+    position: relative;
+}
 
-        .payment-steps::before {
-            content: '';
-            position: absolute;
-            top: 20px;
-            left: 10%;
-            right: 10%;
-            height: 2px;
-            background: #eee;
-            z-index: 1;
-        }
+.payment-steps::before {
+    content: '';
+    position: absolute;
+    top: 20px;
+    left: 10%;
+    right: 10%;
+    height: 2px;
+    background: #eee;
+    z-index: 1;
+}
 
-        .dark-mode .payment-steps::before {
-            background: #444;
-        }
+.dark-mode .payment-steps::before {
+    background: #444;
+}
 
-        .payment-step {
-            text-align: center;
-            position: relative;
-            z-index: 2;
-            flex: 1;
-        }
+.payment-step {
+    text-align: center;
+    position: relative;
+    z-index: 2;
+    flex: 1;
+}
 
-        .step-number {
-            width: 40px;
-            height: 40px;
-            background: #f0f0f0;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin: 0 auto 10px;
-            font-weight: 600;
-            transition: all 0.3s ease;
-        }
+.step-number {
+    width: 40px;
+    height: 40px;
+    background: #f0f0f0;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 10px;
+    font-weight: 600;
+    transition: all 0.3s ease;
+}
 
-        .dark-mode .step-number {
-            background: #444;
-        }
+.dark-mode .step-number {
+    background: #444;
+}
 
-        .payment-step.active .step-number {
-            background: var(--secondary);
-            color: var(--primary);
-        }
+.payment-step.active .step-number {
+    background: var(--secondary);
+    color: var(--primary);
+}
 
-        .payment-step.completed .step-number {
-            background: #28a745;
-            color: white;
-        }
+.payment-step.completed .step-number {
+    background: #28a745;
+    color: white;
+}
 
-        .step-title {
-            font-size: 12px;
-            font-weight: 600;
-        }
+.step-title {
+    font-size: 12px;
+    font-weight: 600;
+}
 
-        .payment-summary {
-            background: #f8f9fa;
-            border-radius: 15px;
-            padding: 20px;
-            margin: 20px 0;
-        }
+.payment-summary {
+    background: #f8f9fa;
+    border-radius: 15px;
+    padding: 20px;
+    margin: 20px 0;
+}
 
-        .dark-mode .payment-summary {
-            background: #2a2a2a;
-        }
+.dark-mode .payment-summary {
+    background: #2a2a2a;
+}
 
-        .summary-item {
-            display: flex;
-            justify-content: space-between;
-            margin-bottom: 10px;
-            padding-bottom: 10px;
-            border-bottom: 1px solid #eee;
-        }
+.summary-item {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 10px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #eee;
+}
 
-        .dark-mode .summary-item {
-            border-bottom-color: #444;
-        }
+.dark-mode .summary-item {
+    border-bottom-color: #444;
+}
 
-        .summary-item.total {
-            font-weight: 700;
-            font-size: 18px;
-            border-bottom: none;
-            margin-top: 10px;
-            padding-top: 10px;
-            border-top: 2px solid #ddd;
-        }
+.summary-item.total {
+    font-weight: 700;
+    font-size: 18px;
+    border-bottom: none;
+    margin-top: 10px;
+    padding-top: 10px;
+    border-top: 2px solid #ddd;
+}
 
-        .dark-mode .summary-item.total {
-            border-top-color: #444;
-        }
+.dark-mode .summary-item.total {
+    border-top-color: #444;
+}
 
-        /* Chat Improvements */
+/* Chat Improvements */
         .chat-header {
             display: flex;
             align-items: center;
@@ -1192,120 +1198,120 @@
             font-weight: 600;
         }
 
-        /* Typing Indicator */
-        .typing-indicator {
-            display: flex;
-            align-items: center;
-            gap: 5px;
-            padding: 10px 15px;
-            background: #f0f0f0;
-            border-radius: 15px;
-            width: fit-content;
-            margin: 10px 0;
-        }
+/* Typing Indicator */
+.typing-indicator {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    padding: 10px 15px;
+    background: #f0f0f0;
+    border-radius: 15px;
+    width: fit-content;
+    margin: 10px 0;
+}
 
-        .dark-mode .typing-indicator {
-            background: #2a2a2a;
-        }
+.dark-mode .typing-indicator {
+    background: #2a2a2a;
+}
 
-        .typing-dot {
-            width: 8px;
-            height: 8px;
-            background: #999;
-            border-radius: 50%;
-            animation: typing 1.4s infinite;
-        }
+.typing-dot {
+    width: 8px;
+    height: 8px;
+    background: #999;
+    border-radius: 50%;
+    animation: typing 1.4s infinite;
+}
 
-        .typing-dot:nth-child(2) {
-            animation-delay: 0.2s;
-        }
+.typing-dot:nth-child(2) {
+    animation-delay: 0.2s;
+}
 
-        .typing-dot:nth-child(3) {
-            animation-delay: 0.4s;
-        }
+.typing-dot:nth-child(3) {
+    animation-delay: 0.4s;
+}
 
-        @keyframes typing {
-            0%, 60%, 100% {
-                transform: translateY(0);
-            }
-            30% {
-                transform: translateY(-5px);
-            }
-        }
+@keyframes typing {
+    0%, 60%, 100% {
+        transform: translateY(0);
+    }
+    30% {
+        transform: translateY(-5px);
+    }
+}
 
-        /* Payment QR Code */
-        .qr-code-container {
-            text-align: center;
-            padding: 20px;
-            background: white;
-            border-radius: 15px;
-            margin: 20px 0;
-        }
+/* Payment QR Code */
+.qr-code-container {
+    text-align: center;
+    padding: 20px;
+    background: white;
+    border-radius: 15px;
+    margin: 20px 0;
+}
 
-        .dark-mode .qr-code-container {
-            background: #2a2a2a;
-        }
+.dark-mode .qr-code-container {
+    background: #2a2a2a;
+}
 
-        .qr-code {
-            width: 200px;
-            height: 200px;
-            margin: 0 auto;
-            background: #f5f5f5;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            border-radius: 10px;
-            font-size: 48px;
-            color: #333;
-            border: 2px dashed #ddd;
-        }
+.qr-code {
+    width: 200px;
+    height: 200px;
+    margin: 0 auto;
+    background: #f5f5f5;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 10px;
+    font-size: 48px;
+    color: #333;
+    border: 2px dashed#ddd;
+}
 
-        .payment-timer {
-            font-size: 24px;
-            font-weight: 700;
-            color: #ff4757;
-            margin: 15px 0;
-            font-family: monospace;
-        }
+.payment-timer {
+    font-size: 24px;
+    font-weight: 700;
+    color: #ff4757;
+    margin: 15px 0;
+    font-family: monospace;
+}
 
-        .payment-instruction {
-            background: #f8f9fa;
-            border-radius: 10px;
-            padding: 15px;
-            margin: 15px 0;
-            font-size: 14px;
-            line-height: 1.6;
-        }
+.payment-instruction {
+    background: #f8f9fa;
+    border-radius: 10px;
+    padding: 15px;
+    margin: 15px 0;
+    font-size: 14px;
+    line-height: 1.6;
+}
 
-        .dark-mode .payment-instruction {
-            background: #2a2a2a;
-        }
+.dark-mode .payment-instruction {
+    background: #2a2a2a;
+}
 
-        .payment-success {
-            text-align: center;
-            padding: 40px 20px;
-        }
+.payment-success {
+    text-align: center;
+    padding: 40px 20px;
+}
 
-        .payment-success i {
-            font-size: 64px;
-            color: #28a745;
-            margin-bottom: 20px;
-            animation: success 1s ease;
-        }
+.payment-success i {
+    font-size: 64px;
+    color: #28a745;
+    margin-bottom: 20px;
+    animation: success 1s ease;
+}
 
-        @keyframes success {
-            0% {
-                transform: scale(0);
-            }
-            50% {
-                transform: scale(1.2);
-            }
-            100% {
-                transform: scale(1);
-            }
-        }
+@keyframes success {
+    0% {
+        transform: scale(0);
+    }
+    50% {
+        transform: scale(1.2);
+    }
+    100% {
+        transform: scale(1);
+    }
+}
 
-        /* Chat Container */
+/* Chat Container */
         .chat-container {
             padding: 20px;
             height: calc(100vh - 200px);
@@ -1448,7 +1454,7 @@
 
         .chat-quick-replies::-webkit-scrollbar {
             display: none;
-        }
+}
 
         .quick-reply {
             background: #f0f0f0;
@@ -1485,79 +1491,79 @@
             font-size: 10px;
         }
 
-        /* Chat Message Types */
-        .message.file {
-            background: #e3f2fd;
-            border: 1px solid #bbdefb;
-        }
+/* Chat Message Types */
+.message.file {
+    background: #e3f2fd;
+    border: 1px solid #bbdefb;
+}
 
-        .dark-mode .message.file {
-            background: rgba(33, 150, 243, 0.1);
-            border-color: rgba(33, 150, 243, 0.3);
-        }
+.dark-mode .message.file {
+    background: rgba(33, 150, 243, 0.1);
+    border-color: rgba(33, 150, 243, 0.3);
+}
 
-        .message.event {
-            background: #e8f5e9;
-            border: 1px solid #c8e6c9;
-        }
+.message.event {
+    background: #e8f5e9;
+    border: 1px solid #c8e6c9;
+}
 
-        .dark-mode .message.event {
-            background: rgba(76, 175, 80, 0.1);
-            border-color: rgba(76, 175, 80, 0.3);
-        }
+.dark-mode .message.event {
+    background: rgba(76, 175, 80, 0.1);
+    border-color: rgba(76, 175, 80, 0.3);
+}
 
-        .message.system {
-            background: #fff3e0;
-            border: 1px solid #ffe0b2;
-        }
+.message.system {
+    background: #fff3e0;
+    border: 1px solid #ffe0b2;
+}
 
-        .dark-mode .message.system {
-            background: rgba(255, 152, 0, 0.1);
-            border-color: rgba(255, 152, 0, 0.3);
-        }
+.dark-mode .message.system {
+    background: rgba(255, 152, 0, 0.1);
+    border-color: rgba(255, 152, 0, 0.3);
+}
 
-        .file-preview {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            padding: 10px;
-        }
+.file-preview {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 10px;
+}
 
-        .file-icon {
-            width: 40px;
-            height: 40px;
-            background: var(--secondary);
-            border-radius: 8px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 20px;
-            color: var(--primary);
-        }
+.file-icon {
+    width: 40px;
+    height: 40px;
+    background: var(--secondary);
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 20px;
+    color: var(--primary);
+}
 
-        .file-info {
-            flex: 1;
-        }
+.file-info {
+    flex: 1;
+}
 
-        .file-name {
-            font-weight: 600;
-            margin-bottom: 2px;
-            font-size: 12px;
-        }
+.file-name {
+    font-weight: 600;
+    margin-bottom: 2px;
+    font-size: 12px;
+}
 
-        .file-size {
-            font-size: 11px;
-            color: #666;
-        }
+.file-size {
+    font-size: 11px;
+    color: #666;
+}
 
-        .download-btn {
-            background: none;
-            border: none;
-            color: var(--secondary);
-            font-size: 20px;
-            cursor: pointer;
-            padding: 5px;
-        }
+.download-btn {
+    background: none;
+    border: none;
+    color: var(--secondary);
+    font-size: 20px;
+    cursor: pointer;
+    padding: 5px;
+}
 
         /* FAQ Styles */
         .faq-item {
@@ -1714,7 +1720,7 @@
             display: none;
         }
 
-        .category-back-section {
+         .category-back-section {
             position: relative;
             padding-top: 30px; /* Memberi jarak untuk tombol back */
         }
@@ -1724,7 +1730,7 @@
             position: fixed;
             top: 20px;
             left: 20px;
-            z-index: 1001;
+            z-index: 1000;
             background: rgba(15, 15, 15, 0.9);
             color: white;
             width: 40px;
@@ -1852,305 +1858,238 @@
             font-size: 18px;
         }
 
-        /* Style untuk menu Tiket Saya di profil */
-        .tickets-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
-            gap: 20px;
-            padding: 15px;
-        }
+         /* Style untuk menu Tiket Saya di profil */
+      /* PERBAIKAN: Tiket Saya - Enhanced Styles */
+.tickets-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    gap: 20px;
+    padding: 15px;
+}
 
-        .ticket-card {
-            background: linear-gradient(135deg, #ffffff 0%, #f8f9fa 100%);
-            border-radius: 15px;
-            padding: 20px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.08);
-            transition: all 0.3s ease;
-            position: relative;
-            overflow: hidden;
-            border-left: 4px solid var(--secondary);
-        }
+.ticket-card {
+    background: linear-gradient(135deg, #ffffff 0%, #f8f9fa 100%);
+    border-radius: 15px;
+    padding: 20px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+    border-left: 4px solid var(--secondary);
+}
 
-        .dark-mode .ticket-card {
-            background: linear-gradient(135deg, #2a2a2a 0%, #1f1f1f 100%);
-        }
+.dark-mode .ticket-card {
+    background: linear-gradient(135deg, #2a2a2a 0%, #1f1f1f 100%);
+}
 
-        .ticket-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 8px 25px rgba(0,0,0,0.15);
-        }
+.ticket-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+}
 
-        .ticket-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            right: 0;
-            width: 100px;
-            height: 100px;
-            background: linear-gradient(45deg, transparent 40%, rgba(247, 197, 102, 0.1) 100%);
-            border-radius: 0 15px 0 0;
-        }
+.ticket-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 100px;
+    height: 100px;
+    background: linear-gradient(45deg, transparent 40%, rgba(247, 197, 102, 0.1) 100%);
+    border-radius: 0 15px 0 0;
+}
 
-        .ticket-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: flex-start;
-            margin-bottom: 15px;
-            position: relative;
-            z-index: 1;
-        }
+.ticket-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 15px;
+    position: relative;
+    z-index: 1;
+}
 
-        .ticket-status {
-            background: var(--secondary);
-            color: var(--primary);
-            padding: 6px 15px;
-            border-radius: 20px;
-            font-size: 12px;
-            font-weight: 600;
-            letter-spacing: 0.5px;
-        }
+.ticket-status {
+    background: var(--secondary);
+    color: var(--primary);
+    padding: 6px 15px;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+}
 
-        .ticket-status.free {
-            background: #28a745;
-            color: white;
-        }
+.ticket-status.free {
+    background: #28a745;
+    color: white;
+}
 
-        .ticket-status.paid {
-            background: #007bff;
-            color: white;
-        }
+.ticket-status.paid {
+    background: #007bff;
+    color: white;
+}
 
-        .ticket-code {
-            font-size: 12px;
-            color: #666;
-            font-family: 'Courier New', monospace;
-            background: #f1f1f1;
-            padding: 4px 10px;
-            border-radius: 10px;
-            margin-top: 5px;
-            display: inline-block;
-        }
+.ticket-code {
+    font-size: 12px;
+    color: #666;
+    font-family: 'Courier New', monospace;
+    background: #f1f1f1;
+    padding: 4px 10px;
+    border-radius: 10px;
+    margin-top: 5px;
+    display: inline-block;
+}
 
-        .dark-mode .ticket-code {
-            background: #333;
-            color: #999;
-        }
+.dark-mode .ticket-code {
+    background: #333;
+    color: #999;
+}
 
-        .ticket-details {
-            margin: 15px 0;
-        }
+.ticket-details {
+    margin: 15px 0;
+}
 
-        .ticket-detail-item {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            margin-bottom: 10px;
-            font-size: 14px;
-        }
+.ticket-detail-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 10px;
+    font-size: 14px;
+}
 
-        .ticket-detail-item i {
-            color: var(--secondary);
-            width: 20px;
-            text-align: center;
-        }
+.ticket-detail-item i {
+    color: var(--secondary);
+    width: 20px;
+    text-align: center;
+}
 
-        .ticket-detail-item span {
-            color: var(--text-light);
-            flex: 1;
-        }
+.ticket-detail-item span {
+    color: var(--text-light);
+    flex: 1;
+}
 
-        .dark-mode .ticket-detail-item span {
-            color: var(--text-dark);
-        }
+.dark-mode .ticket-detail-item span {
+    color: var(--text-dark);
+}
 
-        .ticket-actions {
-            display: flex;
-            gap: 10px;
-            margin-top: 20px;
-        }
+.ticket-actions {
+    display: flex;
+    gap: 10px;
+    margin-top: 20px;
+}
 
-        .ticket-action-btn {
-            flex: 1;
-            padding: 10px;
-            border-radius: 10px;
-            font-size: 14px;
-            font-weight: 600;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 8px;
-        }
+.ticket-action-btn {
+    flex: 1;
+    padding: 10px;
+    border-radius: 10px;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+}
 
-        .ticket-action-btn.primary {
-            background: var(--secondary);
-            color: var(--primary);
-            border: none;
-        }
+.ticket-action-btn.primary {
+    background: var(--secondary);
+    color: var(--primary);
+    border: none;
+}
 
-        .ticket-action-btn.secondary {
-            background: #f0f0f0;
-            color: var(--text-light);
-            border: 1px solid #ddd;
-        }
+.ticket-action-btn.secondary {
+    background: #f0f0f0;
+    color: var(--text-light);
+    border: 1px solid #ddd;
+}
 
-        .dark-mode .ticket-action-btn.secondary {
-            background: #333;
-            border-color: #444;
-            color: var(--text-dark);
-        }
+.dark-mode .ticket-action-btn.secondary {
+    background: #333;
+    border-color: #444;
+    color: var(--text-dark);
+}
 
-        .ticket-action-btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-        }
+.ticket-action-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+}
 
-        .ticket-footer {
-            margin-top: 15px;
-            padding-top: 15px;
-            border-top: 1px dashed #ddd;
-            font-size: 12px;
-            color: #999;
-            display: flex;
-            justify-content: space-between;
-        }
+.ticket-footer {
+    margin-top: 15px;
+    padding-top: 15px;
+    border-top: 1px dashed #ddd;
+    font-size: 12px;
+    color: #999;
+    display: flex;
+    justify-content: space-between;
+}
 
-        .dark-mode .ticket-footer {
-            border-top-color: #444;
-        }
+.dark-mode .ticket-footer {
+    border-top-color: #444;
+}
 
-        /* Empty State for Tickets */
-        .empty-tickets {
-            text-align: center;
-            padding: 60px 20px;
-            color: #999;
-        }
+/* Empty State for Tickets */
+.empty-tickets {
+    text-align: center;
+    padding: 60px 20px;
+    color: #999;
+}
 
-        .empty-tickets i {
-            font-size: 80px;
-            margin-bottom: 20px;
-            opacity: 0.5;
-            display: block;
-        }
+.empty-tickets i {
+    font-size: 80px;
+    margin-bottom: 20px;
+    opacity: 0.5;
+    display: block;
+}
 
-        .empty-tickets h5 {
-            margin: 10px 0;
-            color: var(--text-light);
-        }
+.empty-tickets h5 {
+    margin: 10px 0;
+    color: var(--text-light);
+}
 
-        .dark-mode .empty-tickets h5 {
-            color: var(--text-dark);
-        }
+.dark-mode .empty-tickets h5 {
+    color: var(--text-dark);
+}
 
-        .empty-tickets p {
-            font-size: 14px;
-            margin-bottom: 30px;
-        }
+.empty-tickets p {
+    font-size: 14px;
+    margin-bottom: 30px;
+}
 
-        /* QR Code Display Enhancement */
-        .ticket-qr-display {
-            text-align: center;
-            background: white;
-            border-radius: 15px;
-            padding: 30px;
-            margin: 20px 0;
-            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
-        }
+/* QR Code Display Enhancement */
+.ticket-qr-display {
+    text-align: center;
+    background: white;
+    border-radius: 15px;
+    padding: 30px;
+    margin: 20px 0;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+}
 
-        .dark-mode .ticket-qr-display {
-            background: #2a2a2a;
-        }
+.dark-mode .ticket-qr-display {
+    background: #2a2a2a;
+}
 
-        .ticket-qr-code {
-            width: 200px;
-            height: 200px;
-            margin: 0 auto;
-            background: white;
-            padding: 15px;
-            border-radius: 10px;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
+.ticket-qr-code {
+    width: 200px;
+    height: 200px;
+    margin: 0 auto;
+    background: white;
+    padding: 15px;
+    border-radius: 10px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
 
-        .dark-mode .ticket-qr-code {
-            background: white;
-        }
+.dark-mode .ticket-qr-code {
+    background: white;
+}
 
-        .ticket-qr-code canvas {
-            width: 170px !important;
-            height: 170px !important;
-        }
-
-        /* PERBAIKAN: Backdrop untuk mencegah klik setelah modal */
-        .modal-backdrop {
-            z-index: 1040 !important;
-        }
-        
-        .modal {
-            z-index: 1050 !important;
-        }
-
-        /* Fix untuk wishlist button di dalam modal */
-        .modal .wishlist-btn {
-            z-index: 1060 !important;
-        }
-
-        /* PERBAIKAN: QR Code generator styles */
-        #qrcode {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        }
-        
-        #qrcode canvas {
-            width: 100% !important;
-            height: auto !important;
-            max-width: 170px;
-            max-height: 170px;
-        }
-        
-        /* Loading untuk QR Code */
-        .qr-loading {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            height: 200px;
-        }
-        
-        .qr-loading .spinner {
-            width: 50px;
-            height: 50px;
-            border: 5px solid #f3f3f3;
-            border-top: 5px solid var(--secondary);
-            border-radius: 50%;
-            animation: spin 1s linear infinite;
-        }
-        
-        .qr-loading p {
-            margin-top: 15px;
-            color: #666;
-        }
-        
-        /* PERBAIKAN: Event card dalam modal */
-        .modal .event-image-wrapper {
-            position: relative;
-        }
-        
-        .modal .wishlist-btn {
-            position: absolute;
-            top: 15px;
-            right: 15px;
-        }
-
-        /* PERBAIKAN: Modal backdrop fix */
-        body.modal-open {
-            overflow: hidden;
-            padding-right: 0 !important;
-        }
+.ticket-qr-code canvas {
+    width: 170px !important;
+    height: 170px !important;
+}
 
     </style>
 </head>
@@ -3187,7 +3126,6 @@
         let chatInitialized = false;
         let currentTicketData = null;
         let isCategoryFilterActive = false;
-        let activeModal = null;
 
         // Check if user is logged in
         function checkAuth() {
@@ -3411,7 +3349,7 @@
                             <img src="${event.image}" alt="${event.title}" class="event-image" loading="lazy">
                             <span class="event-badge">${event.category}</span>
                             <button class="wishlist-btn ${isInWishlist ? 'active' : ''}" 
-                                    onclick="event.stopPropagation(); toggleWishlist(${event.id}, this)">
+                                    onclick="event.stopPropagation(); toggleWishlist(${event.id})">
                                 <i class="bi ${isInWishlist ? 'bi-heart-fill' : 'bi-heart'}"></i>
                             </button>
                         </div>
@@ -3543,8 +3481,8 @@
             renderEvents(query);
         });
 
-        // Toggle Wishlist - PERBAIKAN BESAR: Menambahkan parameter buttonElement
-        function toggleWishlist(eventId, buttonElement = null) {
+        // Toggle Wishlist - FIXED VERSION
+        function toggleWishlist(eventId) {
             if (!currentUser) {
                 alert('Silakan login terlebih dahulu!');
                 showPage('loginPage');
@@ -3554,29 +3492,10 @@
             const isInWishlist = wishlist.includes(eventId);
             const eventData = eventsData.find(e => e.id === eventId);
             
-            // Hentikan event bubbling
-            if (buttonElement) {
-                buttonElement.classList.add('animating');
-            }
-            
             if (isInWishlist) {
                 // Hapus dari wishlist
                 const index = wishlist.indexOf(eventId);
                 wishlist.splice(index, 1);
-                
-                // Update button
-                if (buttonElement) {
-                    buttonElement.classList.remove('active');
-                    const heartIcon = buttonElement.querySelector('i');
-                    heartIcon.className = 'bi bi-heart';
-                    
-                    // Animasi
-                    anime({
-                        targets: heartIcon,
-                        scale: [1, 0.5, 1],
-                        duration: 300
-                    });
-                }
                 
                 // NOTIFIKASI IMPROVED: Event dihapus dari wishlist
                 showNotification(`"${eventData.title}" dihapus dari wishlist`, 'info');
@@ -3584,34 +3503,12 @@
                 // Tambah ke wishlist
                 wishlist.push(eventId);
                 
-                // Update button
-                if (buttonElement) {
-                    buttonElement.classList.add('active');
-                    const heartIcon = buttonElement.querySelector('i');
-                    heartIcon.className = 'bi bi-heart-fill';
-                    
-                    // Animasi
-                    anime({
-                        targets: heartIcon,
-                        scale: [1, 1.3, 1],
-                        duration: 300,
-                        easing: 'easeInOutQuad'
-                    });
-                }
-                
                 // NOTIFIKASI IMPROVED: Event ditambahkan ke wishlist
                 showNotification(`❤️ "${eventData.title}" ditambahkan ke wishlist!`, 'success');
             }
             
             // Simpan ke localStorage
             localStorage.setItem(`wishlist_${currentUser.id}`, JSON.stringify(wishlist));
-            
-            // Hapus class animating setelah selesai
-            setTimeout(() => {
-                if (buttonElement) {
-                    buttonElement.classList.remove('animating');
-                }
-            }, 600);
             
             // Update semua tampilan yang relevan
             updateWishlistDisplay();
@@ -3634,16 +3531,12 @@
             
             // Set modal body content 
             document.getElementById('modalEventBody').innerHTML = `
-                <div style="position: relative;">
-                    <img src="${event.image}" class="img-fluid rounded mb-3" alt="${event.title}" 
-                         style="width: 100%; height: auto; object-fit: contain; max-height: 400px; background: #f5f5f5;">
-                    <span class="event-badge" style="position: absolute; top: 15px; left: 15px;">${event.category}</span>
-                    <button class="wishlist-btn ${isInWishlist ? 'active' : ''}" 
-                            style="position: absolute; top: 15px; right: 15px; z-index: 1060;"
-                            onclick="toggleWishlistFromModal(${event.id}, this)">
-                        <i class="bi ${isInWishlist ? 'bi-heart-fill' : 'bi-heart'}"></i>
-                    </button>
-                </div>
+                <img src="${event.image}" class="img-fluid rounded mb-3" alt="${event.title}" 
+                     style="width: 100%; height: auto; object-fit: contain; max-height: 400px; background: #f5f5f5;">
+                
+                <span style="display: inline-block; background: var(--secondary); color: var(--primary); padding: 6px 16px; border-radius: 20px; font-size: 13px; font-weight: 600; margin-bottom: 15px;">
+                    ${event.category.toUpperCase()}
+                </span>
                 
                 <h6 class="mt-3 mb-2" style="font-weight: 600;">Deskripsi</h6>
                 <p style="text-align: justify; line-height: 1.6;">${event.description}</p>
@@ -3711,6 +3604,17 @@
                 }
             }
 
+            // Tombol wishlist 
+            if (isInWishlist) {
+                footerHTML += `<button type="button" class="btn btn-outline-danger" onclick="toggleWishlistFromModal()">
+                    <i class="bi bi-heart-fill"></i> Hapus Wishlist
+                </button>`;
+            } else {
+                footerHTML += `<button type="button" class="btn btn-outline-primary" onclick="toggleWishlistFromModal()">
+                    <i class="bi bi-heart"></i> Tambah Wishlist
+                </button>`;
+            }
+
             document.getElementById('modalEventFooter').innerHTML = footerHTML;
 
             // Show modal
@@ -3740,51 +3644,39 @@
             }
         }
 
-        // Toggle Wishlist dari Modal - PERBAIKAN BESAR
-        function toggleWishlistFromModal(eventId, buttonElement) {
+        // Toggle Wishlist dari Modal - FIXED
+        function toggleWishlistFromModal() {
             if (!currentEventDetail) return;
             
+            const eventId = currentEventDetail.id;
             const isInWishlist = wishlist.includes(eventId);
             const eventData = eventsData.find(e => e.id === eventId);
             
-            // Hentikan event bubbling
-            event.stopPropagation();
-            
-            // Tambahkan class animating
-            buttonElement.classList.add('animating');
-            
             if (isInWishlist) {
                 wishlist = wishlist.filter(id => id !== eventId);
-                buttonElement.classList.remove('active');
-                const heartIcon = buttonElement.querySelector('i');
-                heartIcon.className = 'bi bi-heart';
                 showNotification(`"${eventData.title}" dihapus dari wishlist`, 'info');
             } else {
                 wishlist.push(eventId);
-                buttonElement.classList.add('active');
-                const heartIcon = buttonElement.querySelector('i');
-                heartIcon.className = 'bi bi-heart-fill';
                 showNotification(`❤️ "${eventData.title}" ditambahkan ke wishlist!`, 'success');
             }
             
             localStorage.setItem(`wishlist_${currentUser.id}`, JSON.stringify(wishlist));
             
+            // Update modal
+            showEventDetailModal(eventId);
+            
             // Update card di halaman home
             const wishlistBtn = document.querySelector(`.event-card[onclick*="${eventId}"] .wishlist-btn`);
             if (wishlistBtn) {
+                const heartIcon = wishlistBtn.querySelector('i');
                 if (isInWishlist) {
                     wishlistBtn.classList.remove('active');
-                    wishlistBtn.querySelector('i').className = 'bi bi-heart';
+                    heartIcon.className = 'bi bi-heart';
                 } else {
                     wishlistBtn.classList.add('active');
-                    wishlistBtn.querySelector('i').className = 'bi bi-heart-fill';
+                    heartIcon.className = 'bi bi-heart-fill';
                 }
             }
-            
-            // Hapus class animating setelah selesai
-            setTimeout(() => {
-                buttonElement.classList.remove('animating');
-            }, 600);
         }
 
         // Register Event dari Modal (untuk event gratis)
@@ -3831,7 +3723,7 @@
             renderReminder();
         }
 
-        // Fungsi untuk menampilkan QR Tiket - PERBAIKAN BESAR
+        // Fungsi untuk menampilkan QR Tiket - FIXED
         function showTicketQR() {
             if (!currentTicketData) return;
             
@@ -3856,12 +3748,7 @@
                     </div>
                     
                     <div class="ticket-qr-display">
-                        <div class="ticket-qr-code" id="qrcode">
-                            <div class="qr-loading">
-                                <div class="spinner"></div>
-                                <p>Membuat QR Code...</p>
-                            </div>
-                        </div>
+                        <div class="ticket-qr-code" id="qrcode"></div>
                         <div class="mt-3">
                             
                             <small class="text-muted">Scan QR Code untuk verifikasi</small>
@@ -3924,16 +3811,14 @@
                 </div>
             `;
             
-            const modal = new bootstrap.Modal(document.getElementById('ticketModal'));
-            modal.show();
-            
-            // Generate QR Code setelah modal ditampilkan
+            // Generate QR Code
             setTimeout(() => {
                 if (typeof QRCode !== 'undefined') {
-                    // Hapus loading dan generate QR Code
+                    // Hapus QR Code yang ada sebelumnya
                     const qrcodeElement = document.getElementById("qrcode");
                     qrcodeElement.innerHTML = "";
                     
+                    // Buat QR Code baru
                     try {
                         new QRCode(qrcodeElement, {
                             text: qrData,
@@ -3943,40 +3828,29 @@
                             colorLight: "#ffffff",
                             correctLevel: QRCode.CorrectLevel.H
                         });
-                        
-                        // Pastikan canvas ditampilkan dengan benar
-                        const canvas = qrcodeElement.querySelector('canvas');
-                        if (canvas) {
-                            canvas.style.width = '170px';
-                            canvas.style.height = '170px';
-                        }
                     } catch (error) {
                         console.error('Error generating QR code:', error);
-                        // Fallback jika QR Code gagal
                         qrcodeElement.innerHTML = `
-    <div style="text-align: center; padding: 30px;">
-        <div style="font-size: 80px; color: #666;">
-            <i class="bi bi-qr-code"></i>
-        </div>
-        <p class="mt-3" style="font-family: monospace; font-size: 14px;">
-            ${ticketData.ticketCode}
-        </p>
-    </div>
-`;
+                            <div style="text-align: center; padding: 30px;">
+                                <div style="font-size: 80px; color: #666;">📱</div>
+                                <p class="mt-3">${ticketData.ticketCode}</p>
+                                <small class="text-muted">Gunakan kode di atas untuk verifikasi</small>
+                            </div>
+                        `;
                     }
                 } else {
                     // Fallback jika QRCode.js tidak tersedia
                     document.getElementById("qrcode").innerHTML = `
                         <div style="text-align: center; padding: 30px;">
-                            <div style="font-size: 80px; color: #666;">
-                                 <i class="bi bi-qr-code"></i>
-                                 </div>
-                            <p class="mt-3" style="font-family: monospace; font-size: 14px;">${ticketData.ticketCode}</p>
+                            <div style="font-size: 80px; color: #666;">📱</div>
                             
                         </div>
                     `;
                 }
-            }, 500);
+            }, 100);
+            
+            const modal = new bootstrap.Modal(document.getElementById('ticketModal'));
+            modal.show();
         }
 
         // Fungsi untuk mendownload tiket
@@ -4092,7 +3966,7 @@
                                     <div class="ticket-header">
                                         <div style="flex: 1;">
                                             <h6 class="mb-2" style="font-weight: 600; line-height: 1.3;">${event.title}</h6>
-                                           
+                                            <div class="ticket-code">${ticket.ticketCode || `EVT-${ticket.id.toString().padStart(6, '0')}`}</div>
                                         </div>
                                         <div class="ticket-status ${ticket.paymentStatus === 'free' ? 'free' : 'paid'}">
                                             ${ticket.paymentStatus === 'free' ? 'Gratis' : 'Berbayar'}
@@ -4614,7 +4488,7 @@
                 const responses = [
                     'Terima kasih atas pertanyaannya! Tim kami akan segera merespons.',
                     'Pertanyaan Anda telah dicatat. Tunggu sebentar ya.',
-                    'Saya akan menghubungkan panitia untuk jawaban yang tepat.'
+                    'Saya akan menghubungi panitia untuk jawaban yang tepat.'
                 ];
                 
                 const autoReply = {
@@ -4930,7 +4804,7 @@
                                 <div class="event-image-wrapper">
                                     <img src="${event.image}" alt="${event.title}" class="event-image" loading="lazy">
                                     <span class="event-badge">${event.category}</span>
-                                    <button class="wishlist-btn ${isInWishlist ? 'active' : ''}" onclick="toggleWishlist(${event.id}, this); event.stopPropagation();">
+                                    <button class="wishlist-btn ${isInWishlist ? 'active' : ''}" onclick="toggleWishlist(${event.id}); event.stopPropagation();">
                                         <i class="bi ${isInWishlist ? 'bi-heart-fill' : 'bi-heart'}"></i>
                                     </button>
                                 </div>
