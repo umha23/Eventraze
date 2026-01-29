@@ -1281,6 +1281,7 @@
 
         .payment-success {
             text-align: center;
+            padding: 20px 0;
         }
 
         .payment-success i {
@@ -2148,6 +2149,32 @@
             overflow: hidden;
             padding-right: 0 !important;
         }
+
+        .action-buttons {
+    display: flex;
+    gap: 16px;               
+    justify-content: center; 
+    margin-top: 24px;
+}
+
+.action-buttons button {
+    padding: 14px;
+    border-radius: 12px;
+    font-size: 14px;
+    border: none;
+}
+
+.btn-unduh {
+    background-color: #EBC46B;
+    color: #000;
+    font-weight: 600;
+}
+
+.btn-selesai {
+    background-color: #1E8B53;
+    color: #fff;
+    font-weight: 600;
+}
 
     </style>
 </head>
@@ -4424,14 +4451,16 @@
                         </div>
                     </div>
                     
-                    <div class="mt-4">
-                        <button class="btn btn-primary" onclick="downloadTicket()">
-                            <i class="bi bi-download"></i> Unduh Tiket
-                        </button>
-                        <button class="btn btn-success" onclick="completeRegistrationAfterPayment()">
-                            <i class="bi bi-check"></i> Selesai
-                        </button>
-                    </div>
+                    <div class="action-buttons">
+    <button class="btn-unduh">
+        <i class="bi bi-download"></i> Unduh Tiket
+    </button>
+
+    <button class="btn-selesai">
+        <i class="bi bi-check"></i> Selesai
+    </button>
+</div>
+
                 </div>
             `;
             
