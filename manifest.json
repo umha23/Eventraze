@@ -5,7 +5,7 @@
   "description": "Eventraze adalah platform lengkap untuk pecinta event! Cari event seru di sekitarmu dan promosikan acara kamu. Semua bisa dilakukan dalam satu aplikasi mudah, cepat, dan profesional.(Eventraze, one stop platform for every event experience!).",
   "start_url": "./index.html",
   "scope": "./",
-  "display": "standalone",
+  "display": "Fullscreen",
   "background_color": "#222831",
   "theme_color": "#222831",
   "orientation": "portrait",
